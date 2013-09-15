@@ -1,0 +1,188 @@
+/*
+.stats { background:#D3E4E5;
+ border:1px solid gray;
+ border-collapse:collapse;
+ color:#fff;
+ font:normal 12px verdana, arial, helvetica, sans-serif;
+}
+.stats caption { border:1px solid #5C443A;
+ color:#5C443A;
+ font-weight:bold;
+ letter-spacing:20px;
+ padding:6px 4px 8px 0px;
+ text-align:center;
+ text-transform:uppercase;
+}
+.stats td, .stats th { color:#363636;
+ padding:.4em;
+}
+.stats tr { border:1px dotted gray;
+}
+.stats thead th, .stats tfoot th { background:#5C443A;
+ color:#FFFFFF;
+ padding:3px 10px 3px 10px;
+ text-align:left;
+ text-transform:uppercase;
+}
+.stats tbody td a { color:#363636;
+ text-decoration:none;
+}
+.stats tbody td a:visited { color:gray;
+ text-decoration:line-through;
+}
+.stats tbody td a:hover { text-decoration:underline;
+}
+.stats tbody th a { color:#363636;
+ font-weight:normal;
+ text-decoration:none;
+}
+.stats tbody th a:hover { color:#363636;
+}
+.stats tbody td+td+td+td a { background-image:url('bullet_blue.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+ color:#03476F;
+ padding-left:15px;
+}
+.stats tbody td+td+td+td a:visited { background-image:url('bullet_white.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+}
+.stats tbody th, .stats tbody td { text-align:left;
+ vertical-align:top;
+}
+.stats tfoot td { background:#5C443A;
+ color:#FFFFFF;
+ padding-top:3px;
+}
+.odd { background:#fff;
+}
+.stats tbody tr:hover { background:#99BCBF;
+ border:1px solid #03476F;
+ color:#000000;
+}
+
+
+*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.stats {
+	font-family: Tahoma, Verdana, Arial;
+	border-collapse: collapse;
+	border-spacing: 1px;
+	border-left: 1px solid #1F2A34;
+	border-right: 1px solid #1F2A34;
+}
+.stats th{
+	
+	background: url('http://www.fitodotnet.com/csstablegallery/mainNavBG.gif');
+	font-size: 14px;
+	color: #fff;
+	height: 30px;
+	text-align: center;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	border-left: 1px solid #1F2A34;
+	border-right: 1px solid #1F2A34;
+}
+.stats tbody td{
+	text-align: center;
+	font-size: 10px;
+	background: #2d3134;
+	color: #4FA752;
+	border: 1px solid #373B3E;
+	padding-left: 3px;
+	height: 20px;
+}
+.stats tbody td a:link{
+	font-size: 12px;
+	color:#FF6600;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.stats tbody td a:hover{
+	font-size: 12px;
+	color:#FF6600;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.stats tbody tr th{
+	text-align: center;
+}
+
+.stats tbody td a:visited{
+	font-size: 12px;
+	color:#FF6600;
+	font-weight: bold;
+	text-decoration: line-through;
+}
+.stats tbody th{
+	background: #373B3E;
+	color: #B36133;
+	text-align: left;
+	padding-left: 4px;
+	border: 1px solid #2d3134;
+	width: 120px;
+}
+.stats tbody th a:link{
+	color: #fff;
+	font-size: 12px;
+	font-weight: bolder;
+	text-decoration: none;
+}
+.stats tbody th a:hover{
+	font-size: 13px;
+	color: #fff;
+	font-weight: bolder;
+
+}
+.stats tbody th a:visited{
+	text-decoration: line-through;
+	font-size: 12px;
+	color: #fff;
+	font-weight: bolder;
+
+}
+.stats tbody tr:hover{
+	background: #333;
+}
+.stats tbody a[title^="Download"] { 
+	/*background: url('http://www.fitodotnet.com/csstablegallery/icon_attachment.gif') no-repeat center;
+	padding-top: 22px;*/
+	font-size: 12px;
+	color:#FF6600;
+	text-align: center;
+}
+.stats tbody a[title^="Download"]:hover{
+	text-decoration: underline;
+	font-size: 12px;
+	color:#FF6600;
+}
+.stats tbody a[title^="Download"]:visited{
+	text-decoration: line-through;
+	font-size: 12px;
+	color:#FF6600;
+}
+.stats tfoot{
+	background: #1F2A34;
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	border-left: 1px solid #1F2A34;
+	border-right: 1px solid #1F2A34;
+}
+.stats tfoot td{
+	font-style:italic;
+}
+.stats caption{
+	background: #1F2A34;
+	color: #fff;
+	text-align: center;
+	font-size: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-left: 1px solid #1F2A34;
+	border-right: 1px solid #1F2A34;
+}

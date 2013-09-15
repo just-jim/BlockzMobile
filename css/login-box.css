@@ -1,0 +1,145 @@
+/* Log in Prompt */
+#PleaseLogIn {
+	display: none;
+	z-index: 1;
+	position : absolute;
+	top : 20%;
+}
+
+/* Log in Prompt */
+#userLogin {
+	z-index: 1;
+	position : absolute;
+	top:20%;
+	left : 10%;
+}
+
+/* Log in Prompt */
+#companyLogin {
+	z-index: 1;
+	position : absolute;
+	top:20%;
+	right : 10%;
+}
+
+/* LogIn Popup */
+
+#login-box {
+	display: none;
+	z-index: 100;
+	position : absolute;
+	width:333px;
+	height: 352px;
+	padding: 58px 76px 0 76px;
+	color: #ebebeb;
+	font: 12px Arial, Helvetica, sans-serif;
+	background: url(../image/general/login-box-backg.png) no-repeat left top;
+}
+
+#login-box img {
+	border:none;
+}
+
+#login-box-name {
+	float: left;
+	display:inline;
+	width:80px;
+	text-align: right;
+	padding: 14px 10px 0 0;
+	margin:0 0 7px 0;
+}
+
+#login-box-pass {
+	float: left;
+	display:inline;
+	width:80px;
+	text-align: right;
+	padding: 14px 10px 0 0;
+	margin:0 0 7px 0;
+}
+
+.login-box-field {
+	float: left;
+	display:inline;
+	width:230px;
+	margin:0;
+	margin:0 0 7px 0;
+}
+
+
+.form-login  {
+	width: 205px;
+	padding: 10px 4px 6px 3px;
+	border: 1px solid #0d2c52;
+	background-color:#1e4f8a;
+	font-size: 16px;
+	color: #ebebeb;
+}
+
+.login-box-options  {
+	clear:both;
+	padding-left:87px;
+	font-size: 11px;
+}
+
+.login-box-options a {
+	color: #ebebeb;
+	font-size: 11px;
+}
+
+#exitbut {
+	float: right;
+	width: 30px;
+	margin-right: -40px;
+	margin-top: -35px;
+}
+#exitbut:hover {
+	cursor:pointer;
+}
+
+h2:hover {
+	cursor:default;
+}
+
+#errorpass {
+color:#e46c6d; 
+text-shadow:1px 2px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+position:relative;	
+left: 40px;
+}
+
+/* PopUps*/
+
+.popup {
+	display: none;
+	z-index: 100;
+	position : fixed;
+	/*width:333px;
+	height: 352px;*/
+	width:212px;
+	height: 190px;
+	/*padding: 58px 76px 0 76px;*/
+	padding: 30px 46px 0 46px;
+	color: #ebebeb;
+	font: 12px Arial, Helvetica, sans-serif;
+	background: url(../image/general/login-box-backg.png) no-repeat left top;
+}
+
+.popup img {
+		border:none;
+	/*Kostis*/
+		height:100px;
+}
+
+.exitbtn
+{
+	float: right;
+	width: 30px;
+	margin-right: -40px;
+	margin-top: -35px;
+}
+
+.exitbtn:hover
+{
+	cursor:pointer;
+}

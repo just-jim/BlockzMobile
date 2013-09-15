@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Blockz.me is a game site that has blocks!" />
+	<meta name="author" content="© Blockz "/>
+	<title> BlockZ </title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/backpack.css" />
+	<script type="text/javascript" src="Jquery/jquery.js"> </script>       
+</head>
+
+<body>
+
+
+
+<div id="menu">
+	<img src="image/general/menubar.png" alt="">
+</div> 
+   
+<div id="bg" class="fitscreen">
+	<img src="image/wallpaper/new.jpg" alt="">
+</div>
+
+
+<div id="Grid" class="becenter">
+	<table></table>
+</div>
+
+<div id="names" class="webkit beleft">
+	<p6>BlockZ © </p6>
+	<p4>- Archer </p4>
+	<p2>- just_jim </p2>
+</div>
+
+
+<script type="text/javascript" language="javascript">
+
+var chrome = 0; var firefox = 1;
+
+
+</script>
+
+<div id="header" class="becenter">
+	<h1>BlockZ</h1>
+	<p id="minititle" class="webkit" style="font-size:20px" >Quest Game</p>
+</div>
+
+
+<div id="GridMenu" class="becenter block" style="position: absolute; margin:auto;">
+<table align="center" class="centered" ></table>
+</div>
+
+
+<script>
+
+level=localStorage.getItem('level');
+if(level==null) {level = 1; localStorage.setItem('level','1');}
+level=parseInt(level);
+prepareMenu(level);
+
+
+function prepareMenu(toplevel)
+{
+	
+	blocksPerLine = 5;
+	bottomOffset = 50;
+	var winW = $(window).width();
+	var winH = $(window).height();
+	var extraHeight = $('#header').height() + (0.04*winH) + bottomOffset;
+	var WinHh = ( (winH - extraHeight ) / 2);
+	
+	lines = Math.ceil(toplevel/blocksPerLine);
+	var loading = 0;
+	
+	for (line=1; line<=lines; line++)
+	{
+		$('#GridMenu table').append('<tr>');
+		$('#GridMenu table').append('</tr>');
+		main = $('#GridMenu tr').last();
+		
+		if 		(lines == 1) levelblocks = toplevel;
+		else if (line<lines) levelblocks = blocksPerLine;
+		else 				 levelblocks = toplevel - (lines-1)*blocksPerLine
+		
+		blockwidth = ($(window).width()*0.8) / blocksPerLine;
+		blockHeigh = 134;
+		
+		for (i=1; i<=levelblocks; i++)
+		{
+			curLoopLvl = ((line-1)*blocksPerLine-(-i));
+			part1='<td class="scale" style="width:'+blockwidth+'px;"><table class="webkit" style="margin-left:auto; margin-right:auto;" ><tr><td><p>Level '+curLoopLvl+'</p></td></tr><tr><td style=" padding:5px;">';
+			part2='<table style="margin-left:auto; margin-right:auto;"><tr><td style="background-image:url(image/tile.png); background-size: 100% 100%;">';
+			if (curLoopLvl<toplevel) part3='<img src="image/general/check.png" alt="" style=""></td></tr></table>';
+			else part3='<img src="image/treasure/elements/empty.png" alt="" style="width:88px;"></td></tr></table>';
+			part4='</td></tr><tr><td><p align=right"></p></td></tr></td>';
+			el=part1+part2+part3+part4;
+			main.append(el);
+			lastp = $('#GridMenu p').last();
+			addLevelTitle(curLoopLvl,lastp);
+		}
+	}
+	
+	m = WinHh - lines*90 + $('#header').height();
+	$('#GridMenu').css({marginTop: m});
+
+	
+	$('#GridMenu img').click(function() {
+		lvli=this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex+1;
+		lvlj=this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex;
+		lvl = lvlj*blocksPerLine +lvli;		
+		window.location.href = "BlockzQuest.html?lvl="+lvl;
+	});
+	
+	
+	$(window).bind("resize", function(){ 
+		blockwidth = ($(window).width()*0.8) / blocksPerLine;
+		var winW = $(window).width();
+		var winH = $(window).height();
+		var extraHeight = $('#header').height() + (0.04*winH) + bottomOffset;
+		WinHh = ( (winH - extraHeight ) / 2);		
+		m = WinHh - $('#GridMenu tbody').height()/2 + $('#header').height();
+		$('#GridMenu').css({marginTop: m});
+		$('.scale').css({width: blockwidth})
+	});
+	
+}
+
+function addLevelTitle(lvl,lastp)
+{
+   file = "BQLevels/"+lvl+".txt";
+   $.get(file, function(data) 
+   {
+		parts = data.split("#");
+		title = parts[2];
+		lastp.html("");
+		lastp.append(title);
+	});
+}
+
+</script>
+</body>
+</html>
