@@ -44,17 +44,18 @@
 	</span>
 </div>
 
-<!--
-<div id="levelUpPopup" class="becenter popup webkit" style="top:20%">
-	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
+
+
+<div id="levelUpPopup" class="becenter popup webkit" style="top:20%; background: url('image/general/login-box-backg.png') no-repeat center top;">
+	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" style="padding-left:80px; height:20px;" alt="">
 	<p class="strokebold" style="font-size:46px; font-family: Feast;">Level Up !</p>
-	<img src="image/treasure/forms/levelupArrow.png" alt="" style="margin-top:10px;">
+	<img src="image/treasure/forms/levelupArrow.png" alt="" style="margin-top:10px; height:100px;">
 	<br>
-	<div id="levelUpBtn" style="position:absolute; left:180px; z-index:101;"><img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;"></div>
+	<div id="levelUpBtn" style="padding-top:10px; z-index:101;"><img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;"></div>
 	<br>
-	<img id="levelUpLoading" src="image/general/loading.gif" alt="" style="margin-top:10px; position:absolute; bottom:51px; left:234px;">	
 </div>
--->
+
+
 <div id="kingPopup" class="becenter popup" style="top:20%">
 	<img id="kingPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p id="words" style="font-size:20px;" class="webkit">You who witnessed my fallen kingdom... You shall see it rize again... You must prove yourself. Show your powerful, assertive and - especially - cunning side. Then we shall meet and i will name you king wormy, my rightful heir. Take this hammer and proceed</p>
@@ -1067,6 +1068,7 @@ function createArray( n , nv ){
 		var winW = $(window).width()*2;
 		var winH = $(window).height()*2;
 		h = winH / n;
+		w = h;
 		$('#Grid img').css({ height: h, width: w }); 
 	});
 	
