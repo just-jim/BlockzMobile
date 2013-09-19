@@ -44,46 +44,49 @@
 	</span>
 </div>
 
-
-
-<div id="levelUpPopup" class="becenter popup webkit" style="top:20%; background: url('image/general/login-box-backg.png') no-repeat center top;">
-	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" style="padding-left:80px; height:20px;" alt="">
-	<p class="strokebold" style="font-size:46px; font-family: Feast;">Level Up !</p>
-	<img src="image/treasure/forms/levelupArrow.png" alt="" style="margin-top:10px; height:100px;">
-	<br>
-	<div id="levelUpBtn" style="padding-top:10px; z-index:101;"><img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;"></div>
-	<br>
+<div id="levelUpPopup" class="becenter popup webkit">
+	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
+	<p class="becenter" style="font-size:40px; font-family: Feast; top:15%;">Level Up !</p>
+	<img class="becenter" src="image/treasure/forms/levelupArrow.png" alt="" style="top:0; bottom:0; height: 25%; ">
+	<div id="levelUpBtn" class="becenter" style="z-index:101; bottom: 10%;">
+		<img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
+	</div>	
 </div>
 
 
-<div id="kingPopup" class="becenter popup" style="top:20%">
+<div id="kingPopup" class="becenter popup webkit">
 	<img id="kingPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="words" style="font-size:20px;" class="webkit">You who witnessed my fallen kingdom... You shall see it rize again... You must prove yourself. Show your powerful, assertive and - especially - cunning side. Then we shall meet and i will name you king wormy, my rightful heir. Take this hammer and proceed</p>
-	<br><br>
-	
+	<p id="words" class="becenter" style="font-size:20px; width:70%; top: 20%;">
+	You who witnessed my fallen kingdom... You shall see it rize again... 
+	You must prove yourself. Show your powerful, assertive and - especially - 
+	cunning side. Then we shall meet and i will name you king wormy, my rightful heir. 
+	Take this hammer and proceed
+	</p>
 </div>
 
-<div id="orderPopup" class="becenter popup" style="top:20%">
+<div id="orderPopup" class="becenter popup webkit">
 	<img id="orderPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsOrd" style="font-size:20px;" class="webkit">Shout what you want</p>
-	
+	<p id="wordsOrd" style="font-size:20px;">Shout what you want</p>
 	<textarea type="text" name="commandy" id="order"></textarea>
 	<input type="button" name="button" value="Shout!" onClick="doOrder()"> </input>
-	<br><br>
-	
 </div>
 
-<div id="albPopup" class="becenter popup" style="top:20%">
+<div id="albPopup" class="becenter popup webkit">
 	<img id="albPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsAlb" style="font-size:20px;" class="webkit">Who? Who are you? You look like that insensitive bastard Robert! He said funny things about my hat!</p>
-	
+	<p id="wordsAlb" style="font-size:20px; width:70%; top: 20%;">
+		Who? Who are you? You look like that insensitive bastard Robert! 
+		He said funny things about my hat!
+	</p>
 </div>
 
-<div id="broPopup" class="becenter popup" style="top:20%">
+<div id="broPopup" class="becenter popup webkit">
 	<img id="broPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsBro" style="font-size:20px;" class="webkit">O-O-omg!??! Are you my brother? Yes, yes you are! At last i found you! Listen i am in a fight with my friend Albert :(. Can you help? Here have this hammer!</p>
-	<br><br>
-	
+	<p id="wordsBro" style="font-size:20px; width:70%; top: 20%;">
+		O-O-omg!??! Are you my brother? 
+		Yes, yes you are! At last i found you! 
+		Listen i am in a fight with my friend Albert :(. 
+		Can you help? Here have this hammer!
+	</p>
 </div>
 
 <div class="backpack webkit" style="top: auto; bottom: 0px;">
@@ -91,14 +94,14 @@
 		<ul>
 			<li><a href="#"><img src="image/treasure/tools/backpack.png" height="50px;" alt=""></a>
 				<ul class="horizontal">
-						<div class="extended">
-							<div class="arrow-down"></div>
-							<ul class="smallNav">
-								<li id="backpackEmpty">
-									<a>Empty!</a>
-								</li>
-							</ul>
-						</div>
+					<div class="extended">
+						<div class="arrow-down"></div>
+						<ul class="smallNav">
+							<li id="backpackEmpty">
+								<a>Empty!</a>
+							</li>
+						</ul>
+					</div>
 				</ul>
 			</li>
 		</ul>
@@ -121,7 +124,7 @@
 
 <script type="text/javascript">
 
-document.onselectstart = function() { return false; }
+document.getElementById('levelUpPopup').style.display = 'block';
 
 var chrome = 0; var firefox = 1;
 
@@ -147,7 +150,7 @@ mains=["image/treasure/backgrounds/test1.jpg","image/treasure/backgrounds/test2.
 		"image/treasure/backgrounds/test7.gif","image/treasure/backgrounds/test8.jpg","image/treasure/elements/water.jpg"];	
 
 // Tools:  0: pick		2: boat		3: antilava
-tools=["image/treasure/tools/pick.png","image/treasure/tools/boat.png","image/treasure/tools/antilava.png"]	
+tools=["image/treasure/tools/pick.png","image/treasure/tools/boat.png","image/treasure/tools/antilava.png"];
 		
 
 		
@@ -205,8 +208,7 @@ $.get(file, function(data)
 	parts = data.split("#");
 	energy = parts[3];
 	title = parts[2];
-	prepareMap(parts[0],parts[1])
-
+	prepareMap(parts[0],parts[1]);
 });
 	
 
@@ -218,24 +220,22 @@ function getURLParameter(name) {
 }
 
 $(window).load(function() {
-	
-$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 800);
+	$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 800);
 	$('html, body').animate({scrollTop: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().top}, 800);	
 	
 	playMovie();
 	
 	if(level==14) {
-		 $('#Grid table tr:eq(10) td:eq(18) img').draggable({revert:true});
-		 $( "#Grid table tr:eq(5) td:eq(9)" ).droppable({
-      drop: function( event, ui ) {
-        $( this ).css("background","url("+samples[29]+")");
-         $( this ).css("background-size","100% 100%");
-        $(this).children().attr("src",images[2]);
-         $('#Grid table tr:eq(10) td:eq(18) img').fadeOut("fast");
-      }
-    });
+		$('#Grid table tr:eq(10) td:eq(18) img').draggable({revert:true});
+		$( "#Grid table tr:eq(5) td:eq(9)" ).droppable({
+	      	drop: function( event, ui ) {
+		    	$( this ).css("background","url("+samples[29]+")");
+		    	$( this ).css("background-size","100% 100%");
+		    	$( this ).children().attr("src",images[2]);
+		    	$('#Grid table tr:eq(10) td:eq(18) img').fadeOut("fast");
+	      	}
+   		});
 	}
-	
 });
 // Function to prepare map for the user 
 function prepareMap(personal,background)
@@ -311,7 +311,7 @@ function createArray( n , nv ){
 	    	$('tr').last().children().last().css("background","url("+mains[0]+")");
 	    	$('tr').last().children().last().css("backgroundSize","100% 100%");
 	    }
-	    $('table').append('</tr>')	
+	    $('table').append('</tr>');
 	}
 	
 	
@@ -412,8 +412,8 @@ function createArray( n , nv ){
 		lastMoveY=cury;
 		var hitBlock =  $('#Grid table tr:eq('+ (wanay) +') td:eq('+ wanax +')').children();
 		var block = hitBlock.attr("src");
-		if (level==12&&wanax<0) {orderPopup()}
-		if (level==12&&wanax>18&&helped) {levelUpPopup()}
+		if (level==12&&wanax<0) {orderPopup();}
+		if (level==12&&wanax>18&&helped) {levelUpPopup();}
 			if(holeGone==1) {
 				holeGone=0;
 					    	$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[14]);
@@ -481,30 +481,19 @@ function createArray( n , nv ){
 				}
 		}
 		else if (block==samples[14]){
-			
 			$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
 			playerGone=1;
-			
-			
-			if(level==9){					//level 9 special functionallity
-				
+			//level 9 special functionallity
+			if(level==9){					
 				thatel=$('#Grid table tr:eq(4) td:eq(1)').children();
-				
-				
-				
-				    
-					setTimeout(function(){if(playerGone)thatel.fadeOut("slow",function(){
-	    		   	
-	    		   	thatel.attr("src",images[2]);
-	    		   	thatel.fadeIn("fast");})},20000);
-					
-				
-	    		   
-	    		  }
-	    		  
-	    		  
+				setTimeout(function(){
+					if(playerGone)thatel.fadeOut("slow",function(){
+						thatel.attr("src",images[2]);  
+						thatel.fadeIn("fast");
+					});
+				},20000);
+	    	}
 		}
-		
 	}
 	
 	function playerExplore(curx,cury,wanax,wanay)
@@ -535,8 +524,8 @@ function createArray( n , nv ){
 	$('table img').click(function() {
 		var thatel = $(this);
 		var thattel = this;
-		x=this.parentNode.cellIndex
-		y=this.parentNode.parentNode.rowIndex
+		x=this.parentNode.cellIndex;
+		y=this.parentNode.parentNode.rowIndex;
 		block=$(this).attr( "src" );
 		//Kinisi Avatar me Click
 		if(($(this).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
@@ -597,29 +586,17 @@ function createArray( n , nv ){
 				
 			}
 		}
-		 else if (block==samples[14]&&playerGone==0&&playerIsNear(x,y)){
-			
+		else if (block==samples[14]&&playerGone==0&&playerIsNear(x,y)){
 			$('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 			playerGone=1;
-			
-			
-			if(level==9){					//level 9 special functionallity
-				
+			//level 9 special functionallity
+			if(level==9){					
 				thatel=$('#Grid table tr:eq(4) td:eq(1)').children();
-				
-				
-				
-				    
-					setTimeout(function(){if(playerGone)thatel.fadeOut("slow",function(){
-	    		   	
+				setTimeout(function(){if(playerGone)thatel.fadeOut("slow",function(){
 	    		   	thatel.attr("src",images[2]);
-	    		   	thatel.fadeIn("fast");})},20000);
-					
-				
-	    		   
-	    		  }
-	    		  
-	    		  
+	    		   	thatel.fadeIn("fast");
+	    		});},20000);
+	    	}
 		}
 	    else if($(this).attr( "src" )== samples[12] && playerIsNear(x,y))  // King speaks
 	    {
@@ -644,47 +621,29 @@ function createArray( n , nv ){
 				Click(thatel,thattel,clicks[3]); 
 				music("axe");
 			
-			if(level==7){
-	    		var goodsmiley=true;
-	    		
-	    			for (y=0;y<=1;y++){
-	    				
-	    				for(x=4;x<=12;x++){
-	    				
-	    				if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
-	    			}
-	    			
-	    		   }
-	    		   
-	    		   for (y=3;y<=4;y++){
-	    				
-	    				for(x=4;x<=12;x++){
-	    				
-	    				if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
-	    			}
-	    			
-	    		   }
-	    		   
-	    		     
-	    				
-	    				
-	    				
-	    				if($('#Grid table tr:eq('+2+') td:eq('+4+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+2+') td:eq('+12+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
-	    				if($('#Grid table tr:eq('+2+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+2+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	    			
-	    			    if($('#Grid table tr:eq('+5+') td:eq('+5+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+5+') td:eq('+11+')').children().attr("src")==samples[5]) goodsmiley=false;	    			
-	    				if($('#Grid table tr:eq('+5+') td:eq('+6+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+5+') td:eq('+10+')').children().attr("src")!=samples[5]) goodsmiley=false;	    			
-	    		   		if($('#Grid table tr:eq('+6+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+8+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	 
-	    		   
-	    		   if(goodsmiley) thatel.fadeOut("slow",function(){
-	    		   	
-	    		   	$('#Grid table tr:eq(1) td:eq(18)').children().attr("src",images[2]);
-	    		   	$('#Grid table tr:eq(1) td:eq(18)').children().fadeIn("fast");
-	    		   });
-	    		   
-	    		   }
-	    		   
-	    		
-			
+				if(level==7){
+		    		var goodsmiley=true;
+		    		for (y=0;y<=1;y++){
+			    		for(x=4;x<=12;x++){
+			    			if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
+			    		}
+		    		 }
+		    		 for (y=3;y<=4;y++){
+		    			for(x=4;x<=12;x++){
+		    				if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
+		    			}
+		    		 }
+	
+					if($('#Grid table tr:eq('+2+') td:eq('+4+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+2+') td:eq('+12+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
+					if($('#Grid table tr:eq('+2+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+2+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	    			
+				    if($('#Grid table tr:eq('+5+') td:eq('+5+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+5+') td:eq('+11+')').children().attr("src")==samples[5]) goodsmiley=false;	    			
+					if($('#Grid table tr:eq('+5+') td:eq('+6+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+5+') td:eq('+10+')').children().attr("src")!=samples[5]) goodsmiley=false;	    			
+			   		if($('#Grid table tr:eq('+6+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+8+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	 
+		    		if(goodsmiley) thatel.fadeOut("slow",function(){
+		    		   	$('#Grid table tr:eq(1) td:eq(18)').children().attr("src",images[2]);
+		    		   	$('#Grid table tr:eq(1) td:eq(18)').children().fadeIn("fast");
+		    		});
+		    	}
 			}
 	    }
 	    else if($(this).attr( "src" )== samples[20] && playerIsNear(x,y))  // red flower
@@ -694,7 +653,7 @@ function createArray( n , nv ){
 	    else if($(this).attr( "src" )== samples[7] && playerIsNear(x,y))  // anti-lava
 	    {
 	    	music("antilava");
-			if (antilava > 0){Click(thatel,thattel,clicks[5])}
+			if (antilava > 0){Click(thatel,thattel,clicks[5]);}
 	    }
 	    else if($(this).attr( "src" )== samples[3] && playerIsNear(x,y))  //chest
 	    {
@@ -738,8 +697,6 @@ function createArray( n , nv ){
 	    	samples[2] = "image/treasure/character/man.png";
 	    	IamAlbert=0;
 	    }
-	   
-	    
 	 });
 	
 	//Manage the situation when player is on water
@@ -764,51 +721,44 @@ function createArray( n , nv ){
     // Manage the ajax request that should be send each time
     function Click(that,thatt,what)
     {
-			if (what== clicks[0] || what == clicks[3] || what == clicks[5])
+		if (what== clicks[0] || what == clicks[3] || what == clicks[5])
+		{
+			if (what == clicks[0])
 			{
-				
-							
-							if (what == clicks[0])
-							{
-								energy--;
-								$('#EnergyCount span').html(': '+ energy);	
-							}
-							else if (what == clicks[3])
-							{
-								   if(level==11){
-	    		   			/*alert('I m here');
-	    		   			alert(thatt.parentNode.parentNode.rowIndex);
-	    		   			alert(thatt.parentNode.cellIndex);*/
+				energy--;
+				$('#EnergyCount span').html(': '+ energy);	
+			}
+			else if (what == clicks[3])
+			{
+				if(level==11){
 	    		   	if((thatt.parentNode.parentNode.rowIndex==4)&&(thatt.parentNode.cellIndex==0)) {
 	    		   		that.attr("src",samples[13]);
 		    		   	hammer--;
 						$('#hammer').html('x '+ hammer);
 						neatBackpack();
-		    		   //	alert('yahoo')
 		    		 }
-	    		   	
-	    		   	else {
+	    		   	else{
 	    		   		that.attr("src",images[2]);
-								hammer--;
-								$('#hammer').html('x '+ hammer);
-								neatBackpack();
+						hammer--;
+						$('#hammer').html('x '+ hammer);
+						neatBackpack();
 	    		   	}
-	    		   	
-	    		   }  else		{
-								that.attr("src",images[2]);
-								hammer--;
-								$('#hammer').html('x '+ hammer);
-								neatBackpack();
-							}
-							}
-							else if (what == clicks[5])
-							{
-								that.attr("src",images[2]);
-								antilava--;
-								$('#antilava').html('x '+ antilava);
-								neatBackpack();
-							}	
+    		   	}  
+    		   	else{
+					that.attr("src",images[2]);
+					hammer--;
+					$('#hammer').html('x '+ hammer);
+					neatBackpack();
+				}
+			}
+			else if (what == clicks[5])
+			{
+				that.attr("src",images[2]);
+				antilava--;
+				$('#antilava').html('x '+ antilava);
+				neatBackpack();
 			}	
+		}	
     }
 	
 	// Elenxos an o paiktis einai dipla se kapoio block
@@ -831,7 +781,7 @@ function createArray( n , nv ){
 		default: alert("There was an error with your prize.. Sorry :/" );
 		}
 
-		$('#giftimg').attr( "src" , tools[gift.index] )     //.html('<img src="' + tools[gift.index] + '" style="width: 150px;"');  .attr( "src" )
+		$('#giftimg').attr( "src" , tools[gift.index] );     //.html('<img src="' + tools[gift.index] + '" style="width: 150px;"');  .attr( "src" )
 		$('#giftvalue').html('x'+gift.value);
 		moveAlow = 0;
 		document.getElementById('giftPopup').style.display = 'block';
@@ -868,7 +818,7 @@ function createArray( n , nv ){
 	
 	function levelup()
 	{
-		if(level==15) document.location.href= 'youAreTheChampion.php'
+		if(level==15) document.location.href= 'youAreTheChampion.php';
 		else{
 		document.getElementById('levelUp').style.display = "none";
 		music("levelup");
@@ -880,7 +830,6 @@ function createArray( n , nv ){
 	}
 		
 	$('#levelUpPopupExit').click(function(){
-		
 		moveAlow = 1;
 		document.getElementById("levelUpPopup").style.display = 'none';
 	});
@@ -901,40 +850,26 @@ function createArray( n , nv ){
 		if(level==9) {
 			$   ('#words').html('Ah! Edgar Allan Poe! My favourite part of his work is The Raven verse 5! I really adore his symbolism!');
 			document.getElementById('kingPopup').style.display = 'block';
-			
 		}
 		if(level==11){
-			
-			$   ('#words').html('lalala when you walk through the garden, you better watch your back lalala');
-						document.getElementById('kingPopup').style.display = 'block';
-
-			
+			$('#words').html('lalala when you walk through the garden, you better watch your back lalala');
+			document.getElementById('kingPopup').style.display = 'block';
 		}
-		
 		if(level==13){
-			
-			$   ('#words').html('You need a boat to cross the river. Trololololo lololo lololo!!');
-						document.getElementById('kingPopup').style.display = 'block';
-
-			
+			$('#words').html('You need a boat to cross the river. Trololololo lololo lololo!!');
+			document.getElementById('kingPopup').style.display = 'block';
 		}
 		
 		if(level==15){
-			
 			if(titlesbrowsed==0)
-			$   ('#words').html('Maybe you should ask the Title God for guidance in your dire situation. May you be blessed.');
+				$('#words').html('Maybe you should ask the Title God for guidance in your dire situation. May you be blessed.');
 			else
-			$   ('#words').html('I think the Title God is trolling you... eh i meant CHALLENGING you! Oh forgive me Title God! Seek some cliche methods of hiding the true answer! Our God is old fashioned');
-						document.getElementById('kingPopup').style.display = 'block';
-			
+				$('#words').html('I think the Title God is trolling you... eh i meant CHALLENGING you! Oh forgive me Title God! Seek some cliche methods of hiding the true answer! Our God is old fashioned');
+			document.getElementById('kingPopup').style.display = 'block';
 		}
-		
 	}
 	
-	
-	
-	$('#kingPopupExit').click(function(){
-		
+	$('#kingPopupExit').click(function(){	
 		moveAlow = 1;
 		document.getElementById("kingPopup").style.display = 'none';
 	});
@@ -943,95 +878,68 @@ function createArray( n , nv ){
 	
 	function broPopup()
 	{
-		//alert(brocount);
-		//alert(albcount);
 		moveAlow = 0;
 		if(level==11){
-		if(playerflipped){
-			$   ('#wordsBro').html('Please talk to my face brother!');
+			if(playerflipped)	$('#wordsBro').html('Please talk to my face brother!');
+			else{
+				if((hammer==0)&&(albcount==0)&&(brocount==0)){
+					$('#wordsBro').html('O-O-omg!??! Are you my brother? Yes, yes you are! At last i found you! Listen i am in a fight with my friend Albert :(. Can you help? Here have this hammer!');
+					hammer++;
+					brocount++;
+					$('#hammer').html('x '+ hammer);
+					showTool(0,1,"hammer"); neatBackpack(); 		
+				}
+				else if((brocount==1)&&(albcount==0)){
+					$('#wordsBro').html('Go now please!');
+				}
+				if((brocount==1)&&(albcount==1)){
+					brocount++;
+					$('#wordsBro').html('How do i apologise to him? I have to show sensitivity!');
+				}
+			}	
+			document.getElementById("broPopup").style.display = 'block';
 		}
-		else{
-			if((hammer==0)&&(albcount==0)&&(brocount==0)){
-			$   ('#wordsBro').html('O-O-omg!??! Are you my brother? Yes, yes you are! At last i found you! Listen i am in a fight with my friend Albert :(. Can you help? Here have this hammer!');
-		hammer++;
-		brocount++;
-		$('#hammer').html('x '+ hammer);
-		showTool(0,1,"hammer"); neatBackpack(); 
-		
-		}
-		else if((brocount==1)&&(albcount==0)){
-			$   ('#wordsBro').html('Go now please!');
-		
-		}
-		if((brocount==1)&&(albcount==1)){
-			brocount++;
-			$   ('#wordsBro').html('How do i apologise to him? I have to show sensitivity!');
-		}
-	
-	}	
-		document.getElementById("broPopup").style.display = 'block';
-		
-		
-		
-	}
 	}
 	
 	function albPopup()
 	{
-		//alert(brocount);
-		//alert(albcount); 
 		music('albert');
 		moveAlow = 0;
 		//LEVEL 11
 		if(level==11){
-			if(!playerflipped){
-				$   ('#wordsAlb').html('Talk to my face worm!');
-	}
-	else {	if((brocount==1)&&(albcount==0)){
-			
-			$   ('#wordsAlb').html('Who? Who are you? You look like that insensitive bastard Robert! He said funny things about my hat!');
-			albcount++;		
+			if(!playerflipped)	$('#wordsAlb').html('Talk to my face worm!');
+			else {	
+				if((brocount==1)&&(albcount==0)){
+					$('#wordsAlb').html('Who? Who are you? You look like that insensitive bastard Robert! He said funny things about my hat!');
+					albcount++;		
+				}
+				if((brocount==2)&&(albcount==1)&&flower){
+					$('#wordsAlb').html('Flowers? What does he think i am a girl or something? Stop covering him. Take this boat and leave, this does not concern you');
+					boatFlag=1;
+					albcount++;		
+				}
+				else if((brocount==2)&&(albcount==2)){
+					$('#wordsAlb').html('Go now please. This world is in trouble. There will be bigger troubles in these ruins... And your brother could be the cause');
+				}
+			}
 		}
-		if((brocount==2)&&(albcount==1)&&flower){
-			
-			$   ('#wordsAlb').html('Flowers? What does he think i am a girl or something? Stop covering him. Take this boat and leave, this does not concern you');
-			boatFlag=1;
-			albcount++;		
+		//LEVEL 12
+		if(level==12){
+			$('#wordsAlb').html("Quick! You have to call for help! I may have my differences with your brother but he's my friend and he doesn't deserve what your evil twin has done to him!");
 		}
-		else if((brocount==2)&&(albcount==2)){
-			$   ('#wordsAlb').html('Go now please. This world is in trouble. There will be bigger troubles in these ruins... And your brother could be the cause');
+		if(level==12&&helped){
+			$('#wordsAlb').html("Good now we must go! The bastard must pay!");
 		}
-		
-		
-	
-	}
+		document.getElementById("albPopup").style.display = 'block';
 	}
 	
-	//LEVEL 12
-	if(level==12){
-	
-	$('#wordsAlb').html("Quick! You have to call for help! I may have my differences with your brother but he's my friend and he doesn't deserve what your evil twin has done to him!");
-	
-	}
-	
-	if(level==12&&helped){
-	
-	$('#wordsAlb').html("Good now we must go! The bastard must pay!");
-	
-	}
-	
-	
-	document.getElementById("albPopup").style.display = 'block';
-	}
 	
 	$('#broPopupExit').click(function(){
-		
 		moveAlow = 1;
 		document.getElementById("broPopup").style.display = 'none';
 	});
 	
 	$('#albPopupExit').click(function(){
-		
 		moveAlow = 1;
 		document.getElementById("albPopup").style.display = 'none';
 	});
@@ -1047,15 +955,12 @@ function createArray( n , nv ){
 	function useBoat()
 	{
 		document.getElementById('boatBtn').style.display = "none";
-		
-           			boat--;
-					$('#boat').html('x '+ boat);
-					neatBackpack();
-           			boatFlag = 1;
-           			moveAlow = 1;
-           			document.getElementById("boatPopup").style.display = 'none';
-           		
-         
+		boat--;
+		$('#boat').html('x '+ boat);
+		neatBackpack();
+		boatFlag = 1;
+		moveAlow = 1;
+		document.getElementById("boatPopup").style.display = 'none';
 	}	
 		
 	$('#boatPopupExit').click(function(){
@@ -1075,15 +980,11 @@ function createArray( n , nv ){
 		document.getElementById("orderPopup").style.display = 'none';
 	});
 	
-
-	
 	// Pressed Enter Manager
 	function enterManager()
 	{
-		 if 	(document.getElementById('levelUpPopup').style.display == 'block') levelup();	
-		
+		if 	(document.getElementById('levelUpPopup').style.display == 'block') levelup();
 	}
-		
 	
 	// Diaxeirisi Diastasis pinaka dynamika me tin allagi tis diastasis tou window
 	
@@ -1107,25 +1008,24 @@ $('#minititle').click(function(){
 	
 	if(level==15) {
 		
-		if(titlecount>5) { titlecount=0; titlesbrowsed=1};
-		
-			if(titlecount==0)
-				$('#minititle').html('His name is Zobelle');
-			if(titlecount==1)
-			    $('#minititle').html('Oh sorry... Right! His name is Ortan');
-			if(titlecount==2)
-			    $('#minititle').html('Why did i just say that? He is definetely called Dante');
-			if(titlecount==3)
-			    $('#minititle').html('You get i am not really helping huh? Ian it is');
-			if(titlecount==4)
-			    $('#minititle').html('Keep asking. He is Andrew');
-			if(titlecount==5)
-			    $('#minititle').html('Well i should say the truth at last. We call him Colt!');
-			    
-			titlecount++;
-		
+		if(titlecount>5) { 
+			titlecount=0; 
+			titlesbrowsed=1;
+		}
+		if(titlecount==0)
+			$('#minititle').html('His name is Zobelle');
+		if(titlecount==1)
+		    $('#minititle').html('Oh sorry... Right! His name is Ortan');
+		if(titlecount==2)
+		    $('#minititle').html('Why did i just say that? He is definetely called Dante');
+		if(titlecount==3)
+		    $('#minititle').html('You get i am not really helping huh? Ian it is');
+		if(titlecount==4)
+		    $('#minititle').html('Keep asking. He is Andrew');
+		if(titlecount==5)
+		    $('#minititle').html('Well i should say the truth at last. We call him Colt!');
+		titlecount++;
 	}
-	
 });
 
 // Meta to login xrisimopoihte ayti i synartisi gia na emfanisei sto pinaka ta apothikeymena dedomena apo ti basi
@@ -1151,10 +1051,6 @@ function changeBackround(x,y,ind)
 	$('#Grid table tr:eq('+y+') td:eq('+x+')').css("backgroundSize","100% 100%");
 }
 
-// Diaxeirisi twn pros eksereynisi blockz (!!!!!!! Isws de prpei na ginetai me jquery ayto gia logous asfalias !!!!!!!!!)
-
-
-
 //Deiaxirisi SFX
 
 function music(from)
@@ -1174,8 +1070,6 @@ function music(from)
 		else if (from == "punch") 	document.getElementById("punchClip").play();
 		else if (from == "ambulance") 	document.getElementById("ambulanceClip").play();
 		else if (from == "antilava") 	document.getElementById("antilavaClip").play();
-
-
 	}
 }
 
@@ -1254,91 +1148,58 @@ function walk(who,wherex,wherey) {
 function doOrder() {
 	
 	if(level==12) {
-	
-	if($('#order').val()=='HELP') {
-		moveAlow=1;
-			document.getElementById('orderPopup').style.display = 'none';
-		
-		moveAlow=0;
-		$('#Grid table tr:eq(5) td:eq(18)').children().attr("src",samples[28]);
-		
-		
-		music("ambulance");
-		walk("ambulance",10,5);
-		
-		setTimeout(function() { 
-	    		walk("ambulance",19,5);
-
-	},6000);
-	
-	setTimeout(function() { 
-	    		moveAlow=1;
-	    		document.getElementById("ambulanceClip").play();
-
-
-	},8000);
-	
-	helped=1;
-		
-		
-	}
-	else {
+		if($('#order').val()=='HELP') {
 			moveAlow=1;
-			document.getElementById('orderPopup').style.display = 'none';	
-		
-	}
+			document.getElementById('orderPopup').style.display = 'none';
+			moveAlow=0;
+			$('#Grid table tr:eq(5) td:eq(18)').children().attr("src",samples[28]);
+			music("ambulance");
+			walk("ambulance",10,5);
+			setTimeout(function() { 
+		    	walk("ambulance",19,5);
+			},6000);
+			setTimeout(function() { 
+		    	moveAlow=1;
+		    	document.getElementById("ambulanceClip").play();
+			},8000);
+			helped=1;
+		}
+		else {
+			moveAlow=1;
+			document.getElementById('orderPopup').style.display = 'none';
+		}
 	}
 	
 	if(level==15) {
-	
-	if($('#order').val()=='ZODIAC') {
-		moveAlow=1;
-		document.getElementById('orderPopup').style.display = 'none';
-		
-		 $('#Grid table tr:eq(1) td:eq(2) img').attr("src",samples[5]);
-		 $('#Grid table tr:eq(3) td:eq(2) img').attr("src",samples[5]);
-		 $('#Grid table tr:eq(5) td:eq(2) img').attr("src",samples[5]);
-
-		 $('#Grid table tr:eq(1) td:eq(2) img').draggable({revert:true});
-		 $('#Grid table tr:eq(3) td:eq(2) img').draggable({revert:true});
-		 $('#Grid table tr:eq(5) td:eq(2) img').draggable({revert:true});
-		
-		  $( "#Grid table tr:eq(4) td:eq(18)" ).droppable({
-      drop: function( event, ui ) {
-     
-    
-	ui.draggable.hide("explode", 1000);  
-	music("axe");
-	badWormEnergy--;
-	
-	if(badWormEnergy==0){
-		
-		 $( "#Grid table tr:eq(4) td:eq(18) img" ).fadeOut("slow",function(){
-	    		   	
-	    		   	$('#Grid table tr:eq(4) td:eq(18)').children().attr("src",samples[30]);
-	    		   	$('#Grid table tr:eq(4) td:eq(18)').children().fadeIn("fast");
-	    		   });
-		
+		if($('#order').val()=='ZODIAC') {
+			moveAlow=1;
+			document.getElementById('orderPopup').style.display = 'none';			
+			$('#Grid table tr:eq(1) td:eq(2) img').attr("src",samples[5]);
+			$('#Grid table tr:eq(3) td:eq(2) img').attr("src",samples[5]);
+			$('#Grid table tr:eq(5) td:eq(2) img').attr("src",samples[5]);
+			$('#Grid table tr:eq(1) td:eq(2) img').draggable({revert:true});
+			$('#Grid table tr:eq(3) td:eq(2) img').draggable({revert:true});
+			$('#Grid table tr:eq(5) td:eq(2) img').draggable({revert:true});
+			$( "#Grid table tr:eq(4) td:eq(18)" ).droppable({
+				drop: function( event, ui ) {
+					ui.draggable.hide("explode", 1000);  
+					music("axe");
+					badWormEnergy--;
+					if(badWormEnergy==0){
+						$( "#Grid table tr:eq(4) td:eq(18) img" ).fadeOut("slow",function(){
+			    		   	$('#Grid table tr:eq(4) td:eq(18)').children().attr("src",samples[30]);
+			    		   	$('#Grid table tr:eq(4) td:eq(18)').children().fadeIn("fast");
+		    		   	});
+					}
+		   		}
+		   	});
+		}
 	}
-	
-	   }
-    });
-		
-		
-	}
-		
-		
-	}
-	
 }
 
 $('#Refresher').click( function() {
-	
 	document.location.href= 'BlockzQuest.php?lvl='+level;
-	
 });
-
-
 </script>
 </body>
 </html>
