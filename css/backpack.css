@@ -1,4 +1,4 @@
-.backpack { height: 84px;  margin-top: -10px; margin-left: -29px; padding:0; position:fixed; top:0;  z-index:4; }
+.backpack { height: 84px;  margin-top: -10px; margin-left: -35px; padding:0; position:fixed; z-index:4; }
 
 #backpackInside { margin: 0 auto; }
 
@@ -22,7 +22,7 @@
 
 .backpack ul li .extended p { padding: 10px; font-size: 11px; line-height: 17px; text-shadow: 0 1px 1px black; }
 
-.backpack ul li .extended h2, .backpack ul li .ultraNav h2 { padding-top: 10px; padding-left: 10px; font-size: 16px; text-shadow: 0 1px 2px black; color: white; background: url(/image/general/headerback.png) repeat-x; height: 20px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px;  }
+.backpack ul li .extended h2, .backpack ul li .ultraNav h2 { padding-top: 10px; padding-left: 10px; font-size: 16px; text-shadow: 0 1px 2px black; color: white; background: url(../image/general/headerback.png) repeat-x; height: 20px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px;  }
 
 .backpack ul li .extended span { padding-left: 10px; font-size: 11px; }
 
@@ -42,7 +42,7 @@
 
 .backpack ul li:hover a { color: white; }
 
-.backpack ul li .ultraNav { position: absolute; top: 55px; left: -100px; width: 294px;  background: url(/image/general/dropdownback.png); border: 1px solid white; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; z-index: 500; -moz-box-shadow: 0 3px 8px rgba(0,0,0,0.6); -webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.6); box-shadow: 0 3px 8px black;
+.backpack ul li .ultraNav { position: absolute; top: 55px; left: -100px; width: 294px;  background: url(../image/general/dropdownback.png); border: 1px solid white; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; z-index: 500; -moz-box-shadow: 0 3px 8px rgba(0,0,0,0.6); -webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.6); box-shadow: 0 3px 8px black;
 display: none; }
 
 .ultraNav h2 { text-align: center; }
@@ -55,6 +55,6 @@ display: none; }
 
 .backpack ul li .ultra a { font-weight: normal; font-size: 12px; color: #c7c7c7; text-shadow: 0 1px 2px black; }
 
-.backpack ul li .ultra li { width: 120px; line-height: 20px; padding: 3px 5px; background: url(/image/general/linkback.png) no-repeat;  }
+.backpack ul li .ultra li { width: 120px; line-height: 20px; padding: 3px 5px; background: url(../image/general/linkback.png) no-repeat;  }
 
 .backpack ul li:hover .ultraNav { display: block; }
