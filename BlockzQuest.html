@@ -120,7 +120,7 @@
 </div>
 
 <div style="position:fixed; bottom: 0; right: 0; padding-right: 10px;margin-bottom: -10px;">
-	<img id="minimap" class="hand" src="image/BQ/Treasure map.png"  style="height:70px;"/>
+	<img  id="minimap" class="hand" src="image/BQ/Treasure map.png"  style="height:70px;"/>
 </div>
 
 <audio id="pickaxeClip"><source src="audio/axe.mp3"></source> </audio>
@@ -237,27 +237,13 @@ function getURLParameter(name){
 
 $(window).load(function() {
 	
-	// Attach minimap button onclick and click realease events
-	if(window.addEventListener) {
-	   document.getElementById("minimap").addEventListener('mousedown',minimapClick,false);
-	   document.body.addEventListener('mouseup',minimapRelease,false);
-	}
-	else if(window.attachEvent) {
-	   document.getElementById("minimap").attachEvent('onmousedown',minimapClick);
-	   document.body.attachEvent('onmouseup',minimapRelease);
-	}
-	
 	$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 800);
 	$('html, body').animate({scrollTop: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().top}, 800);	
 	
 	if(level==7) {
-		
-		
 		$('#wordsGameInfo').html('"Oh no! A weird golden block is blocking my way"... Do not panic! Golden blocks disappear when certain conditions are met!');
 		$('#gameInfoImage').attr('src',samples[15]);
 		gameInfoPopup();
-		
-		
 	}
 	
 	playMovie();
@@ -275,20 +261,7 @@ $(window).load(function() {
 	}
 });
 
-function minimapClick() {
-	minimapVisible = true;
-	var winW = $(window).width();
-	w = winW / n;
-	$('#Grid img').css({ height: w, width: w });
-};
 
-function minimapRelease() {
-	if (minimapVisible)
-	{
-		minimapVisible = false;
-		normalSizeMap();
-	}
-};
 // Function to prepare map for the user 
 function prepareMap(personal,background)
 {
@@ -989,6 +962,23 @@ function createArray(n, nv){
 	
 	$(window).bind("resize", function(){ 
 		normalSizeMap();
+	});
+	
+	$('#minimap').click(function(){
+		if (minimapVisible == true)
+		{
+			minimapVisible = false;
+			normalSizeMap();
+			$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 0);
+			$('html, body').animate({scrollTop: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().top}, 0);	
+		}
+		else
+		{
+			minimapVisible = true;
+			var winW = $(window).width();
+			w = winW / nv;
+			$('#Grid img').css({ height: w, width: w });
+		}
 	});
 }
 
