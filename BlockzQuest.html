@@ -55,6 +55,15 @@
 	</div>	
 </div>
 
+<div id="gameInfoPopup" class="becenter popup webkit">
+	<img id="gameInfoPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
+	<p class="becenter" style="font-size:40px; font-family: Feast; top:15%;">Info</p>
+	<img id="gameInfoImage" class="becenter" src="image/treasure/tools/pick.png" alt="" style="top:0; bottom:0; height: 25%; ">
+	<p id="wordsGameInfo" class="becenter" style="font-size:20px; width:70%; top: 28%;">
+	You got your first axe! Having an axe allows you to break stone! Maybe there is some obvious way to use that fact in this level.
+	</p>
+</div>
+
 
 <div id="kingPopup" class="becenter popup webkit">
 	<img id="kingPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
@@ -62,7 +71,7 @@
 	You who witnessed my fallen kingdom... You shall see it rize again... 
 	You must prove yourself. Show your powerful, assertive and - especially - 
 	cunning side. Then we shall meet and i will name you king wormy, my rightful heir. 
-	Take this hammer and proceed
+	Take this axe and proceed
 	</p>
 </div>
 
@@ -91,7 +100,7 @@
 	</p>
 </div>
 
-<div class="backpack webkit" style="bottom: 0; left 0;">
+<div class="backpack webkit" style="bottom: 0; left 0; padding-left: 10px; ">
 	<div id="backpackInside">
 		<ul>
 			<li><a href="#"><img src="image/treasure/tools/backpack.png" height="50px;" alt=""></a>
@@ -110,6 +119,9 @@
 	</div>
 </div>
 
+<div style="position:fixed; bottom: 0; right: 0; padding-right: 10px;margin-bottom: -10px;">
+	<img id="minimap" class="hand" src="image/BQ/Treasure map.png"  style="height:70px;"/>
+</div>
 
 <audio id="pickaxeClip"><source src="audio/axe.mp3"></source> </audio>
 <audio id="punchClip"><source src="audio/punch.mp3"></source> </audio>
@@ -125,8 +137,6 @@
 <audio id="antilavaClip"><source src="audio/antilava.mp3"></source> </audio>
 
 <script type="text/javascript">
-
-//document.getElementById('levelUpPopup').style.display = 'block';
 
 var chrome = 0; var firefox = 1;
 
@@ -162,6 +172,9 @@ sounds=[$("#antilavaClip")[0],$("#ambulanceClip")[0],$("#mirrorClip")[0],$("#alb
 // Bottom Offset (appearance of grid)
 bottomOffset = 50;
 
+// Map dimentions
+n = 19; nv = 12;
+
 // Initialize GLOBAL vars.
 keys = 0;
 energy = 0;
@@ -179,6 +192,7 @@ flower=0;
 titlecount=0;
 titlesbrowsed=0;
 badWormEnergy=3;
+minimapVisible = false;
 
 pos = new Object();
 pos["albert"] = [6,6,samples[18]];
@@ -205,7 +219,7 @@ energy = 0;
 level =getURLParameter("lvl");
 
 file = "BQLevels/"+level+".txt";
-$.get(file, function(data) 
+$.get(file, function(data)
 {
 	parts = data.split("#");
 	energy = parts[3];
@@ -215,15 +229,36 @@ $.get(file, function(data)
 	
 
 	
-function getURLParameter(name) {
+function getURLParameter(name){
     return decodeURI(
         (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
 }
 
 $(window).load(function() {
+	
+	// Attach minimap button onclick and click realease events
+	if(window.addEventListener) {
+	   document.getElementById("minimap").addEventListener('mousedown',minimapClick,false);
+	   document.body.addEventListener('mouseup',minimapRelease,false);
+	}
+	else if(window.attachEvent) {
+	   document.getElementById("minimap").attachEvent('onmousedown',minimapClick);
+	   document.body.attachEvent('onmouseup',minimapRelease);
+	}
+	
 	$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 800);
 	$('html, body').animate({scrollTop: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().top}, 800);	
+	
+	if(level==7) {
+		
+		
+		$('#wordsGameInfo').html('"Oh no! A weird golden block is blocking my way"... Do not panic! Golden blocks disappear when certain conditions are met!');
+		$('#gameInfoImage').attr('src',samples[15]);
+		gameInfoPopup();
+		
+		
+	}
 	
 	playMovie();
 	
@@ -239,23 +274,33 @@ $(window).load(function() {
    		});
 	}
 });
+
+function minimapClick() {
+	minimapVisible = true;
+	var winW = $(window).width();
+	w = winW / n;
+	$('#Grid img').css({ height: w, width: w });
+};
+
+function minimapRelease() {
+	if (minimapVisible)
+	{
+		minimapVisible = false;
+		normalSizeMap();
+	}
+};
 // Function to prepare map for the user 
 function prepareMap(personal,background)
 {
 	user=1;		
-	$('#level').html(' - Lvl: '+ level);	
+	$('#level').html(' - Lvl: '+ level);
 	
 	$('#minititle').html(''+ title);
 	
 	$('#EnergyCount span').html(': '+ energy);
 	
-	// Dikaiwma i oxi gia waterwalking
-	
-	
-	
-	// Dimiourgia tou map tou xristi
-	n = 19; nv = 12;
-	createArray(12, 19);
+	// Dimiourgia tou map tou xristi (19x12)
+	createArray(nv, n);
 	
 	// Topothetisi backrounds se oli ti pista
 	backs = background.split(",");
@@ -290,18 +335,25 @@ function showTool(src,value,name)
 {
 	$('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""><a id="'+name+'">x '+value+'</a></li>');
 }
+
+function manageTools(src,value,name)
+{
+	if(hammer + antilava != 0)	 	$('#backpackInside ul li ul ul').html("");
+	if(hammer!=0) 					showTool(0,hammer,"hammer");
+	if(antilava!=0)		 			showTool(2,antilava,"antilava");
+	$("li img").css("cursor","pointer");
 	
+}
+
 // Dimiourgia  pinaka
-function createArray( n , nv ){
+function createArray(n, nv){
 	
-	var winW = $(window).width()*2;
-	var winH = $(window).height()*2;
+	var winW = $(window).width()*3;
+	var winH = $(window).height()*3;
 	
-	height = Math.floor(winH /n);
+	height = Math.floor(winH / nv);
 	width = height;
 	el='<td><img src="'+ images[2]  +'" alt="" width="'+width+'" height="'+height+'"></td>';
-	
-	WinHh = winH/2;
 	
 	$('table').html("");
 	for(j=0;j<n;j++)
@@ -316,8 +368,6 @@ function createArray( n , nv ){
 	    $('table').append('</tr>');
 	}
 	
-	
-	
 	// Player keyboard control
 	
 	$(document).keydown(function(e){
@@ -325,67 +375,50 @@ function createArray( n , nv ){
 		var key = e.keyCode;
 		if (moveAlow&&energy>0&&!playerGone)
 		{
-			
-			
-			if 		(key == 37) {
-				 
+			if 	(key == 37) {
 				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-1) +')').children().attr("src");
-									//alert(lesource);
-								  if((playerflipped)&&(lesource==samples[22])){
-								  	//alert('flip');
-								  music('mirror');
-								  playerflipped=0;
-								  $('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
-								  samples[2]="image/treasure/character/man.png";
-								  	
-								  }	
-								  playerMove(manx,many,(manx-1),many);  
-				}	   	// left arrow
+				if((playerflipped)&&(lesource==samples[22])){
+					music('mirror');
+					playerflipped=0;
+					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
+					samples[2]="image/treasure/character/man.png";
+				}
+				playerMove(manx,many,(manx-1),many);
+			}	   	// left arrow
 			else if (key == 65) {
-				 
 				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-1) +')').children().attr("src");
-									//alert(lesource);
-								  if((playerflipped)&&(lesource==samples[22])){
-								  	//alert('flip');
-								  music('mirror');
-								  playerflipped=0;
-								  $('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
-								  samples[2]="image/treasure/character/man.png";
-								  	
-								  }	
-								  playerMove(manx,many,(manx-1),many);  
-				}	// key : a
-			else if (key == 38) playerMove(manx,many,manx,(many-1));   	// up arrow
-			else if (key == 87) playerMove(manx,many,manx,(many-1));   	// key : w
+				if((playerflipped)&&(lesource==samples[22])){
+					music('mirror');
+					playerflipped=0;
+					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
+					samples[2]="image/treasure/character/man.png";
+				}
+				playerMove(manx,many,(manx-1),many);  
+			}	// key : a
+			else if (key == 38) 
+				playerMove(manx,many,manx,(many-1));   	// up arrow
+			else if (key == 87) 
+				playerMove(manx,many,manx,(many-1));   	// key : w
 			else if (key == 39) { 
-									lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
-									//alert(lesource);
-								  if((!playerflipped)&&(lesource==samples[21])){
-								  	//alert('flip');
-								  music('mirror');
-								  playerflipped=1;
-								  $('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
-								  samples[2]="image/treasure/character/manflipped.png";
-								  	
-								  }	
-								  playerMove(manx,many,(manx-(-1)),many);		
-								  }								// right arrow
-			else if (key == 68) {
-				
-				
 				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
-									//alert(lesource);
-								  if((!playerflipped)&&(lesource==samples[21])){
-								  	//alert('flip');
-								  music('mirror');
-								  playerflipped=1;
-								  $('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
-								  samples[2]="image/treasure/character/manflipped.png";
-								  	
-								  }	
-								  playerMove(manx,many,(manx-(-1)),many);
-				
-				}	// key : d
+				if((!playerflipped)&&(lesource==samples[21])){
+					music('mirror');
+					playerflipped=1;
+					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
+					samples[2]="image/treasure/character/manflipped.png";
+				}
+				playerMove(manx,many,(manx-(-1)),many);		
+			}// right arrow
+			else if (key == 68) {
+				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
+				if((!playerflipped)&&(lesource==samples[21])){
+					music('mirror');
+					playerflipped=1;
+					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
+					samples[2]="image/treasure/character/manflipped.png";
+				}	
+				playerMove(manx,many,(manx-(-1)),many);
+			}	// key : d
 			else if (key == 40) playerMove(manx,many,manx,(many-(-1)));	// down arrow
 			else if (key == 83) playerMove(manx,many,manx,(many-(-1)));	// key : s
 		}
@@ -418,9 +451,7 @@ function createArray( n , nv ){
 		if (level==12&&wanax>18&&helped) {levelUpPopup();}
 			if(holeGone==1) {
 				holeGone=0;
-					    	$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[14]);
-
-				
+				$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[14]);
 			}
 		if( block == images[2] || block == samples[4]||block == samples[13]||block==samples[16]||block==samples[30])
 		{
@@ -434,40 +465,32 @@ function createArray( n , nv ){
 			manx = wanax; 
 			many = wanay;
 		}
-		if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])				// collectibles block
+		// collectibles block
+		if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])	
 		{
-			
 			music("key");
-		
 		//if key
-		
-		
-						if(block==samples[4])	{					
-									keys++;
-									$('#keyCount span').html('x '+ keys);
-						}
+			if(block==samples[4])	{
+				keys++;
+				$('#keyCount span').html('x '+ keys);
+			}
 		//if hammer	
-						if(block==samples[13])	{					
-									hammer++;
-									$('#hammer').html('x '+ hammer);
-									if(hammer==1) {showTool(0,1,"hammer"); neatBackpack(); }
-						}
+			if(block==samples[13])	{
+				hammer++;
+				$('#hammer').html('x '+ hammer);
+				if(hammer==1) {manageTools(0,1,"hammer");}
+			}
 						
 		//if antilava	
-						if(block==samples[30])	{					
-									antilava++;
-									$('#antilava').html('x '+ antilava);
-									if(antilava==1) {showTool(2,1,"antilava"); neatBackpack(); }
-						}
+			if(block==samples[30])	{
+				antilava++;
+				$('#antilava').html('x '+ antilava);
+				if(antilava==1) {manageTools(2,1,"antilava");}
+			}
 		//if boat				
-						if(block==samples[16])	{					
-									boatFlag=1;
-									
-						}
-						
-						
-			           
-		
+			if(block==samples[16])	{
+				boatFlag=1;
+			}
 		}
 		else if (block == samples[8])  				// door block
 		{
@@ -486,7 +509,7 @@ function createArray( n , nv ){
 			$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
 			playerGone=1;
 			//level 9 special functionallity
-			if(level==9){					
+			if(level==9){
 				thatel=$('#Grid table tr:eq(4) td:eq(1)').children();
 				setTimeout(function(){
 					if(playerGone)thatel.fadeOut("slow",function(){
@@ -509,7 +532,7 @@ function createArray( n , nv ){
 			{
 				music("explore");
 			}	
-			else if ( block == samples[3])				// chest
+			else if ( block == samples[3])			// chest
 			{
 				if (keys > 0) unlockPopup(wanax,wanay);
 			}
@@ -533,59 +556,45 @@ function createArray( n , nv ){
 		if(($(this).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
 			if(holeGone==1) {
-				
-					
 				holeGone=0;
-					    	$('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[14]);
-
-				
+				$('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[14]);
 			}
 			if(playerIsNear(x,y)) {
-					if($('#minititle').html()!="So close yet so far")energy--;
-
-			$('#EnergyCount span').html(': '+ energy);	
+				if($('#minititle').html()!="So close yet so far")	energy--;
+				$('#EnergyCount span').html(': '+ energy);	
 				var prewater = $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src");
 				$('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
 				if (prewater == samples[9]) $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
 				else if (prewater == samples[2]) $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 				manx=x;
 				many=y;
-				
-				
-	    	
-	    	if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])				// collectibles block
-			{
-			music("key");
-		
-		//if key
-						if(block==samples[4])	{					
-									keys++;
-									$('#keyCount span').html('x '+ keys);
-						}
-		//if hammer	
-						if(block==samples[13])	{					
-									hammer++;
-									$('#hammer').html('x '+ hammer);
-									if(hammer==1) {showTool(0,1,"hammer"); neatBackpack(); }
-						}
-						
-		//if antilava	
-						if(block==samples[30])	{					
-									antilava++;
-									$('#antilava').html('x '+ antilava);
-									if(antilava==1) {showTool(2,1,"antilava"); neatBackpack(); }
-						}
-		//if boat				
-						if(block==samples[16])	{					
-									boatFlag=1;
-									
-						}
-						
-				
-				 }
-				 
-				
-				
+					
+		    	if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])				// collectibles block
+				{
+					music("key");
+					//if key
+					if(block==samples[4])	{					
+						keys++;
+						$('#keyCount span').html('x '+ keys);
+					}
+					//if hammer	
+					if(block==samples[13])	{					
+						hammer++;
+						$('#hammer').html('x '+ hammer);
+						if(hammer==1) {manageTools(0,1,"hammer");}
+					}
+					
+					//if antilava	
+					if(block==samples[30])	{					
+						antilava++;
+						$('#antilava').html('x '+ antilava);
+						if(antilava==1) {manageTools(2,1,"antilava");}
+					}
+					//if boat				
+					if(block==samples[16])	{					
+						boatFlag=1;
+					}
+				}
 			}
 		}
 		else if (block==samples[14]&&playerGone==0&&playerIsNear(x,y)){
@@ -627,19 +636,19 @@ function createArray( n , nv ){
 		    		var goodsmiley=true;
 		    		for (y=0;y<=1;y++){
 			    		for(x=4;x<=12;x++){
-			    			if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
+			    			if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;
 			    		}
 		    		 }
 		    		 for (y=3;y<=4;y++){
 		    			for(x=4;x<=12;x++){
-		    				if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
+		    				if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;
 		    			}
 		    		 }
 	
-					if($('#Grid table tr:eq('+2+') td:eq('+4+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+2+') td:eq('+12+')').children().attr("src")==samples[5]) goodsmiley=false;	    				
-					if($('#Grid table tr:eq('+2+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+2+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	    			
-				    if($('#Grid table tr:eq('+5+') td:eq('+5+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+5+') td:eq('+11+')').children().attr("src")==samples[5]) goodsmiley=false;	    			
-					if($('#Grid table tr:eq('+5+') td:eq('+6+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+5+') td:eq('+10+')').children().attr("src")!=samples[5]) goodsmiley=false;	    			
+					if($('#Grid table tr:eq('+2+') td:eq('+4+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+2+') td:eq('+12+')').children().attr("src")==samples[5]) goodsmiley=false;
+					if($('#Grid table tr:eq('+2+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+2+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;
+				    if($('#Grid table tr:eq('+5+') td:eq('+5+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+5+') td:eq('+11+')').children().attr("src")==samples[5]) goodsmiley=false;
+					if($('#Grid table tr:eq('+5+') td:eq('+6+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+5+') td:eq('+10+')').children().attr("src")!=samples[5]) goodsmiley=false;
 			   		if($('#Grid table tr:eq('+6+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+8+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	 
 		    		if(goodsmiley) thatel.fadeOut("slow",function(){
 		    		   	$('#Grid table tr:eq(1) td:eq(18)').children().attr("src",images[2]);
@@ -684,14 +693,12 @@ function createArray( n , nv ){
 	    	$('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
 	    	manx=x;
 			many=y;
-	    	
 	    }
 	    else if ((level==13) &&($(this).attr( "src" )== samples[26])&&(!playerGone)) {
 	    	manx=x;
 	    	many=y;
 	    	samples[2] = samples[26];
 	    	IamAlbert=1;
-	    	
 	    }
 	    else if ((level==13) &&($(this).attr( "src" )== "image/treasure/character/man.png")&&(!playerGone)) {
 	    	manx=x;
@@ -718,8 +725,7 @@ function createArray( n , nv ){
 			many = wanay;
 		 }    	
     }
-    
-    
+
     // Manage the ajax request that should be send each time
     function Click(that,thatt,what)
     {
@@ -769,25 +775,6 @@ function createArray( n , nv ){
 	{
 		if(((tmpx==manx)&&(Math.abs(tmpy-many)==1))||((tmpy==many)&&(Math.abs(tmpx-manx)==1))) return(true);
 		else return(false);
-	}
-	
-	// Diaxeirisi tou Prize pou etye sto xrsti
-	
-	function managePrize(gift)
-	{
-		if(hammer+boat+antilava == 0) 		$('#backpackInside ul li ul ul').html("");
-		switch(gift.index){
-		case 0: if(hammer == 0) showTool(gift.index,gift.value,gift.name); hammer += gift.value; 	newval = hammer; 	break;
-		case 1: if(boat == 0) showTool(gift.index,gift.value,gift.name); boat += gift.value; 	newval = boat; 		break;
-		case 2: if(antilava == 0) showTool(gift.index,gift.value,gift.name); antilava += gift.value;	newval = antilava; 	break;
-		default: alert("There was an error with your prize.. Sorry :/" );
-		}
-
-		$('#giftimg').attr( "src" , tools[gift.index] );     //.html('<img src="' + tools[gift.index] + '" style="width: 150px;"');  .attr( "src" )
-		$('#giftvalue').html('x'+gift.value);
-		moveAlow = 0;
-		document.getElementById('giftPopup').style.display = 'block';
-		$('#'+gift.name).html('x '+ newval);
 	}
 	
 	function colectPrize()
@@ -843,7 +830,7 @@ function createArray( n , nv ){
 		document.getElementById('kingPopup').style.display = 'block';
 		hammer++;
 		$('#hammer').html('x '+ hammer);
-		if(hammer==1) {showTool(0,1,"hammer"); neatBackpack(); }
+		if(hammer==1) {manageTools(0,1,"hammer");}
 		}
 		if($('#minititle').html()=="So close yet so far") {
 			$   ('#words').html('Success is achieved slowly, step by step');
@@ -874,9 +861,19 @@ function createArray( n , nv ){
 	$('#kingPopupExit').click(function(){	
 		moveAlow = 1;
 		document.getElementById("kingPopup").style.display = 'none';
+		if(level=="3") gameInfoPopup();
 	});
 	
-	// Boat usage PopUp
+	function gameInfoPopup()
+	{
+		moveAlow = 0;
+		document.getElementById('gameInfoPopup').style.display = 'block';
+	}
+	
+	$('#gameInfoPopupExit').click(function(){	
+		moveAlow = 1;
+		document.getElementById("gameInfoPopup").style.display = 'none';
+	});
 	
 	function broPopup()
 	{
@@ -889,7 +886,7 @@ function createArray( n , nv ){
 					hammer++;
 					brocount++;
 					$('#hammer').html('x '+ hammer);
-					showTool(0,1,"hammer"); neatBackpack(); 		
+					manageTools(0,1,"hammer");
 				}
 				else if((brocount==1)&&(albcount==0)){
 					$('#wordsBro').html('Go now please!');
@@ -991,15 +988,17 @@ function createArray( n , nv ){
 	// Diaxeirisi Diastasis pinaka dynamika me tin allagi tis diastasis tou window
 	
 	$(window).bind("resize", function(){ 
-		var winW = $(window).width()*2;
-		var winH = $(window).height()*2;
-		h = winH / n;
-		w = h;
-		$('#Grid img').css({ height: h, width: w }); 
+		normalSizeMap();
 	});
-	
 }
 
+function normalSizeMap()
+{
+	var winW = $(window).width()*3;
+	var winH = $(window).height()*3;
+	h = Math.floor(winH /n);
+	$('#Grid img').css({ height: h, width: h }); 
+}
 
 $('#minititle').click(function(){
 	
@@ -1036,13 +1035,6 @@ function changeBlock(x,y,ind)
 {
 	if (ind != 0) $('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[ind]);	// Ama einai != 0 rinai rna apo ta samples
 	else 	 $('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",images[2]);    // Ama einai 0 thelw to images[2] dld to empty
-	
-}
-
-function focusBlock(x,y)
-{
-	alert(x);
-	$('#Grid table tr:eq('+y+') td:eq('+x+')').focus();
 }
 
 // Meta to login xrisimopoihte ayti i synartisi gia na bali ta swsta backround se kathe block tou Grid
@@ -1175,7 +1167,7 @@ function doOrder() {
 	if(level==15) {
 		if($('#order').val()=='ZODIAC') {
 			moveAlow=1;
-			document.getElementById('orderPopup').style.display = 'none';			
+			document.getElementById('orderPopup').style.display = 'none';
 			$('#Grid table tr:eq(1) td:eq(2) img').attr("src",samples[5]);
 			$('#Grid table tr:eq(3) td:eq(2) img').attr("src",samples[5]);
 			$('#Grid table tr:eq(5) td:eq(2) img').attr("src",samples[5]);
@@ -1197,6 +1189,12 @@ function doOrder() {
 		   	});
 		}
 	}
+}
+
+function gameInfoPopup()
+{
+	moveAlow = 0;
+	document.getElementById('gameInfoPopup').style.display = 'block';
 }
 
 $('#Refresher').click( function() {
