@@ -366,14 +366,16 @@ function prepareMap(personal,background)
 
 function showTool(src,value,name)
 {
-	$('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""><a id="'+name+'">x '+value+'</a></li>');
+	if (name != "boat")	$('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""><a id="'+name+'">x '+value+'</a></li>');
+	else if(boatflag == 1) $('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""></li>');
 }
 
 function manageTools(src,value,name)
 {
-	if(hammer + antilava != 0)	 	$('#backpackInside ul li ul ul').html("");
+	if(hammer + antilava + boatflag != 0 )	 	$('#backpackInside ul li ul ul').html("");
 	if(hammer!=0) 					showTool(0,hammer,"hammer");
 	if(antilava!=0)		 			showTool(2,antilava,"antilava");
+	if(boatflag!=0)					showTool(1,0,"boat");
 	$("li img").css("cursor","pointer");
 	
 }
@@ -533,6 +535,7 @@ function createArray(n, nv){
 		//if boat				
 			if(block==samples[16])	{
 				boatFlag=1;
+				manageTools(1,0,"boat");
 			}
 		}
 		else if (block == samples[8])  				// door block
@@ -541,12 +544,11 @@ function createArray(n, nv){
 		}
 		else if (block == samples[6])				// water block
 		{
-			if (boatFlag == 0 && boat>0) boatPopup();
-			else if(boatFlag ==1 && energy>0&& !IamAlbert) {
+			if(boatFlag ==1 && energy > 0 && !IamAlbert) {
 				energy--;
 				$('#EnergyCount span').html(': '+ energy);	
 				walkOnWater(wanax,wanay); 
-				}
+			}
 		}
 		else if (block==samples[14]){
 			$('#Map tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
@@ -597,10 +599,6 @@ function createArray(n, nv){
 		block=$(this).attr( "src" );
 		//Kinisi Avatar me Click
 		if(($(this).attr( "src" )== samples[21])&&playerIsNear(x,y)) {
-			
-			
-		
-		
 					music('mirror');
 					playerflipped=1;
 					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
@@ -613,7 +611,6 @@ function createArray(n, nv){
 				samples[2]="image/treasure/character/man.png";
 			
 		}
-		
 		else if(($(this).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
 			if(holeGone==1) {
@@ -652,8 +649,9 @@ function createArray(n, nv){
 						if(antilava==1) {manageTools(2,1,"antilava");}
 					}
 					//if boat				
-					if(block==samples[16])	{					
+					if(block==samples[16])	{
 						boatFlag=1;
+						manageTools(1,0,"boat");			
 					}
 				}
 			}
@@ -735,13 +733,9 @@ function createArray(n, nv){
 	    {
 	    	levelUpPopup(x,y);
 	    }
-	    else if ($(this).attr( "src" )== samples[6]) // water
+	    else if ($(this).attr( "src" )== samples[6] && playerIsNear(x,y)) // water
 	    {
-	    	if (boatFlag == 0 && boat > 0) boatPopup();
-			else if(boatFlag ==1) { 
-				energy--;
-				$('#EnergyCount span').html(': '+ energy);
-				walkOnWater(x,y); }
+			if(boatFlag ==1) walkOnWater(x,y); 
 	    }
 	    else if ($(this).attr( "src" )== samples[10] && playerIsNear(x,y))  //BigChest
 	    {
@@ -773,7 +767,6 @@ function createArray(n, nv){
 	    
     function walkOnWater(wanax,wanay)
     {
-   		if(playerIsNear(wanax,wanay)) {
     		var prewater = $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src");
 			$('#Map tr:eq('+wanay+') td:eq('+wanax+')').children().attr("src",samples[9]);
 			if (prewater == samples[9]) $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
@@ -783,8 +776,9 @@ function createArray(n, nv){
 				 music("water");
 			}
 			manx = wanax; 
-			many = wanay;
-		 }    	
+			many = wanay;  	
+			energy--;
+			$('#EnergyCount span').html(': '+ energy);
     }
 
     // Manage the ajax request that should be send each time
@@ -847,9 +841,9 @@ function createArray(n, nv){
 	function neatBackpack()
 	{
 		if (hammer 	== 	0) $('#listhammer').remove();
-		if (boat 	==	0) $('#boat').remove();
+		if (boatflag==	0) $('#boat').remove();
 		if (antilava==	0) $('#antilava').remove();
-		if (hammer+boat+antilava == 0)	$('#backpackInside ul li ul ul').append('<a style="">Empty!</a>');
+		if (hammer+boatflag+antilava == 0)	$('#backpackInside ul li ul ul').append('<a style="">Empty!</a>');
 	}
 	
 	$('#collect').click(function(){colectPrize();});
@@ -976,6 +970,7 @@ function createArray(n, nv){
 				if((brocount==2)&&(albcount==1)&&flower){
 					$('#wordsAlb').html('Flowers? What does he think i am a girl or something? Stop covering him. Take this boat and leave, this does not concern you');
 					boatFlag=1;
+					manageTools(1,0,"boat");
 					albcount++;		
 				}
 				else if((brocount==2)&&(albcount==2)){
@@ -1002,30 +997,6 @@ function createArray(n, nv){
 	$('#albPopupExit').click(function(){
 		moveAlow = 1;
 		document.getElementById("albPopup").style.display = 'none';
-	});
-	
-	function boatPopup()
-	{
-		moveAlow = 0;
-		document.getElementById('boatPopup').style.display = 'block';	
-	}
-	
-	$('#useBoat').click(function(){useBoat();});
-		
-	function useBoat()
-	{
-		document.getElementById('boatBtn').style.display = "none";
-		boat--;
-		$('#boat').html('x '+ boat);
-		neatBackpack();
-		boatFlag = 1;
-		moveAlow = 1;
-		document.getElementById("boatPopup").style.display = 'none';
-	}	
-		
-	$('#boatPopupExit').click(function(){
-		moveAlow = 1;
-		document.getElementById("boatPopup").style.display = 'none';
 	});
 
 	function orderPopup()
