@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
 
 <head>  
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>   
 </head>
 
-<body>
+<body >
 
 <div id="menu">
 	<img src="image/general/menubar.png" alt="">
@@ -28,8 +28,8 @@
 </div>
 
 
-<div id="Grid" class="becenter">
-	<table></table>
+<div id="Grid" class="becenter" style="padding:80px;"  >
+	<table id="Map" ></table>
 </div>
 
 <div id="header" class="becenter webkit" style="z-index: 3; top:0; font-size:20px;">
@@ -39,11 +39,33 @@
 	</span>
 </div>
 
-<div class="userstats becenter webkit">
+<div class="userstats becenter webkit" style="pointer-events:none;">
 	<span id="EnergyCount">
-		<img src="image/treasure/icons/energy.png" width="20" height="20">
-		<span style="font-size: :20px;">: 0</span>
+		<img src="image/treasure/icons/energy.png" width="30" height="30">
+		<span>: 0</span>
 	</span>
+</div>
+
+
+<div style="position:fixed; bottom: 0; right: 0; padding-right: 10px;">
+	<table>
+		<tr>
+			<td colspan="3" style="padding-bottom: 0px;"> 
+				<img id="UpKey" src="image/navigation/up.png" style="width: 25px;">
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 5px; ">
+				<img id="LeftKey" src="image/navigation/left.png" style="width: 25px;">
+			</td>
+			<td style="padding: 5px;">
+				<img id="DownKey" src="image/navigation/down.png" style="width: 25px;">
+			</td>
+			<td style="padding: 5px;">
+				<img id="RightKey" src="image/navigation/right.png" style="width: 25px;">
+			</td>
+		</tr>
+	</table>
 </div>
 
 <div id="levelUpPopup" class="becenter popup webkit">
@@ -99,30 +121,44 @@
 		Can you help? Here have this hammer!
 	</p>
 </div>
-
-<div class="backpack webkit" style="bottom: 0; left 0; padding-left: 10px; ">
-	<div id="backpackInside">
-		<ul>
-			<li><a href="#"><img src="image/treasure/tools/backpack.png" height="50px;" alt=""></a>
-				<ul class="horizontal">
-					<div class="extended">
-						<div class="arrow-down"></div>
-						<ul class="smallNav">
-							<li id="backpackEmpty">
-								<a>Empty!</a>
+<div style="position:fixed; bottom: 0; left: 0; margin-bottom: -10px;">
+	<table>
+		<tr>
+			<td>
+				<div class="backpack webkit" style="">
+					<div id="backpackInside">
+						<ul>
+							<li><a href="#"><img src="image/treasure/tools/backpack.png" height="50px;" alt=""></a>
+								<ul class="horizontal">
+									<div class="extended">
+										<div class="arrow-down"></div>
+										<ul class="smallNav">
+											<li id="backpackEmpty">
+												<a>Empty!</a>
+											</li>
+										</ul>
+									</div>
+								</ul>
 							</li>
 						</ul>
 					</div>
-				</ul>
-			</li>
-		</ul>
-	</div>
+				</div>
+			</td>
+			<td>
+				<div>
+					<img  id="minimap" class="hand" src="image/BQ/Treasure map.png"  style="height:70px;"/>
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
+	
 
-<div style="position:fixed; bottom: 0; right: 0; padding-right: 10px;margin-bottom: -10px;">
+<!--
+<div style="position:fixed; bottom: 0; right: 40%; padding-right: 10px;margin-bottom: -10px;">
 	<img  id="minimap" class="hand" src="image/BQ/Treasure map.png"  style="height:70px;"/>
 </div>
-
+-->
 <audio id="pickaxeClip"><source src="audio/axe.mp3"></source> </audio>
 <audio id="punchClip"><source src="audio/punch.mp3"></source> </audio>
 <audio id="albertClip"><source src="audio/albert.mp3"></source> </audio>
@@ -237,8 +273,15 @@ function getURLParameter(name){
 
 $(window).load(function() {
 	
-	$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 800);
-	$('html, body').animate({scrollTop: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().top}, 800);	
+	/*tableHeight =parseInt($('#Map').css('height'));
+	tableWidth = parseInt($('#Map').css('width'));
+	newtableHeight = tableHeight + 80;
+	newtableWidth = tableWidth + 80;
+	$('#Map').css('height',newtableHeight+"px");
+	$('#Map').css('width',newtableWidth+"px");
+		*/
+	$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left}, 100);
+	$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top}, 100);	
 	
 	if(level==7) {
 		$('#wordsGameInfo').html('"Oh no! A weird golden block is blocking my way"... Do not panic! Golden blocks disappear when certain conditions are met!');
@@ -249,13 +292,13 @@ $(window).load(function() {
 	playMovie();
 	
 	if(level==14) {
-		$('#Grid table tr:eq(10) td:eq(18) img').draggable({revert:true});
-		$( "#Grid table tr:eq(5) td:eq(9)" ).droppable({
+		$('#Map tr:eq(10) td:eq(18) img').draggable({revert:true});
+		$( "#Map tr:eq(5) td:eq(9)" ).droppable({
 	      	drop: function( event, ui ) {
 		    	$( this ).css("background","url("+samples[29]+")");
 		    	$( this ).css("background-size","100% 100%");
 		    	$( this ).children().attr("src",images[2]);
-		    	$('#Grid table tr:eq(10) td:eq(18) img').fadeOut("fast");
+		    	$('#Map tr:eq(10) td:eq(18) img').fadeOut("fast");
 	      	}
    		});
 	}
@@ -328,42 +371,49 @@ function createArray(n, nv){
 	width = height;
 	el='<td><img src="'+ images[2]  +'" alt="" width="'+width+'" height="'+height+'"></td>';
 	
-	$('table').html("");
+	$('#Map').html("");
 	for(j=0;j<n;j++)
 	{
-		$('table').append('<tr>');
+		$('#Map').append('<tr>');
 		if(typeof nv == 'undefined') {nv = (Math.floor(0.8*($(window).width())/(height)));}
 	    for (i=0;i<nv;i++){
-	    	$('tr').last().append(el);
-	    	$('tr').last().children().last().css("background","url("+mains[0]+")");
-	    	$('tr').last().children().last().css("backgroundSize","100% 100%");
+	    	$('#Map tr').last().append(el);
+	    	$('#Map tr').last().children().last().css("background","url("+mains[0]+")");
+	    	$('#Map tr').last().children().last().css("backgroundSize","100% 100%");
 	    }
-	    $('table').append('</tr>');
+	    $('#Map').append('</tr>');
 	}
 	
 	// Player keyboard control
 	
-	$(document).keydown(function(e){
+	$(document).keydown(function(e){ KeyMove(e.keyCode);});
+	
+	$("#UpKey").click(function(){KeyMove(38);});
+	$("#LeftKey").click(function(){KeyMove(37);});
+	$("#DownKey").click(function(){KeyMove(40);});
+	$("#RightKey").click(function(){KeyMove(39);});
+	
+	function KeyMove(key)
+	{
 		//37 - left  38 - up  39 - right  40 - down
-		var key = e.keyCode;
 		if (moveAlow&&energy>0&&!playerGone)
 		{
 			if 	(key == 37) {
-				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-1) +')').children().attr("src");
+				lesource= $('#Map tr:eq('+ many +') td:eq('+ (manx-1) +')').children().attr("src");
 				if((playerflipped)&&(lesource==samples[22])){
 					music('mirror');
 					playerflipped=0;
-					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
+					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
 					samples[2]="image/treasure/character/man.png";
 				}
 				playerMove(manx,many,(manx-1),many);
 			}	   	// left arrow
 			else if (key == 65) {
-				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-1) +')').children().attr("src");
+				lesource= $('#Map tr:eq('+ many +') td:eq('+ (manx-1) +')').children().attr("src");
 				if((playerflipped)&&(lesource==samples[22])){
 					music('mirror');
 					playerflipped=0;
-					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
+					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
 					samples[2]="image/treasure/character/man.png";
 				}
 				playerMove(manx,many,(manx-1),many);  
@@ -373,21 +423,21 @@ function createArray(n, nv){
 			else if (key == 87) 
 				playerMove(manx,many,manx,(many-1));   	// key : w
 			else if (key == 39) { 
-				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
+				lesource= $('#Map tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
 				if((!playerflipped)&&(lesource==samples[21])){
 					music('mirror');
 					playerflipped=1;
-					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
+					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
 					samples[2]="image/treasure/character/manflipped.png";
 				}
 				playerMove(manx,many,(manx-(-1)),many);		
 			}// right arrow
 			else if (key == 68) {
-				lesource= $('#Grid table tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
+				lesource= $('#Map tr:eq('+ many +') td:eq('+ (manx-(-1)) +')').children().attr("src");
 				if((!playerflipped)&&(lesource==samples[21])){
 					music('mirror');
 					playerflipped=1;
-					$('#Grid table tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
+					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
 					samples[2]="image/treasure/character/manflipped.png";
 				}	
 				playerMove(manx,many,(manx-(-1)),many);
@@ -395,7 +445,7 @@ function createArray(n, nv){
 			else if (key == 40) playerMove(manx,many,manx,(many-(-1)));	// down arrow
 			else if (key == 83) playerMove(manx,many,manx,(many-(-1)));	// key : s
 		}
-	});
+	};
 	
 	$(document).keyup(function(e){
 		//37 - left  38 - up  39 - right  40 - down
@@ -418,22 +468,22 @@ function createArray(n, nv){
 	{
 		lastMoveX=curx;
 		lastMoveY=cury;
-		var hitBlock =  $('#Grid table tr:eq('+ (wanay) +') td:eq('+ wanax +')').children();
+		var hitBlock =  $('#Map tr:eq('+ (wanay) +') td:eq('+ wanax +')').children();
 		var block = hitBlock.attr("src");
 		if (level==12&&wanax<0) {orderPopup();}
 		if (level==12&&wanax>18&&helped) {levelUpPopup();}
 			if(holeGone==1) {
 				holeGone=0;
-				$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[14]);
+				$('#Map tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[14]);
 			}
 		if( block == images[2] || block == samples[4]||block == samples[13]||block==samples[16]||block==samples[30])
 		{
 			energy--;
 			$('#EnergyCount span').html(': '+ energy);
-			var prewater = $('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src");
-			$('#Grid table tr:eq('+wanay+') td:eq('+wanax+')').children().attr("src",samples[2]);
-			if (prewater == samples[9]) $('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[6]);
-			else if (prewater == samples[2]) $('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
+			var prewater = $('#Map tr:eq('+cury+') td:eq('+curx+')').children().attr("src");
+			$('#Map tr:eq('+wanay+') td:eq('+wanax+')').children().attr("src",samples[2]);
+			if (prewater == samples[9]) $('#Map tr:eq('+cury+') td:eq('+curx+')').children().attr("src",samples[6]);
+			else if (prewater == samples[2]) $('#Map tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
 
 			manx = wanax; 
 			many = wanay;
@@ -479,11 +529,11 @@ function createArray(n, nv){
 				}
 		}
 		else if (block==samples[14]){
-			$('#Grid table tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
+			$('#Map tr:eq('+cury+') td:eq('+curx+')').children().attr("src",images[2]);
 			playerGone=1;
 			//level 9 special functionallity
 			if(level==9){
-				thatel=$('#Grid table tr:eq(4) td:eq(1)').children();
+				thatel=$('#Map tr:eq(4) td:eq(1)').children();
 				setTimeout(function(){
 					if(playerGone)thatel.fadeOut("slow",function(){
 						thatel.attr("src",images[2]);  
@@ -498,7 +548,7 @@ function createArray(n, nv){
 	{
 		if (manx == lastMoveX && many == lastMoveY)
 		{
-			var hitBlock =  $('#Grid table tr:eq('+ (wanay) +') td:eq('+ wanax +')').children();
+			var hitBlock =  $('#Map tr:eq('+ (wanay) +') td:eq('+ wanax +')').children();
 			var block = hitBlock.attr("src"); 
 
 			if ((block == images[1]) && (energy>0))  // explore block
@@ -519,26 +569,44 @@ function createArray(n, nv){
 	
 	// Diaxeirisi CLICK panw se ena Block
 	
-	$('table img').click(function() {
+	$('#Map img').click(function() {
 		var thatel = $(this);
 		var thattel = this;
 		x=this.parentNode.cellIndex;
 		y=this.parentNode.parentNode.rowIndex;
 		block=$(this).attr( "src" );
 		//Kinisi Avatar me Click
-		if(($(this).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
+		if(($(this).attr( "src" )== samples[21])&&playerIsNear(x,y)) {
+			
+			
+		
+		
+					music('mirror');
+					playerflipped=1;
+					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
+					samples[2]="image/treasure/character/manflipped.png";
+		}
+		else if(($(this).attr( "src" )== samples[22])&&playerIsNear(x,y)) {
+				music('mirror');
+				playerflipped=0;
+				$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
+				samples[2]="image/treasure/character/man.png";
+			
+		}
+		
+		else if(($(this).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
 			if(holeGone==1) {
 				holeGone=0;
-				$('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[14]);
+				$('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[14]);
 			}
 			if(playerIsNear(x,y)) {
 				if($('#minititle').html()!="So close yet so far")	energy--;
 				$('#EnergyCount span').html(': '+ energy);	
-				var prewater = $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src");
-				$('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
-				if (prewater == samples[9]) $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
-				else if (prewater == samples[2]) $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
+				var prewater = $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src");
+				$('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
+				if (prewater == samples[9]) $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
+				else if (prewater == samples[2]) $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 				manx=x;
 				many=y;
 					
@@ -571,11 +639,11 @@ function createArray(n, nv){
 			}
 		}
 		else if (block==samples[14]&&playerGone==0&&playerIsNear(x,y)){
-			$('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
+			$('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 			playerGone=1;
 			//level 9 special functionallity
 			if(level==9){					
-				thatel=$('#Grid table tr:eq(4) td:eq(1)').children();
+				thatel=$('#Map tr:eq(4) td:eq(1)').children();
 				setTimeout(function(){if(playerGone)thatel.fadeOut("slow",function(){
 	    		   	thatel.attr("src",images[2]);
 	    		   	thatel.fadeIn("fast");
@@ -609,23 +677,23 @@ function createArray(n, nv){
 		    		var goodsmiley=true;
 		    		for (y=0;y<=1;y++){
 			    		for(x=4;x<=12;x++){
-			    			if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;
+			    			if($('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;
 			    		}
 		    		 }
 		    		 for (y=3;y<=4;y++){
 		    			for(x=4;x<=12;x++){
-		    				if($('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;
+		    				if($('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src")==samples[5]) goodsmiley=false;
 		    			}
 		    		 }
 	
-					if($('#Grid table tr:eq('+2+') td:eq('+4+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+2+') td:eq('+12+')').children().attr("src")==samples[5]) goodsmiley=false;
-					if($('#Grid table tr:eq('+2+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+2+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;
-				    if($('#Grid table tr:eq('+5+') td:eq('+5+')').children().attr("src")==samples[5]||$('#Grid table tr:eq('+5+') td:eq('+11+')').children().attr("src")==samples[5]) goodsmiley=false;
-					if($('#Grid table tr:eq('+5+') td:eq('+6+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+5+') td:eq('+10+')').children().attr("src")!=samples[5]) goodsmiley=false;
-			   		if($('#Grid table tr:eq('+6+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+8+')').children().attr("src")!=samples[5]||$('#Grid table tr:eq('+6+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	 
+					if($('#Map tr:eq('+2+') td:eq('+4+')').children().attr("src")==samples[5]||$('#Map tr:eq('+2+') td:eq('+12+')').children().attr("src")==samples[5]) goodsmiley=false;
+					if($('#Map tr:eq('+2+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Map tr:eq('+2+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;
+				    if($('#Map tr:eq('+5+') td:eq('+5+')').children().attr("src")==samples[5]||$('#Map tr:eq('+5+') td:eq('+11+')').children().attr("src")==samples[5]) goodsmiley=false;
+					if($('#Map tr:eq('+5+') td:eq('+6+')').children().attr("src")!=samples[5]||$('#Map tr:eq('+5+') td:eq('+10+')').children().attr("src")!=samples[5]) goodsmiley=false;
+			   		if($('#Map tr:eq('+6+') td:eq('+7+')').children().attr("src")!=samples[5]||$('#Map tr:eq('+6+') td:eq('+8+')').children().attr("src")!=samples[5]||$('#Map tr:eq('+6+') td:eq('+9+')').children().attr("src")!=samples[5]) goodsmiley=false;	 
 		    		if(goodsmiley) thatel.fadeOut("slow",function(){
-		    		   	$('#Grid table tr:eq(1) td:eq(18)').children().attr("src",images[2]);
-		    		   	$('#Grid table tr:eq(1) td:eq(18)').children().fadeIn("fast");
+		    		   	$('#Map tr:eq(1) td:eq(18)').children().attr("src",images[2]);
+		    		   	$('#Map tr:eq(1) td:eq(18)').children().fadeIn("fast");
 		    		});
 		    	}
 			}
@@ -663,7 +731,7 @@ function createArray(n, nv){
 	    {
 	    	playerGone=0;
 	    	holeGone=1;
-	    	$('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
+	    	$('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
 	    	manx=x;
 			many=y;
 	    }
@@ -686,12 +754,12 @@ function createArray(n, nv){
     function walkOnWater(wanax,wanay)
     {
    		if(playerIsNear(wanax,wanay)) {
-    		var prewater = $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src");
-			$('#Grid table tr:eq('+wanay+') td:eq('+wanax+')').children().attr("src",samples[9]);
-			if (prewater == samples[9]) $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
+    		var prewater = $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src");
+			$('#Map tr:eq('+wanay+') td:eq('+wanax+')').children().attr("src",samples[9]);
+			if (prewater == samples[9]) $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
 			else if (prewater == samples[2])
 			{
-				 $('#Grid table tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
+				 $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 				 music("water");
 			}
 			manx = wanax; 
@@ -969,8 +1037,8 @@ function createArray(n, nv){
 		{
 			minimapVisible = false;
 			normalSizeMap();
-			$('html, body').animate({scrollLeft: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().left}, 0);
-			$('html, body').animate({scrollTop: $("#Grid table tr:eq("+many+") td:eq("+manx+")").offset().top}, 0);	
+			$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left}, 0);
+			$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top}, 0);	
 		}
 		else
 		{
@@ -994,7 +1062,7 @@ $('#minititle').click(function(){
 	
 	if(level==10) {
 		$('#minititle').html('Trap door is on');
-		$('#Grid table tr:eq(0) td:eq(0)').children().attr("src",samples[8]);
+		$('#Map tr:eq(0) td:eq(0)').children().attr("src",samples[8]);
 	}
 	
 	if(level==15) {
@@ -1023,16 +1091,16 @@ $('#minititle').click(function(){
 
 function changeBlock(x,y,ind)
 {
-	if (ind != 0) $('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[ind]);	// Ama einai != 0 rinai rna apo ta samples
-	else 	 $('#Grid table tr:eq('+y+') td:eq('+x+')').children().attr("src",images[2]);    // Ama einai 0 thelw to images[2] dld to empty
+	if (ind != 0) $('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[ind]);	// Ama einai != 0 rinai rna apo ta samples
+	else 	 $('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src",images[2]);    // Ama einai 0 thelw to images[2] dld to empty
 }
 
 // Meta to login xrisimopoihte ayti i synartisi gia na bali ta swsta backround se kathe block tou Grid
 
 function changeBackround(x,y,ind)
 {
-	$('#Grid table tr:eq('+y+') td:eq('+x+')').css("background","url("+mains[ind]+")");
-	$('#Grid table tr:eq('+y+') td:eq('+x+')').css("backgroundSize","100% 100%");
+	$('#Map tr:eq('+y+') td:eq('+x+')').css("background","url("+mains[ind]+")");
+	$('#Map tr:eq('+y+') td:eq('+x+')').css("backgroundSize","100% 100%");
 }
 
 //Deiaxirisi SFX
@@ -1077,7 +1145,7 @@ function playMovie() {
 	
 	setTimeout(function() { 
 	    		music("punch");
-	    			$('#Grid table tr:eq('+ pos["robert"][1]+') td:eq('+ pos["robert"][0] +')').children().attr("src",samples[25]);
+	    			$('#Map tr:eq('+ pos["robert"][1]+') td:eq('+ pos["robert"][0] +')').children().attr("src",samples[25]);
 
 	},2200);
 	
@@ -1092,7 +1160,7 @@ function playMovie() {
 	    		music("axe");
 	    		breakpointy= pos["albert"][1] + 1;
 	    		
-	    		$('#Grid table tr:eq('+ breakpointy +') td:eq('+ pos["albert"][0] +')').children().attr("src",images[2]);
+	    		$('#Map tr:eq('+ breakpointy +') td:eq('+ pos["albert"][0] +')').children().attr("src",images[2]);
 	    		
 	    		
 	},6000);  
@@ -1115,8 +1183,8 @@ function walk(who,wherex,wherey) {
 	xtogo = x+1;
 	else xtogo=x-1;
 
-	$('#Grid table tr:eq('+ ytogo +') td:eq('+ xtogo +')').children().attr("src",pos[who][2]);
-	$('#Grid table tr:eq('+ y +') td:eq('+ x +')').children().attr("src",images[2]);
+	$('#Map tr:eq('+ ytogo +') td:eq('+ xtogo +')').children().attr("src",pos[who][2]);
+	$('#Map tr:eq('+ y +') td:eq('+ x +')').children().attr("src",images[2]);
 	setTimeout(function() {
 		
 		if(xtogo>x)
@@ -1136,7 +1204,7 @@ function doOrder() {
 			moveAlow=1;
 			document.getElementById('orderPopup').style.display = 'none';
 			moveAlow=0;
-			$('#Grid table tr:eq(5) td:eq(18)').children().attr("src",samples[28]);
+			$('#Map tr:eq(5) td:eq(18)').children().attr("src",samples[28]);
 			music("ambulance");
 			walk("ambulance",10,5);
 			setTimeout(function() { 
@@ -1158,21 +1226,21 @@ function doOrder() {
 		if($('#order').val()=='ZODIAC') {
 			moveAlow=1;
 			document.getElementById('orderPopup').style.display = 'none';
-			$('#Grid table tr:eq(1) td:eq(2) img').attr("src",samples[5]);
-			$('#Grid table tr:eq(3) td:eq(2) img').attr("src",samples[5]);
-			$('#Grid table tr:eq(5) td:eq(2) img').attr("src",samples[5]);
-			$('#Grid table tr:eq(1) td:eq(2) img').draggable({revert:true});
-			$('#Grid table tr:eq(3) td:eq(2) img').draggable({revert:true});
-			$('#Grid table tr:eq(5) td:eq(2) img').draggable({revert:true});
-			$( "#Grid table tr:eq(4) td:eq(18)" ).droppable({
+			$('#Map tr:eq(1) td:eq(2) img').attr("src",samples[5]);
+			$('#Map tr:eq(3) td:eq(2) img').attr("src",samples[5]);
+			$('#Map tr:eq(5) td:eq(2) img').attr("src",samples[5]);
+			$('#Map tr:eq(1) td:eq(2) img').draggable({revert:true});
+			$('#Map tr:eq(3) td:eq(2) img').draggable({revert:true});
+			$('#Map tr:eq(5) td:eq(2) img').draggable({revert:true});
+			$( "#Map tr:eq(4) td:eq(18)" ).droppable({
 				drop: function( event, ui ) {
 					ui.draggable.hide("explode", 1000);  
 					music("axe");
 					badWormEnergy--;
 					if(badWormEnergy==0){
-						$( "#Grid table tr:eq(4) td:eq(18) img" ).fadeOut("slow",function(){
-			    		   	$('#Grid table tr:eq(4) td:eq(18)').children().attr("src",samples[30]);
-			    		   	$('#Grid table tr:eq(4) td:eq(18)').children().fadeIn("fast");
+						$( "#Map tr:eq(4) td:eq(18) img" ).fadeOut("slow",function(){
+			    		   	$('#Map tr:eq(4) td:eq(18)').children().attr("src",samples[30]);
+			    		   	$('#Map tr:eq(4) td:eq(18)').children().fadeIn("fast");
 		    		   	});
 					}
 		   		}

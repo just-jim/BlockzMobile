@@ -1,4 +1,4 @@
-.backpack { height: 84px;  margin-top: -10px; margin-left: -35px; padding:0; position:fixed; z-index:4; }
+.backpack ul {padding: 0;}
 
 #backpackInside { margin: 0 auto; }
 
@@ -6,7 +6,7 @@
 
 .backpack ul li a { font-size: 24px; font-weight: bold; color: white; text-decoration: none; text-shadow: 0 1px 2px black; }
 
-.backpack ul li:hover { background: none; -webkit-box-shadow: none; -moz-box-shadow: none; height: auto; border: none; padding: 20px 9px;}
+.backpack ul li:hover { background: none; -webkit-box-shadow: none; -moz-box-shadow: none; height: auto; border: none; top: -5px; left: -2px;}
 
 .backpack ul li .horizontal li { padding: 14px 10px 14px 10px;  }
 
