@@ -107,10 +107,10 @@ padding-left: 40px;
 }
 
 #header {
-	
-	position:absolute;
-	z-index:2;
-	
+	top:0; 
+	font-size:20px;
+	position:fixed;
+	z-index:3;
 }
 
 h1 {
@@ -133,25 +133,6 @@ h1 {
 	-1px 1px 0 #000,
 	1px 1px 0 #000;
 }
-
-	
-h2 {
-	font-weight:normal;
-	z-index: 2;
-	padding:0;
-	margin: 0;
-	font-family: New;
-	font-size: 90px;	  
-	-webkit-text-stroke: 2px black;
-	color: white;
-	filter:DropShadow(Color=#000000, OffX=3, OffY=3, Positive=1);
-	text-shadow:
-	3px 3px 0 #000,
-	-1px -1px 0 #000,  
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000;
-}
 	
 .highlightit img{
 	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
@@ -164,6 +145,7 @@ h2 {
 	-moz-opacity: 1;
 	opacity: 1;
 }
+
 	
 p {
 	 margin:0;
@@ -176,6 +158,7 @@ p {
 
 
 #menu img {
+	pointer-events: none;
 	width: 100%;
 	height: 60px;
 	position:fixed;

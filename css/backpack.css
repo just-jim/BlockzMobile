@@ -16,7 +16,8 @@
 
 .arrow-down { width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 15px solid #6a6a63; position: absolute; left: 40px; bottom: -15px; }
 
-.backpack ul li .extended { position: absolute; bottom: 120px; left: 0; width: 220px; background: url(../image/general/dropdownback.png); z-index: 1000; -moz-box-shadow: 0 0px 8px rgba(0,0,0,0.8); -webkit-box-shadow: 0 0px 8px rgba(0,0,0,0.8); box-shadow: 0 0 8px black; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; border: 1px solid white; display: none; color: white; }
+/* Here is the distance from the image menu (100px)*/
+.backpack ul li .extended { position: absolute; bottom: 100px; left: 0; width: 100px; background: url(../image/general/dropdownback.png); z-index: 1000; -moz-box-shadow: 0 0px 8px rgba(0,0,0,0.8); -webkit-box-shadow: 0 0px 8px rgba(0,0,0,0.8); box-shadow: 0 0 8px black; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; border: 1px solid white; display: none; color: white; }
 
 .backpack ul li .extended img { display: block; margin: 5px auto 15px auto; -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.8, transparent), to(rgba(255,255,255,0.5))); }
 
@@ -28,7 +29,7 @@
 
 .backpack ul li .extended ul.smallNav { border-top: 1px solid rgba(141,141,141,0.50);  padding: 10px; height: 100px;  }
 
-.backpack ul li .extended ul.smallNav li { width: 200px; padding: 0; line-height: 22px; font-weight: bold; background: url(../image/general/linkback.png) no-repeat; }
+.backpack ul li .extended ul.smallNav li { width: 90px; padding: 0; line-height: 22px; font-weight: bold; background: url(../image/general/linkback.png) no-repeat; background-size:contain; }
 
 .backpack ul li .extended ul.smallNav li a { color: #c7c7c7; text-shadow: none; }
 

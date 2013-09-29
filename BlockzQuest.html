@@ -32,7 +32,7 @@
 	<table id="Map" ></table>
 </div>
 
-<div id="header" class="becenter webkit" style="z-index: 3; top:0; font-size:20px;">
+<div id="header" class="becenter webkit">
 	<span>
 		<span id="minititle">Blockz Quest</span>
 		<span id="level"></span>
@@ -49,18 +49,18 @@
 <div style="position:fixed; bottom: 0; right: 0; padding-right: 10px;">
 	<table>
 		<tr>
-			<td colspan="3"> 
+			<td class="highlightit" colspan="3"> 
 				<img id="UpKey" src="image/navigation/up.png" style="width: 25px;">
 			</td>
 		</tr>
 		<tr>
-			<td style="padding: 5px; ">
+			<td class="highlightit" style="padding: 5px; ">
 				<img id="LeftKey" src="image/navigation/left.png" style="width: 25px;">
 			</td>
-			<td style="padding: 5px;">
+			<td class="highlightit" style="padding: 5px;">
 				<img id="DownKey" src="image/navigation/down.png" style="width: 25px;">
 			</td>
-			<td style="padding: 5px;">
+			<td class="highlightit" style="padding: 5px;">
 				<img id="RightKey" src="image/navigation/right.png" style="width: 25px;">
 			</td>
 		</tr>
@@ -121,11 +121,36 @@
 		Can you help? Here have this hammer!
 	</p>
 </div>
+
+<div style="position:fixed; top: 0; left: 0; z-index: 3;">
+	<div class="Navigation webkit">
+		<div id="NavigationInside">
+			<ul>
+				<li ><a href="#"><img src="image/general/manage.png" height="40px;" alt=""></a>
+					<ul class="horizontal">
+							<div class="extended">
+								<div class="arrow-up"></div>
+								<ul class="smallNav">
+									<li>
+										<a href><img class="imgshortcut" src="image/general/repeat.png" alt=""></a>
+									</li>
+									<li>
+										<a href="levels.html"><img class="imgshortcut" src="image/Worlds/World_1.png" alt=""></a>
+									</li>
+								</ul>
+							</div>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 <div style="position:fixed; bottom: 0; left: 0; margin-bottom: -25px;">
 	<table>
 		<tr>
 			<td>
-				<div class="backpack webkit" style="">
+				<div class="backpack webkit">
 					<div id="backpackInside">
 						<ul>
 							<li><a href="#"><img src="image/treasure/tools/backpack.png" height="50px;" alt=""></a>

@@ -8,6 +8,7 @@
 	<title> BlockZ </title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/backpack.css" />
+	<link rel="stylesheet" type="text/css" href="css/dropMenu.css" />
 	<script type="text/javascript" src="Jquery/jquery.js"> </script>       
 </head>
 
@@ -21,6 +22,27 @@
 <div id="menu">
 	<img src="image/general/menubar.png" alt="" style="height: 80px;">
 </div> 
+
+<div style="position:fixed; top: 0; left: 0; z-index: 3;">
+	<div class="Navigation webkit">
+		<div id="NavigationInside">
+			<ul>
+				<li ><a href="#"><img src="image/general/manage.png" height="40px;" alt=""></a>
+					<ul class="horizontal">
+							<div class="extended">
+								<div class="arrow-up"></div>
+								<ul class="smallNav">
+									<li>
+										<a href="index.html"><img class="imgshortcut" src="image/Worlds/World_1.png" alt=""></a>
+									</li>
+								</ul>
+							</div>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
    
 <div id="bg" class="fitscreen">
 	<img src="image/wallpaper/new.jpg" alt="">
