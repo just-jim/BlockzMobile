@@ -297,6 +297,9 @@ function getURLParameter(name){
 }
 
 $(window).load(function() {
+	
+	$('#minititle').html("READY!!!!");
+	
 	$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left}, 500);
 	$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top}, 500);	
 	
