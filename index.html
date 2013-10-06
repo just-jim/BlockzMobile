@@ -54,6 +54,10 @@
 		vale = winWh-(w/2);
 		$("#world1").css("left",vale);
 	}
+
+	$(window).bind("resize", function(){ 
+		onDeviceReady();
+	});
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
 		window.location.href='levels.html';
