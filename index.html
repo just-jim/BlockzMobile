@@ -26,6 +26,11 @@
 	<img src="image/wallpaper/new.jpg" alt="">
 </div>
 
+<div class="webkit" style=" position: fixed; left:0;">
+	<p id="testd" > Device : not</p>
+	<p id="testr" > OnLoad : not</p>
+</div>
+
 
 <div id="worldImage" class="becenter webkit" style="top:33%; position:absolute;" >
 	
@@ -47,10 +52,11 @@
 	document.addEventListener("deviceready", onDeviceReady, false);
 
 	function onDeviceReady() {
-	    alert("allright");
+	    $("#testd").html("Device: ready");
 	}
 	
 	$(window).load(function() {
+		$("#testr").html("OnLoad: ready");
     	fitScreen();
 	});
 
