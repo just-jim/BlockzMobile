@@ -14,34 +14,24 @@
 <body>
 
 <div id="header" class="becenter">
-	<h1>BlockZ Quest</h1>
-	<p id="minititle" class="webkit" style="font-size:20px" >Worlds</p>
+	<h1 class="becenter">BlockZ Quest</h1>
+	<p id="minititle" class="webkit becenter" style="font-size:20px; top: 60px;" >Worlds</p>
 </div>
 
 <div id="menu">
 	<img src="image/general/menubar.png" style="height:80px;" alt="">
 </div> 
-   
-<div id="bg" class="fitscreen">
-	<img src="image/wallpaper/new.jpg" alt="">
-</div>
-
-<div class="webkit" style=" position: fixed; left:0;">
-	<p id="testd" > Device : not</p>
-	<p id="testr" > OnLoad : not</p>
-</div>
-
 
 <div id="worldImage" class="becenter webkit" style="top:33%; position:absolute;" >
 	
-	<p class="becenter" style="font-size:25px; top: 20%;  ">World 1</p>
+	<p class="becenter" style="font-size:25px; top: 25%;  ">World 1</p>
 	
-	<img id="world1" class="hand" src="image/Worlds/World_1.png" style="position: absolute; top :33%"/>
+	<img id="world1" class="hand world" src="image/Worlds/World_1.png" style="position: absolute; top :33%"/>
 
-	<p class="becenter" style="font-size:25px; bottom:20%;">Ruins</p>	
+	<p class="becenter" style="font-size:25px; bottom:25%;">Ruins</p>	
 </div>
 
-<div id="names" class="webkit beleft">
+<div id="names" class="webkit" style="position: fixed; bottom:5px; left:8px;">
 	<span>BlockZ © </span>
 	<span>- Archer </span>
 	<span>- just_jim </span>
@@ -49,14 +39,7 @@
 
 <script type="text/javascript">
 	
-	document.addEventListener("deviceready", onDeviceReady, false);
-
-	function onDeviceReady() {
-	    $("#testd").html("Device: ready");
-	}
-	
 	$(window).load(function() {
-		$("#testr").html("OnLoad: ready");
     	fitScreen();
 	});
 

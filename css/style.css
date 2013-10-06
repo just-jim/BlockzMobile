@@ -15,6 +15,13 @@
 			src: url('../type/Feast.ttf');
 		}
 
+html
+{
+	background:url('../image/wallpaper/Field.jpg') no-repeat center center;
+    min-height:100%;
+    min-width:100%;
+    background-size:cover;
+}
 
 
 body { 
@@ -108,6 +115,24 @@ padding-left: 40px;
 	border-style: none;
 }
 
+.LevelTable
+{
+	background-color: rgba(16, 20, 31, 0.69);
+	-webkit-box-shadow: 0 0px 8px rgba(0,0,0,1); 
+	box-shadow: 0 0 8px black; 
+	-webkit-border-radius: 20px; 
+	border-radius: 20px; 
+}
+
+.world
+{
+	background-color: rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0px 30px rgba(0,0,0,1); 
+	box-shadow: 0 0 8px black; 
+	-webkit-border-radius: 100px; 
+	border-radius: 100px; 
+}
+
 #header {
 	top:0; 
 	font-size:20px;
@@ -124,7 +149,7 @@ h1 {
 	margin-bottom: 10px; 
     margin-top: -10px;
 	font-family: New;
-	font-size: 60px;	  
+	font-size: 50px;	  
 	-webkit-text-stroke: 2px black;
 	color: white;
 	filter:DropShadow(Color=#000000, OffX=3, OffY=3, Positive=1);
@@ -185,17 +210,15 @@ p {
 
 .fitscreen {
 	position:fixed;
-	top:-50%;
-	left:-50%;
-	width:200%;
-	height:200%;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 }
 .fitscreen img {
 	position:absolute;
 	top:0;
 	left:0;
-	right:0;
-	bottom:0;
 	margin:auto;
 	min-width:50%;
 	min-height:50%;
@@ -260,7 +283,7 @@ html {
 	 height: 100%;
 }
 
-#Map
+#Map , #OuterMap
 {
 	margin-left:auto;
 	margin-right:auto;
@@ -279,7 +302,8 @@ html {
 	border-spacing: 0;
 	margin-top: 0;
 }
-#Map td{
+#Map td , #OuterMap td
+{
 	padding:0px;
 }
 
@@ -309,7 +333,6 @@ html {
 
 #names {
 	font-size:12px;
-	bottom:5px;
 	z-index: 3;
 }
 

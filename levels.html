@@ -15,8 +15,8 @@
 <body>
 
 <div id="header" class="becenter">
-	<h1>BlockZ</h1>
-	<p id="minititle" class="webkit" style="font-size:20px" >Quest Game</p>
+	<h1 class="becenter">BlockZ Quest</h1>
+	<p id="minititle" class="webkit becenter" style="font-size:20px; top: 60px;" >Levels</p>
 </div>
 
 <div id="menu">
@@ -27,13 +27,13 @@
 	<div class="Navigation webkit">
 		<div id="NavigationInside">
 			<ul>
-				<li ><a href="#"><img src="image/general/manage.png" height="40px;" alt=""></a>
+				<li ><a href="#"><img src="image/general/menuButton.png" height="40px;" alt=""></a>
 					<ul class="horizontal">
 							<div class="extended">
 								<div class="arrow-up"></div>
 								<ul class="smallNav">
 									<li>
-										<a href="index.html"><img class="imgshortcut" src="image/Worlds/World_1.png" alt=""></a>
+										<a href="index.html"><img class="imgshortcut" src="image/Worlds/Menu.png" alt=""></a>
 									</li>
 								</ul>
 							</div>
@@ -43,26 +43,15 @@
 		</div>
 	</div>
 </div>
-   
-<div id="bg" class="fitscreen">
-	<img src="image/wallpaper/new.jpg" alt="">
-</div>
 
-
-<div id="Grid" class="becenter">
-	<table></table>
-</div>
-
-<div id="names" class="webkit beleft">
-	<p6>BlockZ © </p6>
-	<p4>- Archer </p4>
-	<p2>- just_jim </p2>
+<div id="names" class="webkit" style="position: fixed; bottom:5px; left:8px;">
+	<span>BlockZ © </span>
+	<span>- Archer </span>
+	<span>- just_jim </span>
 </div>
 
 <div id="GridMenu" class="becenter block" style="position: absolute; margin:auto;">
-	<table id="LevelsTable" align="center" class="centered webkit" >
-
-		
+	<table id="LevelsTable" align="center" class="centered webkit LevelTable" >
 	</table>
 </div>
 
@@ -71,15 +60,16 @@
 <script>
 	
 bottomOffset = 50;
+topOffeset = $('#menu img').height()+40;
 var winW = $(window).width();
 var winH = $(window).height();
-var extraHeight = $('#header').height() + (0.04*winH) + bottomOffset;
+var extraHeight = topOffeset + (0.04*winH) + bottomOffset;
 var WinHh = ( (winH - extraHeight ) / 2);
 
 level=localStorage.getItem('level');
 if(level==null) {level = 1; localStorage.setItem('level','1');}
 level=parseInt(level);
-level=15;
+//level=15;
 lines = 3;
 for (line=1; line<=lines; line++)
 {
@@ -97,35 +87,36 @@ for (line=1; line<=lines; line++)
 	{
 		curLoopLvl = ((line-1)*blocksPerLine-(-i));
 		part1='<td class="scale" style="width:'+blockwidth+'px;">';
-		part2='<table style="margin-left:auto; margin-right:auto;"><tr><td style="background-image:url(image/tile.png); background-size: 100% 100%;">';
-		if (curLoopLvl<=level) part3='<p class="hand" style=" width:40px; font-size: 30px; line-height:40px;">'+curLoopLvl+'</p></td></tr></table></td>';
-		else part3='<img src="image/treasure/elements/empty.png" alt="" style="width:40px;"></td></tr></table></td>';
-		el=part1+part2+part3;
+		if (curLoopLvl<=level) 
+		{
+			part2='<table style="margin-left:auto; margin-right:auto;"><tr><td style="background-image:url(image/Levels/level.png); background-size: 100% 100%;">';
+			part3='<p class="hand" style=" width:50px; font-size: 30px; line-height:50px;">'+curLoopLvl+'</p></td></tr></table>';
+		}
+		else 
+		{
+			part2='<table style="margin-left:auto; margin-right:auto;"><tr><td style=" width: 50px; height: 50px; background-image:url(image/Levels/LockedLevel.png); background-size: 100% 100%;">';
+			part3='<img src="image/Levels/Lock" alt="" style="width:40px;"></td></tr></table>';
+		}
+		part4="</td>";
+		el=part1+part2+part3+part4;
 		main.append(el);
 		lastp = $('#GridMenu p').last();
 	}
 }
 
-m = $('#header').height();
-extraHeight = $('#header').height() + (0.04*winH) + bottomOffset;
-
-$('#GridMenu').css({marginTop: m});
+$('#GridMenu').css({marginTop: topOffeset});
 $('#LevelsTable').css({height: winH-extraHeight});
-
 
 $(window).bind("resize", function(){ 
 	blockwidth = ($(window).width()*0.8) / blocksPerLine;
 	var winW = $(window).width();
 	var winH = $(window).height();
-	var extraHeight = $('#header').height() + (0.04*winH) + bottomOffset;
+	var extraHeight = topOffeset + (0.04*winH) + bottomOffset;
 	WinHh = ( (winH - extraHeight ) / 2);		
-	m = $('#header').height();
-	$('#GridMenu').css({marginTop: m});
+	$('#GridMenu').css({marginTop: topOffeset});
 	$('#LevelsTable').css({height: winH-extraHeight});
 	$('.scale').css({width: blockwidth});
 });
-
-
 
 $('#GridMenu p').each( function(i,el) {$(el).bind('touchstart',function(e) {gotoLevel(this);});});
 
@@ -137,29 +128,6 @@ function gotoLevel(tile){
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
 }
 
-	/*
-	
-
-	
-	
-	
-	
-	
-	
-}
-
-function addLevelTitle(lvl,lastp)
-{
-   file = "BQLevels/"+lvl+".txt";
-   $.get(file, function(data) 
-   {
-		parts = data.split("#");
-		title = parts[2];
-		lastp.html("");
-		lastp.append(title);
-	});
-}
-*/
 </script>
 </body>
 </html>

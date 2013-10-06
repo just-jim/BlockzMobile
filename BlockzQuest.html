@@ -22,14 +22,11 @@
 <div id="menu">
 	<img src="image/general/menubar.png" alt="">
 </div> 
-   
-<div id="bg" class="fitscreen">
-	<img src="image/wallpaper/new.jpg" alt="">
-</div>
-
 
 <div id="Grid" class="becenter">
-	<table id="Map" ></table>
+	<table id="OuterMap">
+	</table>
+	
 </div>
 
 <div id="header" class="becenter webkit">
@@ -126,7 +123,7 @@
 	<div class="Navigation webkit">
 		<div id="NavigationInside">
 			<ul>
-				<li ><a href="#"><img src="image/general/manage.png" height="40px;" alt=""></a>
+				<li ><a href="#"><img src="image/general/menuButton.png" height="40px;" alt=""></a>
 					<ul class="horizontal">
 							<div class="extended">
 								<div class="arrow-up"></div>
@@ -135,7 +132,10 @@
 										<a href><img class="imgshortcut" src="image/general/repeat.png" alt=""></a>
 									</li>
 									<li>
-										<a href="levels.html"><img class="imgshortcut" src="image/Worlds/World_1.png" alt=""></a>
+										<a href="levels.html"><img class="imgshortcut" src="image/Worlds/World_2.png" alt=""></a>
+									</li>
+									<li>
+										<a href="index.html"><img class="imgshortcut" src="image/Worlds/Menu.png" alt=""></a>
 									</li>
 								</ul>
 							</div>
@@ -202,8 +202,8 @@
 var chrome = 0; var firefox = 1;
 
 // Pinakes eikonwn
-//index3:	0: unexplored	1: explore  	2: explored
-images=["image/tile.png","image/treasure/elements/explore.png","image/treasure/elements/empty.png"];
+//index3:	0: unexplored	1: explore  	2: explored     3:downLimitTile     4:UpLimitTile
+images=["image/tile.png","image/treasure/elements/explore.png","image/treasure/elements/empty.png","image/treasure/elements/DownLimit.jpg","image/treasure/elements/UpLimit.jpg"];
 
 clicks=['ajax/clickTreasure.php','ajax/clickTreasureKey.php','ajax/clickTreasureChest.php','ajax/clickTreasureWall.php',
 		'ajax/levelUp.php','ajax/clickTreasureLava.php','ajax/clickTreasureWater.php'];
@@ -388,6 +388,29 @@ function createArray(n, nv){
 	
 	height = Math.floor(winH / nv);
 	width = height;
+	
+	
+	// Create Outer Map
+	$('#OuterMap').append('<tr>');
+	for(i=0; i<nv; i++)
+	{
+		$('#OuterMap tr').last().append('<td><img src="'+ images[4]  +'" alt="" width="'+width+'" height="'+height+'"></td>');
+	}
+	$('#OuterMap').append('</tr>');
+	
+	$('#OuterMap').append('<tr>');
+	$('#OuterMap tr').last().append('<td colspan="'+nv+'"><table id="Map" ></table></td>');
+	$('#OuterMap').append('</tr>');
+	
+	$('#OuterMap').append('<tr>');
+	for(i=0; i<nv; i++)
+	{
+		$('#OuterMap tr').last().append('<td><img src="'+ images[3]  +'" alt="" width="'+width+'" height="'+height+'"></td>');
+	}
+	$('#OuterMap').append('</tr>');
+	
+	
+	// Create Inner Map
 	el='<td><img src="'+ images[2]  +'" alt="" width="'+width+'" height="'+height+'"></td>';
 	
 	$('#Map').html("");
