@@ -31,7 +31,7 @@
 	
 	<p class="becenter" style="font-size:25px; top: 20%;  ">World 1</p>
 	
-	<img id="world1" class="hand" src="image/Worlds/World_1.png" style="position: absolute; left : 50%; top :33%"/>
+	<img id="world1" class="hand" src="image/Worlds/World_1.png" style="position: absolute; top :33%"/>
 
 	<p class="becenter" style="font-size:25px; bottom:20%;">Ruins</p>	
 </div>
@@ -46,11 +46,12 @@
 	
 	$(window).load(function() {
 		winH =  $(window).height();
-		$("#world1").height(winH/3);
-		w = $("#world1").width();
-		l = $("#world1").css("left");
-		l = parseInt(l);
-		$("#world1").css("left",l-w/2+"px");
+		$("#world1").css("height",winH/3);
+		w = $("#world1").css("width");
+		w = parseInt(w);
+		winWh = $(window).width()/2;
+		vale = winWh-(w/2);
+		$("#world1").css("left",vale);
 	});
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
