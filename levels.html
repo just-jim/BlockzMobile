@@ -125,13 +125,17 @@ $(window).bind("resize", function(){
 	$('.scale').css({width: blockwidth});
 });
 
-$('#GridMenu p').click(function() {
-	lvli=this.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex+1;
-	lvlj=this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex;
+
+
+$('#GridMenu p').each( function(i,el) { console.log(el); $(el).bind('touchstart',function(e) {gotoLevel(this);});});
+
+function gotoLevel(tile){
+	lvli=tile.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex+1;
+	lvlj=tile.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex;
 	lvl = lvlj*blocksPerLine +lvli;		
 	
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
-});
+}
 
 	/*
 	

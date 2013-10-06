@@ -27,11 +27,12 @@
 </div>
 
 
-<div id="worldImage" class="becenter webkit" onclick="window.location.href='levels.html'" style="top:33%;" >
+<div id="worldImage" class="becenter webkit" style="top:33%;" >
 	
-	<p style="font-size:25px;">World 1</p>
+	<p style="font-size:25px; ">World 1</p>
+	<br>
 
-	<img class="hand becenter" src="image/Worlds/World_1.png" style="height : 33%;"/>
+	<img id="world1" class="hand" src="image/Worlds/World_1.png" style="height : 33%; position: fixed; left : 50%;"/>
 
 	<p class="becenter" style="font-size:25px; bottom:20%;">Ruins</p>	
 </div>
@@ -41,3 +42,18 @@
 	<span>- Archer </span>
 	<span>- just_jim </span>
 </div>
+
+<script type="text/javascript">
+	
+	$(window).load(function() {
+		w = $("#world1").width();
+		l = $("#world1").css("left");
+		l = parseInt(l);
+		$("#world1").css("left",l-w/2+"px");
+	});
+	
+	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
+		window.location.href='levels.html';
+	});
+	
+</script>

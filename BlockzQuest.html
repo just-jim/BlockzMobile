@@ -591,27 +591,32 @@ function createArray(n, nv){
 	
 	// Diaxeirisi CLICK panw se ena Block
 	
-	$('#Map img').click(function() {
-		var thatel = $(this);
-		var thattel = this;
-		x=this.parentNode.cellIndex;
-		y=this.parentNode.parentNode.rowIndex;
-		block=$(this).attr( "src" );
+	tilesArray = document.getElementById('Map').getElementsByTagName('img');
+	for(i=0; i<tilesArray.length;i++) {
+		tilesArray[i].addEventListener('touchstart', function(e) { clicker(e,this); });
+	}
+
+	
+	function clicker (e,thattel) {
+		var thatel = $(thattel);
+		x=thattel.parentNode.cellIndex;
+		y=thattel.parentNode.parentNode.rowIndex;
+		block=$(thattel).attr( "src" );
 		//Kinisi Avatar me Click
-		if(($(this).attr( "src" )== samples[21])&&playerIsNear(x,y)) {
+		if(($(thattel).attr( "src" )== samples[21])&&playerIsNear(x,y)) {
 					music('mirror');
 					playerflipped=1;
 					$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/manflipped.png");
 					samples[2]="image/treasure/character/manflipped.png";
 		}
-		else if(($(this).attr( "src" )== samples[22])&&playerIsNear(x,y)) {
+		else if(($(thattel).attr( "src" )== samples[22])&&playerIsNear(x,y)) {
 				music('mirror');
 				playerflipped=0;
 				$('#Map tr:eq('+ many +') td:eq('+ manx +')').children().attr("src","image/treasure/character/man.png");
 				samples[2]="image/treasure/character/man.png";
 			
 		}
-		else if(($(this).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
+		else if(($(thattel).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
 			if(holeGone==1) {
 				holeGone=0;
@@ -668,24 +673,24 @@ function createArray(n, nv){
 	    		});},20000);
 	    	}
 		}
-	    else if($(this).attr( "src" )== samples[12] && playerIsNear(x,y))  // King speaks
+	    else if($(thattel).attr( "src" )== samples[12] && playerIsNear(x,y))  // King speaks
 	    {
 	    	kingPopup();
 	    }
-	     else if($(this).attr( "src" )== samples[17] && playerIsNear(x,y))  // Bro speaks
+	     else if($(thattel).attr( "src" )== samples[17] && playerIsNear(x,y))  // Bro speaks
 	    {
 	    	broPopup();
 	    }
-	    else if(($(this).attr( "src" )== samples[18]||$(this).attr( "src" )== samples[26]) && playerIsNear(x,y))  // Albert speaks
+	    else if(($(thattel).attr( "src" )== samples[18]||$(thattel).attr( "src" )== samples[26]) && playerIsNear(x,y))  // Albert speaks
 	    {
 	    	albPopup();
 	    }
-	    else if(($(this).attr( "src" )== samples[24]||$(this).attr( "src" )== samples[27]) && playerIsNear(x,y))  // Bad Worm speaks
+	    else if(($(thattel).attr( "src" )== samples[24]||$(thattel).attr( "src" )== samples[27]) && playerIsNear(x,y))  // Bad Worm speaks
 	    {
 	    	orderPopup();
 	    }
 	    
-	    else if($(this).attr( "src" )== samples[5] && playerIsNear(x,y))  // break-stone
+	    else if($(thattel).attr( "src" )== samples[5] && playerIsNear(x,y))  // break-stone
 	    {
 			if (hammer > 0){
 				Click(thatel,thattel,clicks[3]); 
@@ -716,32 +721,32 @@ function createArray(n, nv){
 		    	}
 			}
 	    }
-	    else if($(this).attr( "src" )== samples[20] && playerIsNear(x,y))  // red flower
+	    else if($(thattel).attr( "src" )== samples[20] && playerIsNear(x,y))  // red flower
 	    {
-			$(this).attr("src",images[2]); flower=1;
+			$(thattel).attr("src",images[2]); flower=1;
 	    }
-	    else if($(this).attr( "src" )== samples[7] && playerIsNear(x,y))  // anti-lava
+	    else if($(thattel).attr( "src" )== samples[7] && playerIsNear(x,y))  // anti-lava
 	    {
 	    	music("antilava");
 			if (antilava > 0){Click(thatel,thattel,clicks[5]);}
 	    }
-	    else if($(this).attr( "src" )== samples[3] && playerIsNear(x,y))  //chest
+	    else if($(thattel).attr( "src" )== samples[3] && playerIsNear(x,y))  //chest
 	    {
 	    	if (keys > 0) {Click(thatel,thattel,clicks[2]); music("unlock");} 
 	    }
-	    else if ($(this).attr( "src" )== samples[8] && playerIsNear(x,y)) // door
+	    else if ($(thattel).attr( "src" )== samples[8] && playerIsNear(x,y)) // door
 	    {
 	    	levelUpPopup(x,y);
 	    }
-	    else if ($(this).attr( "src" )== samples[6] && playerIsNear(x,y)) // water
+	    else if ($(thattel).attr( "src" )== samples[6] && playerIsNear(x,y)) // water
 	    {
 			if(boatFlag ==1) walkOnWater(x,y); 
 	    }
-	    else if ($(this).attr( "src" )== samples[10] && playerIsNear(x,y))  //BigChest
+	    else if ($(thattel).attr( "src" )== samples[10] && playerIsNear(x,y))  //BigChest
 	    {
 	    	if (keys > 0) {CouponPopup(); music("unlock");} 
 	    }
-	    else if ($(this).attr( "src" )== samples[14]&&playerGone==1) // hole
+	    else if ($(thattel).attr( "src" )== samples[14]&&playerGone==1) // hole
 	    {
 	    	playerGone=0;
 	    	holeGone=1;
@@ -749,19 +754,19 @@ function createArray(n, nv){
 	    	manx=x;
 			many=y;
 	    }
-	    else if ((level==13) &&($(this).attr( "src" )== samples[26])&&(!playerGone)) {
+	    else if ((level==13) &&($(thattel).attr( "src" )== samples[26])&&(!playerGone)) {
 	    	manx=x;
 	    	many=y;
 	    	samples[2] = samples[26];
 	    	IamAlbert=1;
 	    }
-	    else if ((level==13) &&($(this).attr( "src" )== "image/treasure/character/man.png")&&(!playerGone)) {
+	    else if ((level==13) &&($(thattel).attr( "src" )== "image/treasure/character/man.png")&&(!playerGone)) {
 	    	manx=x;
 	    	many=y;
 	    	samples[2] = "image/treasure/character/man.png";
 	    	IamAlbert=0;
 	    }
-	 });
+	 }
 	
 	//Manage the situation when player is on water
 	    
@@ -831,13 +836,7 @@ function createArray(n, nv){
 		if(((tmpx==manx)&&(Math.abs(tmpy-many)==1))||((tmpy==many)&&(Math.abs(tmpx-manx)==1))) return(true);
 		else return(false);
 	}
-	
-	function colectPrize()
-	{
-		moveAlow = 1;
-		document.getElementById("giftPopup").style.display = 'none';
-	}
-	
+
 	function neatBackpack()
 	{
 		if (hammer 	== 	0) $('#listhammer').remove();
@@ -845,8 +844,6 @@ function createArray(n, nv){
 		if (antilava==	0) $('#antilava').remove();
 		if (hammer+boatFlag+antilava == 0)	$('#backpackInside ul li ul ul').append('<a style="">Empty!</a>');
 	}
-	
-	$('#collect').click(function(){colectPrize();});
 	
 	// Diaxeirisi tou click se door gia leveup
 	
@@ -858,7 +855,7 @@ function createArray(n, nv){
 		levelupy = y;
 	}
 	
-	$('#levelUp').click(function(){levelup();});
+	document.getElementById('levelUp').addEventListener('touchstart', function(e){levelup();});
 	
 	function levelup()
 	{
@@ -873,7 +870,7 @@ function createArray(n, nv){
 		}
 	}
 		
-	$('#levelUpPopupExit').click(function(){
+	document.getElementById('levelUpPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("levelUpPopup").style.display = 'none';
 	});
@@ -913,7 +910,7 @@ function createArray(n, nv){
 		}
 	}
 	
-	$('#kingPopupExit').click(function(){	
+	document.getElementById('kingPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("kingPopup").style.display = 'none';
 		if(level=="3") gameInfoPopup();
@@ -925,7 +922,7 @@ function createArray(n, nv){
 		document.getElementById('gameInfoPopup').style.display = 'block';
 	}
 	
-	$('#gameInfoPopupExit').click(function(){	
+	document.getElementById('gameInfoPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("gameInfoPopup").style.display = 'none';
 	});
@@ -988,13 +985,12 @@ function createArray(n, nv){
 		document.getElementById("albPopup").style.display = 'block';
 	}
 	
-	
-	$('#broPopupExit').click(function(){
+	document.getElementById('broPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("broPopup").style.display = 'none';
 	});
 	
-	$('#albPopupExit').click(function(){
+	document.getElementById('albPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("albPopup").style.display = 'none';
 	});
@@ -1006,7 +1002,7 @@ function createArray(n, nv){
 		document.getElementById("orderPopup").style.display = 'block';
 	}
 	
-	$('#orderPopupExit').click(function(){
+	document.getElementById('orderPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("orderPopup").style.display = 'none';
 	});
@@ -1022,9 +1018,7 @@ function createArray(n, nv){
 	$(window).bind("resize", function(){ 
 		normalSizeMap();
 	});
-	
-	//$('#minimap').click(function(){
-	
+		
 	document.getElementById('minimap').addEventListener('touchstart', function(e) {
 		if (minimapVisible == true)
 		{
@@ -1053,7 +1047,6 @@ function normalSizeMap()
 	$('#Grid img').css({ height: h, width: h }); 
 }
 
-//$('#minititle').click(function(){
 document.getElementById('minititle').addEventListener('touchstart', function(e) {
 	if(level==10) {
 		$('#minititle').html('Trap door is on');
