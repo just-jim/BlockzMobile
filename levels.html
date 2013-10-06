@@ -98,7 +98,7 @@ for (line=1; line<=lines; line++)
 		curLoopLvl = ((line-1)*blocksPerLine-(-i));
 		part1='<td class="scale" style="width:'+blockwidth+'px;">';
 		part2='<table style="margin-left:auto; margin-right:auto;"><tr><td style="background-image:url(image/tile.png); background-size: 100% 100%;">';
-		if (curLoopLvl<level) part3='<p class="hand" style=" width:40px; font-size: 30px; line-height:40px;">'+curLoopLvl+'</p></td></tr></table></td>';
+		if (curLoopLvl<=level) part3='<p class="hand" style=" width:40px; font-size: 30px; line-height:40px;">'+curLoopLvl+'</p></td></tr></table></td>';
 		else part3='<img src="image/treasure/elements/empty.png" alt="" style="width:40px;"></td></tr></table></td>';
 		el=part1+part2+part3;
 		main.append(el);

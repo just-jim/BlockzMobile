@@ -367,15 +367,15 @@ function prepareMap(personal,background)
 function showTool(src,value,name)
 {
 	if (name != "boat")	$('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""><a id="'+name+'">x '+value+'</a></li>');
-	else if(boatflag == 1) $('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""></li>');
+	else if(boatFlag == 1) $('#backpackInside ul li ul ul').append('<li id="list'+name+'"><img class="imgshortcut" src="'+tools[src]+'" alt=""></li>');
 }
 
 function manageTools(src,value,name)
 {
-	if(hammer + antilava + boatflag != 0 )	 	$('#backpackInside ul li ul ul').html("");
+	if(hammer + antilava + boatFlag != 0 )	 	$('#backpackInside ul li ul ul').html("");
 	if(hammer!=0) 					showTool(0,hammer,"hammer");
 	if(antilava!=0)		 			showTool(2,antilava,"antilava");
-	if(boatflag!=0)					showTool(1,0,"boat");
+	if(boatFlag!=0)					showTool(1,0,"boat");
 	$("li img").css("cursor","pointer");
 	
 }
@@ -841,9 +841,9 @@ function createArray(n, nv){
 	function neatBackpack()
 	{
 		if (hammer 	== 	0) $('#listhammer').remove();
-		if (boatflag==	0) $('#boat').remove();
+		if (boatFlag==	0) $('#boat').remove();
 		if (antilava==	0) $('#antilava').remove();
-		if (hammer+boatflag+antilava == 0)	$('#backpackInside ul li ul ul').append('<a style="">Empty!</a>');
+		if (hammer+boatFlag+antilava == 0)	$('#backpackInside ul li ul ul').append('<a style="">Empty!</a>');
 	}
 	
 	$('#collect').click(function(){colectPrize();});
@@ -1023,7 +1023,9 @@ function createArray(n, nv){
 		normalSizeMap();
 	});
 	
-	$('#minimap').click(function(){
+	//$('#minimap').click(function(){
+	
+	document.getElementById('minimap').addEventListener('touchstart', function(e) {
 		if (minimapVisible == true)
 		{
 			minimapVisible = false;
@@ -1039,6 +1041,8 @@ function createArray(n, nv){
 			$('#Grid img').css({ height: w, width: w });
 		}
 	});
+	
+	
 }
 
 function normalSizeMap()

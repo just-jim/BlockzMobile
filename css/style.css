@@ -230,8 +230,14 @@ p {
 }
 
 .userstats img{
+	pointer-events: none;
 	margin-bottom: -5px;
 	margin-right: -15px;
+}
+
+.userstats span
+{
+	pointer-events: none;
 }
 
 
