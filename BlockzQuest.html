@@ -296,13 +296,8 @@ function getURLParameter(name){
     );
 }
 
-$(window).load(function() {
 	
-	$('#minititle').html("READY!!!!");
-	
-	$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left}, 500);
-	$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top}, 500);	
-	
+$(window).load(function() {	
 	if(level==7) {
 		$('#wordsGameInfo').html('"Oh no! A weird golden block is blocking my way"... Do not panic! Golden blocks disappear when certain conditions are met!');
 		$('#gameInfoImage').attr('src',samples[15]);
@@ -356,10 +351,12 @@ function prepareMap(personal,background)
 	  		changeBlock(tmpx,tmpy,value);
 	  		if (value == 2)
 	  		{
-	  			 manx = tmpx;
-				 many = tmpy;
-				 lastMoveX=tmpx;
-				 lastMoveY=tmpy;
+	  			manx = tmpx;
+				many = tmpy;
+				lastMoveX=tmpx;
+				lastMoveY=tmpy;
+				$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left});
+				$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top});
 	  		}
 	  	}
 	});
@@ -490,9 +487,6 @@ function createArray(n, nv){
 			else if (key == 40) playerMove(manx,many,manx,(many-(-1)));	// down arrow
 			else if (key == 83) playerMove(manx,many,manx,(many-(-1)));	// key : s
 		}
-		
-		//$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left}, 0);
-		//$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top}, 0);	
 	};
 	
 	$(document).keyup(function(e){
@@ -1046,13 +1040,13 @@ function createArray(n, nv){
 		else	miniMap();
 	});
 		
-	document.getElementById('minimap').addEventListener('touchstart', function(e) {
+	document.getElementById('minimap').addEventListener('click', function(e) {
 		if (minimapVisible == true)
 		{
 			minimapVisible = false;
 			normalSizeMap();
-			$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left}, 0);
-			$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top}, 0);	
+			$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left});
+			$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top});	
 		}
 		else
 		{
@@ -1061,23 +1055,23 @@ function createArray(n, nv){
 		}
 	});
 	
+	function normalSizeMap()
+	{
+		var winW = $(window).width()*3;
+		var winH = $(window).height()*3;
+		h = Math.round(winH /n);
+		$('#Grid img').css({ height: h, width: h }); 
+	}
 	
+	function miniMap()
+	{
+		var winW = $(window).width();
+		w = Math.ceil(winW / nv);
+		$('#Grid img').css({ height: w, width: w });
+	}
 }
 
-function normalSizeMap()
-{
-	var winW = $(window).width()*3;
-	var winH = $(window).height()*3;
-	h = Math.round(winH /n);
-	$('#Grid img').css({ height: h, width: h }); 
-}
 
-function miniMap()
-{
-	var winW = $(window).width();
-	w = Math.ceil(winW / nv);
-	$('#Grid img').css({ height: w, width: w });
-}
 
 document.getElementById('minititle').addEventListener('touchstart', function(e) {
 	if(level==10) {
