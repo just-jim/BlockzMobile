@@ -591,13 +591,9 @@ function createArray(n, nv){
 	
 	// Diaxeirisi CLICK panw se ena Block
 	
-	tilesArray = document.getElementById('Map').getElementsByTagName('img');
-	for(i=0; i<tilesArray.length;i++) {
-		tilesArray[i].addEventListener('touchstart', function(e) { clicker(e,this); });
-	}
-
+	$('#Map img').each( function(i,el) {$(el).bind('touchstart',function(e) {clicker(this);});});
 	
-	function clicker (e,thattel) {
+	function clicker (thattel) {
 		var thatel = $(thattel);
 		x=thattel.parentNode.cellIndex;
 		y=thattel.parentNode.parentNode.rowIndex;

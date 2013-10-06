@@ -127,7 +127,7 @@ $(window).bind("resize", function(){
 
 
 
-$('#GridMenu p').each( function(i,el) { console.log(el); $(el).bind('touchstart',function(e) {gotoLevel(this);});});
+$('#GridMenu p').each( function(i,el) {$(el).bind('touchstart',function(e) {gotoLevel(this);});});
 
 function gotoLevel(tile){
 	lvli=tile.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex+1;
