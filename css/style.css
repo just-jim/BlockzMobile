@@ -17,14 +17,16 @@
 
 html
 {
-	background:url('../image/wallpaper/Field.jpg') no-repeat center center;
-    min-height:100%;
-    min-width:100%;
-    background-size:cover;
+	background: black repeat;
 }
 
 
 body { 
+	background:url('../image/wallpaper/Field.jpg') no-repeat center center;
+    min-height:100%;
+    min-width:100%;
+    background-size:cover;
+    
 	-webkit-touch-callout: none;
 	-webkit-user-select: none; 
 	-khtml-user-select: none;
