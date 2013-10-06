@@ -44,20 +44,23 @@
 
 <script type="text/javascript">
 	
-	document.addEventListener("deviceready", onDeviceReady, false);
+	$(window).load(function() {
+    	fitScreen();
+	});
 
-	function onDeviceReady() {
-    	winH =  $(window).height();
+	$(window).bind("resize", function(){ 
+		fitScreen();
+	});
+	
+	function fitScrenn()
+	{
+		winH =  $(window).height();
 		$("#world1").css("height",winH/3);
 		w = $("#world1").css("width");
 		winWh = $(window).width()/2;
 		vale = winWh-(w/2);
 		$("#world1").css("left",vale);
 	}
-
-	$(window).bind("resize", function(){ 
-		onDeviceReady();
-	});
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
 		window.location.href='levels.html';
