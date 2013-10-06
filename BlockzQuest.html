@@ -407,10 +407,10 @@ function createArray(n, nv){
 	
 	$(document).keydown(function(e){ KeyMove(e.keyCode);});
 	
-	$("#UpKey").click(function(){KeyMove(38);});
-	$("#LeftKey").click(function(){KeyMove(37);});
-	$("#DownKey").click(function(){KeyMove(40);});
-	$("#RightKey").click(function(){KeyMove(39);});
+	document.getElementById('UpKey').addEventListener('touchstart', function(e) {KeyMove(38);});
+	document.getElementById('LeftKey').addEventListener('touchstart', function(e) {KeyMove(37);});
+	document.getElementById('DownKey').addEventListener('touchstart', function(e) {KeyMove(40);});
+	document.getElementById('RightKey').addEventListener('touchstart', function(e) {KeyMove(39);});
 	
 	function KeyMove(key)
 	{
@@ -1053,8 +1053,8 @@ function normalSizeMap()
 	$('#Grid img').css({ height: h, width: h }); 
 }
 
-$('#minititle').click(function(){
-	
+//$('#minititle').click(function(){
+document.getElementById('minititle').addEventListener('touchstart', function(e) {
 	if(level==10) {
 		$('#minititle').html('Trap door is on');
 		$('#Map tr:eq(0) td:eq(0)').children().attr("src",samples[8]);
@@ -1250,9 +1250,6 @@ function gameInfoPopup()
 	document.getElementById('gameInfoPopup').style.display = 'block';
 }
 
-$('#Refresher').click( function() {
-	document.location.href= 'BlockzQuest.php?lvl='+level;
-});
 </script>
 </body>
 </html>
