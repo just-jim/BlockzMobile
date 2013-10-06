@@ -52,11 +52,12 @@
 		fitScreen();
 	});
 	
-	function fitScrenn()
+	function fitScreen()
 	{
 		winH =  $(window).height();
 		$("#world1").css("height",winH/3);
 		w = $("#world1").css("width");
+		w = parseInt(w);
 		winWh = $(window).width()/2;
 		vale = winWh-(w/2);
 		$("#world1").css("left",vale);
