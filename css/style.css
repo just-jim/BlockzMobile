@@ -240,7 +240,14 @@ p {
 	pointer-events: none;
 }
 
+input {
+	-webkit-user-select: auto !important;
+}
 
+#NavigationPad td
+{
+	padding: 0;
+}
 #GridM {
 	position: absolute;
 	top : 36%;
