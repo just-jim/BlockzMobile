@@ -44,6 +44,12 @@
 
 <script type="text/javascript">
 	
+	document.addEventListener("deviceready", onDeviceReady, false);
+
+	function onDeviceReady() {
+	    alert("allright");
+	}
+	
 	$(window).load(function() {
     	fitScreen();
 	});
