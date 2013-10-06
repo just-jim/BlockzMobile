@@ -860,9 +860,13 @@ function createArray(n, nv){
 		document.getElementById('levelUp').style.display = "none";
 		music("levelup");
 		level++;
+		if (level>localStorage.getItem('level')) {
 		level=level+'';
 		localStorage.setItem('level',level);
 		window.location.href = "BlockzQuest.html?lvl="+level;
+		}
+		else window.location.href = "levels.html";
+
 		}
 	}
 		
