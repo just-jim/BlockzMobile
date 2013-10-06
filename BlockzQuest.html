@@ -1042,7 +1042,8 @@ function createArray(n, nv){
 	// Diaxeirisi Diastasis pinaka dynamika me tin allagi tis diastasis tou window
 	
 	$(window).bind("resize", function(){ 
-		normalSizeMap();
+		if (minimapVisible == true)	normalSizeMap();
+		else	miniMap();
 	});
 		
 	document.getElementById('minimap').addEventListener('touchstart', function(e) {
@@ -1056,9 +1057,7 @@ function createArray(n, nv){
 		else
 		{
 			minimapVisible = true;
-			var winW = $(window).width();
-			w = winW / nv;
-			$('#Grid img').css({ height: w, width: w });
+			miniMap();
 		}
 	});
 	
@@ -1069,8 +1068,15 @@ function normalSizeMap()
 {
 	var winW = $(window).width()*3;
 	var winH = $(window).height()*3;
-	h = Math.floor(winH /n);
+	h = Math.round(winH /n);
 	$('#Grid img').css({ height: h, width: h }); 
+}
+
+function miniMap()
+{
+	var winW = $(window).width();
+	w = Math.ceil(winW / nv);
+	$('#Grid img').css({ height: w, width: w });
 }
 
 document.getElementById('minititle').addEventListener('touchstart', function(e) {
