@@ -44,18 +44,21 @@
 
 <script type="text/javascript">
 	
-	$(window).load(function() {
-		winH =  $(window).height();
+	document.addEventListener("deviceready", onDeviceReady, false);
+
+	function onDeviceReady() {
+    	winH =  $(window).height();
 		$("#world1").css("height",winH/3);
 		w = $("#world1").css("width");
-		w = parseInt(w);
 		winWh = $(window).width()/2;
 		vale = winWh-(w/2);
 		$("#world1").css("left",vale);
-	});
+	}
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
 		window.location.href='levels.html';
 	});
 	
 </script>
+</body>
+</html>
