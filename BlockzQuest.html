@@ -888,6 +888,7 @@ function createArray(n, nv){
 	function levelUpPopup(x,y)
 	{
 		moveAlow = 0;
+		$("[data-position='fixed']").fixedtoolbar('show');
 		document.getElementById('levelUpPopup').style.display = 'block';
 		levelupx = x;
 		levelupy = y;
@@ -915,6 +916,7 @@ function createArray(n, nv){
 	document.getElementById('levelUpPopupExit').addEventListener('touchstart', function(e){
 		moveAlow = 1;
 		document.getElementById("levelUpPopup").style.display = 'none';
+		$("[data-position='fixed']").fixedtoolbar('hide');
 	});
 	
 	function kingPopup()
