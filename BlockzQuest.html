@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="Jquery/jquery.js"></script>
 	<script type="text/javascript" src="Jquery/jquery.scrollto.js"> </script>     
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>   
+	<script type="text/javascript" src="Jquery/jquery.mobile-1.3.2.min.js"> </script>   
 </head>
 
 <body >
@@ -64,14 +65,22 @@
 	</table>
 </div>
 
-<div id="levelUpPopup" class="becenter popup webkit">
+<!--<div id="levelUpPopup" class="becenter popup webkit">
 	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p class="becenter" style="font-size:40px; font-family: Feast; top:15%;">Level Up !</p>
 	<img class="becenter" src="image/treasure/forms/levelupArrow.png" alt="" style=" top:38%; height: 25%; ">
 	<div id="levelUpBtn" class="becenter" style="z-index:101; bottom: 10%;">
 		<img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
 	</div>	
-	
+-->
+data-role="header" data-position="fixed" data-fullscreen="true"
+<div id="levelUpPopup" data-role="header" data-position="fixed" data-fullscreen="true" class="popup webkit" style="text-align:center;">
+	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
+	<p class="becenter" style="font-size:40px; font-family: Feast; top:15%;">Level Up !</p>
+	<img style="position:relative;" src="image/treasure/forms/levelupArrow.png" alt="" style=" top:38%; height: 25%; ">
+	<div id="levelUpBtn" class="becenter" style="z-index:101; bottom: 10%;">
+		<img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
+	</div>	
 </div>
 
 <div id="gameInfoPopup" class="becenter popup webkit">
@@ -565,7 +574,7 @@ function createArray(n, nv){
 		else if (block == samples[6])				// water block
 		{
 			if(boatFlag ==1 && energy > 0 && !IamAlbert) {
-				energy--;
+				//energy--;
 				$('#EnergyCount span').html(': '+ energy);	
 				walkOnWater(wanax,wanay); 
 			}
@@ -800,6 +809,7 @@ function createArray(n, nv){
 	    
     function walkOnWater(wanax,wanay)
     {
+    	if(energy>0) {
     		var prewater = $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src");
 			$('#Map tr:eq('+wanay+') td:eq('+wanax+')').children().attr("src",samples[9]);
 			if (prewater == samples[9]) $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[6]);
@@ -812,6 +822,7 @@ function createArray(n, nv){
 			many = wanay;  	
 			energy--;
 			$('#EnergyCount span').html(': '+ energy);
+			}
     }
 
     // Manage the ajax request that should be send each time
