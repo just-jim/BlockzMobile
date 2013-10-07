@@ -619,6 +619,11 @@ function createArray(n, nv){
 		y=thattel.parentNode.parentNode.rowIndex;
 		block=$(thattel).attr( "src" );
 		//Kinisi Avatar me Click
+		
+		//Is the player on the map?
+		if(!playerGone) {
+		
+		//Mirror interaction
 		if(($(thattel).attr( "src" )== samples[21])&&playerIsNear(x,y)) {
 					music('mirror');
 					playerflipped=1;
@@ -632,6 +637,8 @@ function createArray(n, nv){
 				samples[2]="image/treasure/character/man.png";
 			
 		}
+		
+		//Basic movement - all sources on which you are allowed to move
 		else if(($(thattel).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
 			if(holeGone==1) {
@@ -647,8 +654,8 @@ function createArray(n, nv){
 				else if (prewater == samples[2]) $('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 				manx=x;
 				many=y;
-					
-		    	if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])				// collectibles block
+				//Basic Collectibles
+		    	if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])				
 				{
 					music("key");
 					//if key
@@ -677,6 +684,7 @@ function createArray(n, nv){
 				}
 			}
 		}
+		//Entering hole
 		else if (block==samples[14]&&playerGone==0&&playerIsNear(x,y)){
 			$('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",images[2]);
 			playerGone=1;
@@ -686,9 +694,10 @@ function createArray(n, nv){
 				setTimeout(function(){if(playerGone)thatel.fadeOut("slow",function(){
 	    		   	thatel.attr("src",images[2]);
 	    		   	thatel.fadeIn("fast");
-	    		});},20000);
+	    		});},12000);
 	    	}
 		}
+		//POPUPS
 	    else if($(thattel).attr( "src" )== samples[12] && playerIsNear(x,y))  // King speaks
 	    {
 	    	kingPopup();
@@ -762,14 +771,7 @@ function createArray(n, nv){
 	    {
 	    	if (keys > 0) {CouponPopup(); music("unlock");} 
 	    }
-	    else if ($(thattel).attr( "src" )== samples[14]&&playerGone==1) // hole
-	    {
-	    	playerGone=0;
-	    	holeGone=1;
-	    	$('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
-	    	manx=x;
-			many=y;
-	    }
+	    
 	    else if ((level==13) &&($(thattel).attr( "src" )== samples[26])&&(!playerGone)) {
 	    	manx=x;
 	    	many=y;
@@ -781,6 +783,16 @@ function createArray(n, nv){
 	    	many=y;
 	    	samples[2] = "image/treasure/character/man.png";
 	    	IamAlbert=0;
+	    }
+	   }
+	   //If the player is Gone from the Map he can only press on a hole
+	    else if ($(thattel).attr( "src" )== samples[14]&&playerGone==1) // hole
+	    {
+	    	playerGone=0;
+	    	holeGone=1;
+	    	$('#Map tr:eq('+y+') td:eq('+x+')').children().attr("src",samples[2]);
+	    	manx=x;
+			many=y;
 	    }
 	 }
 	
