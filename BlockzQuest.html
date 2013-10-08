@@ -75,9 +75,9 @@
 </div>
 -->
 
-<div id="levelUpPopup" style="display:none; text-align:center;" data-role="header" data-position="fixed" data-fullscreen="true">
-	<h1>Fixed Header!</h1>
-	<img id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
+<div id="levelUpPopup" style="text-align:center; width:100%; background: url(image/general/login-box-backg.png) no-repeat center top; background-size: 100% 100%;" data-role="header" data-position="fixed" data-fullscreen="true">
+	<h1 style="position:relative; z-index:200; padding-top:100px; margin:0 auto;">Fixed Header!</h1>
+	<img style="position:relative; z-index:200; padding-top:100px; margin:0 auto;" id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
 	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 </div>
 
@@ -262,6 +262,9 @@ titlecount=0;
 titlesbrowsed=0;
 badWormEnergy=3;
 minimapVisible = false;
+
+$('#levelUpPopup').fixedtoolbar();
+$('#levelUpPopup').fixedtoolbar('hide');
 
 pos = new Object();
 pos["albert"] = [6,6,samples[18]];
@@ -619,7 +622,7 @@ function createArray(n, nv){
 	
 	// Diaxeirisi CLICK panw se ena Block
 	
-	$('#Map img').each( function(i,el) {$(el).bind('touchstart',function(e) {clicker(this);});});
+	$('#Map img').each( function(i,el) {$(el).bind('click',function(e) {clicker(this);});});
 	
 	function clicker (thattel) {
 		var thatel = $(thattel);
