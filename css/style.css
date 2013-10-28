@@ -384,12 +384,6 @@ html {
 
 /*CURSOR*/
 
-#minimap:hover { 
-	position: relative;
-	top: -5px; 
-	left: -2px;
-}
-
 p, span:hover {
 	cursor: default;
 }

@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="Jquery/jquery.scrollto.js"> </script>     
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>  
 	
-	<script type="text/javascript" src="Jquery/jquery.mobile.custom.min.js"> </script> 
+	<!--<script type="text/javascript" src="Jquery/jquery.mobile.custom.min.js"> </script> -->
 	<!--<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script> -->
 </head>
 
@@ -79,26 +79,27 @@
 </div>
 -->
 
-<div id="levelUpPopup" style="text-align:center; width:100%; height:100%; background: url(image/general/login-box-backg.png) no-repeat center top; background-size: 100% 100%; position:fixed; display:none;">
-	<h1 style="position:relative; z-index:200; padding-top:100px; margin:0 auto;">Fixed Header!</h1>
-	<img style="position:relative; z-index:200; padding-top:100px; margin:0 auto;" id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
-	<img id="levelUpPopupExit" class="exitbtn" style="position:absolute; right:80px; top:30px;" src="image/general/exit.png" alt="">
+<div id="levelUpPopup" class="popup" style="">
+	<h1 class="popup_element first_element">Level Up</h1>
+	<img class="popup_element" src="image/treasure/forms/levelupArrow.png" alt="" style="height:80px;">
+	<img class="popup_element" id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="">
+	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 </div>
 
 
-<div id="gameInfoPopup" class="becenter popup webkit">
+<div id="gameInfoPopup" class="popup">
 	<img id="gameInfoPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p class="becenter" style="font-size:40px; font-family: Feast; top:15%;">Info</p>
-	<img id="gameInfoImage" class="becenter" src="image/treasure/tools/pick.png" alt="" style="top:38% height: 25%; ">
-	<p id="wordsGameInfo" class="becenter" style="font-size:20px; width:70%; top: 28%;">
+	<p class="popup_element first_element"  style="font-size:40px; font-family: Feast;">Info</p>
+	<img id="gameInfoImage" class="popup_element" src="image/treasure/tools/pick.png" style="height:80px;" alt="" >
+	<p id="wordsGameInfo" class="popup_element" style="font-size:20px;">
 	You got your first axe! Having an axe allows you to break stone! Maybe there is some obvious way to use that fact in this level.
 	</p>
 </div>
 
 
-<div id="kingPopup" class="becenter popup webkit">
+<div id="kingPopup" class="popup">
 	<img id="kingPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="words" class="becenter" style="font-size:20px; width:70%; top: 20%;">
+	<p id="words" class="popup_element first_element" style="font-size:20px; width:70%;">
 	You who witnessed my fallen kingdom... You shall see it rize again... 
 	You must prove yourself. Show your powerful, assertive and - especially - 
 	cunning side. Then we shall meet and i will name you king wormy, my rightful heir. 
@@ -106,16 +107,16 @@
 	</p>
 </div>
 
-<div id="orderPopup" class="becenter popup webkit">
+<div id="orderPopup" class="popup">
 	<img id="orderPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsOrd" style="font-size:20px;">Shout what you want</p>
-	<input type="text" name="commandy" id="order"></input>
-	<input type="button" name="button" value="Shout!" onClick="doOrder()"> </input>
+	<p id="wordsOrd" class="popup_element first_element" style="font-size:20px;">Shout what you want</p>
+	<input type="text" name="commandy" class="popup_element" id="order"></input>
+	<input type="button" name="button" class="popup_element" value="Shout!" onClick="doOrder()"> </input>
 </div>
 
-<div id="albPopup" class="becenter popup webkit">
+<div id="albPopup" class="popup">
 	<img id="albPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsAlb" style="font-size:20px; width:70%; top: 20%;">
+	<p id="wordsAlb" class="popup_element first_element" style="font-size:20px; width:70%; top: 20%;">
 		Who? Who are you? You look like that insensitive bastard Robert! 
 		He said funny things about my hat!
 	</p>
@@ -123,7 +124,7 @@
 
 <div id="broPopup" class="becenter popup webkit">
 	<img id="broPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsBro" style="font-size:20px; width:70%; top: 20%;">
+	<p id="wordsBro" class="popup_element first_element" style="font-size:20px;">
 		O-O-omg!??! Are you my brother? 
 		Yes, yes you are! At last i found you! 
 		Listen i am in a fight with my friend Albert :(. 
@@ -135,19 +136,19 @@
 	<div class="Navigation webkit">
 		<div id="NavigationInside">
 			<ul>
-				<li ><a href="#"><img src="image/general/menuButton.png" height="40px;" alt=""></a>
+				<li ><a><img src="image/general/menuButton.png" height="40px;" alt=""></a>
 					<ul class="horizontal">
 							<div class="extended">
 								<div class="arrow-up"></div>
 								<ul class="smallNav">
 									<li>
-										<a href><img class="imgshortcut" src="image/general/repeat.png" alt=""></a>
+										<a><img id="Repeat" class="imgshortcut" src="image/general/repeat.png" alt=""></a>
 									</li>
 									<li>
-										<a href="levels.html"><img class="imgshortcut" src="image/Worlds/World_2.png" alt=""></a>
+										<a><img id="Levels" class="imgshortcut" src="image/Worlds/World_2.png" alt=""></a>
 									</li>
 									<li>
-										<a href="index.html"><img class="imgshortcut" src="image/Worlds/Menu.png" alt=""></a>
+										<a><img id="Worlds" class="imgshortcut" src="image/Worlds/Menu.png" alt=""></a>
 									</li>
 								</ul>
 							</div>
@@ -165,13 +166,13 @@
 				<div class="backpack webkit">
 					<div id="backpackInside">
 						<ul>
-							<li><a href="#"><img src="image/treasure/tools/backpack.png" height="50px;" alt=""></a>
+							<li><img src="image/treasure/tools/backpack.png" height="50px;" alt="">
 								<ul class="horizontal">
 									<div class="extended">
 										<div class="arrow-down"></div>
 										<ul class="smallNav">
 											<li id="backpackEmpty">
-												<a>Empty!</a>
+												Empty!
 											</li>
 										</ul>
 									</div>
@@ -183,7 +184,7 @@
 			</td>
 			<td>
 				<div>
-					<img  id="minimap" class="hand" src="image/BQ/Treasure map.png"  style="height:70px;"/>
+					<img  id="minimap" src="image/BQ/Treasure map.png"  style="height:70px;"/>
 				</div>
 			</td>
 		</tr>
@@ -303,6 +304,7 @@ $.get(file, function(data)
 });
 	
 
+/*
 function touchHandler(event) {
     var touch = event.changedTouches[0];
 
@@ -319,13 +321,14 @@ function touchHandler(event) {
     touch.target.dispatchEvent(simulatedEvent);
     event.preventDefault();
 }
+*/
 
-function init() {
+/*function init() {
     document.addEventListener("touchstart", touchHandler, true);
     document.addEventListener("touchmove", touchHandler, true);
     document.addEventListener("touchend", touchHandler, true);
     document.addEventListener("touchcancel", touchHandler, true);
-}
+}*/
 	
 function getURLParameter(name){
     return decodeURI(
@@ -335,7 +338,7 @@ function getURLParameter(name){
 
 $(document).ready(function() {
 	
-	init();
+	//init();
 	
 });
 
@@ -685,7 +688,7 @@ function createArray(n, nv){
 		//Basic movement - all sources on which you are allowed to move
 		else if(($(thattel).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
-			if(holeGone==1) {
+			if(playerIsNear(x,y)&&holeGone==1) {
 				holeGone=0;
 				$('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[14]);
 			}
@@ -1186,7 +1189,7 @@ function music(from)
 		else if (from == "axe")  	document.getElementById("pickaxeClip").play();
 		else if (from == "levelup") document.getElementById("levelupClip").play();
 		else if (from == "chest") 	document.getElementById("chestClip").play();
-		else if (from == "key") 	document.getElementById("keyClip").play();
+		else if (from == "key") 	{document.getElementById("keyClip").play(); var media = new Media("audio/key.mp3",null,null);}
 		else if (from == "water") 	document.getElementById("waterClip").play();
 		else if (from == "unlock") 	document.getElementById("unlockClip").play();
 		else if (from == "albert") 	document.getElementById("albertClip").play();
@@ -1326,6 +1329,11 @@ function gameInfoPopup()
 	moveAlow = 0;
 	document.getElementById('gameInfoPopup').style.display = 'block';
 }
+
+
+document.getElementById('Repeat').addEventListener("touchstart", function(){window.location.href = "";}, true);
+document.getElementById('Levels').addEventListener("touchstart", function(){window.location.href = "levels.html";}, true);
+document.getElementById('Worlds').addEventListener("touchstart", function(){window.location.href = "index.html";}, true);
 
 </script>
 </body>

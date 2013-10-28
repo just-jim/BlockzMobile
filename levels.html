@@ -27,13 +27,13 @@
 	<div class="Navigation webkit">
 		<div id="NavigationInside">
 			<ul>
-				<li ><a href="#"><img src="image/general/menuButton.png" height="40px;" alt=""></a>
+				<li><img src="image/general/menuButton.png" height="40px;" alt="">
 					<ul class="horizontal">
 							<div class="extended">
 								<div class="arrow-up"></div>
 								<ul class="smallNav">
 									<li>
-										<a href="index.html"><img class="imgshortcut" src="image/Worlds/Menu.png" alt=""></a>
+										<img id="Worlds" class="imgshortcut" src="image/Worlds/Menu.png" alt="">
 									</li>
 								</ul>
 							</div>
@@ -127,6 +127,8 @@ function gotoLevel(tile){
 	
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
 }
+
+document.getElementById('Worlds').addEventListener("touchstart", function(){window.location.href = "index.html";}, true);
 
 </script>
 </body>
