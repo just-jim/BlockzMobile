@@ -1190,7 +1190,7 @@ function music(from)
 		else if (from == "axe")  	document.getElementById("pickaxeClip").play();
 		else if (from == "levelup") document.getElementById("levelupClip").play();
 		else if (from == "chest") 	document.getElementById("chestClip").play();
-		else if (from == "key") 	{document.getElementById("keyClip").play(); /*var media = new Media("audio/key.mp3",null,null); media.play();*/}
+		else if (from == "key") 	{document.getElementById("keyClip").play(); var media = new Media("audio/key.mp3",null,null); media.play();}
 		else if (from == "water") 	document.getElementById("waterClip").play();
 		else if (from == "unlock") 	document.getElementById("unlockClip").play();
 		else if (from == "albert") 	document.getElementById("albertClip").play();
