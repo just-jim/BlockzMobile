@@ -79,26 +79,27 @@
 </div>
 -->
 
-<div id="levelUpPopup" class="popup" style="text-align:center; width:100%; height:100%; background: url(image/general/login-box-backg.png) no-repeat center top; background-size: 100% 100%; position:fixed; display:none;">
-	<h1 style="position:relative; z-index:200; padding-top:100px; margin:0 auto;">Fixed Header!</h1>
-	<img style="position:relative; z-index:200; padding-top:100px; margin:0 auto;" id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="margin-top:10px;">
-	<img id="levelUpPopupExit" class="exitbtn" style="position:absolute; right:80px; top:30px;" src="image/general/exit.png" alt="">
+<div id="levelUpPopup" class="popup" style="">
+	<h1 class="popup_element first_element">Level Up</h1>
+	<img class="popup_element" src="image/treasure/forms/levelupArrow.png" alt="">
+	<img class="popup_element" id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="">
+	<img id="levelUpPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 </div>
 
 
-<div id="gameInfoPopup" class="becenter popup webkit">
+<div id="gameInfoPopup" class="popup">
 	<img id="gameInfoPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p class="becenter" style="font-size:40px; font-family: Feast; top:15%;">Info</p>
-	<img id="gameInfoImage" class="becenter" src="image/treasure/tools/pick.png" alt="" style="top:38% height: 25%; ">
-	<p id="wordsGameInfo" class="becenter" style="font-size:20px; width:70%; top: 28%;">
+	<p class="popup_element first_element"  style="font-size:40px; font-family: Feast;">Info</p>
+	<img id="gameInfoImage" class="popup_element" src="image/treasure/tools/pick.png" alt="" >
+	<p id="wordsGameInfo" class="popup_element" style="font-size:20px;">
 	You got your first axe! Having an axe allows you to break stone! Maybe there is some obvious way to use that fact in this level.
 	</p>
 </div>
 
 
-<div id="kingPopup" class="becenter popup webkit">
+<div id="kingPopup" class="popup">
 	<img id="kingPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="words" class="becenter" style="font-size:20px; width:70%; top: 20%;">
+	<p id="words" class="popup_element first_element" style="font-size:20px; width:70%; top: 20%;">
 	You who witnessed my fallen kingdom... You shall see it rize again... 
 	You must prove yourself. Show your powerful, assertive and - especially - 
 	cunning side. Then we shall meet and i will name you king wormy, my rightful heir. 
@@ -106,16 +107,16 @@
 	</p>
 </div>
 
-<div id="orderPopup" class="becenter popup webkit">
+<div id="orderPopup" class="popup">
 	<img id="orderPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsOrd" style="font-size:20px;">Shout what you want</p>
-	<input type="text" name="commandy" id="order"></input>
-	<input type="button" name="button" value="Shout!" onClick="doOrder()"> </input>
+	<p id="wordsOrd" class="popup_element first_element" style="font-size:20px;">Shout what you want</p>
+	<input type="text" name="commandy" class="popup_element" id="order"></input>
+	<input type="button" name="button" class="popup_element" value="Shout!" onClick="doOrder()"> </input>
 </div>
 
-<div id="albPopup" class="becenter popup webkit">
+<div id="albPopup" class="popup">
 	<img id="albPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsAlb" style="font-size:20px; width:70%; top: 20%;">
+	<p id="wordsAlb" class="popup_element first_element" style="font-size:20px; width:70%; top: 20%;">
 		Who? Who are you? You look like that insensitive bastard Robert! 
 		He said funny things about my hat!
 	</p>
@@ -123,7 +124,7 @@
 
 <div id="broPopup" class="becenter popup webkit">
 	<img id="broPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
-	<p id="wordsBro" style="font-size:20px; width:70%; top: 20%;">
+	<p id="wordsBro" class="popup_element first_element" style="font-size:20px;">
 		O-O-omg!??! Are you my brother? 
 		Yes, yes you are! At last i found you! 
 		Listen i am in a fight with my friend Albert :(. 
