@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>  
 	
 	<!--<script type="text/javascript" src="Jquery/jquery.mobile.custom.min.js"> </script> -->
-	<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
+	<!--<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script> -->
 </head>
 
 <body >
@@ -1189,7 +1189,7 @@ function music(from)
 		else if (from == "axe")  	document.getElementById("pickaxeClip").play();
 		else if (from == "levelup") document.getElementById("levelupClip").play();
 		else if (from == "chest") 	document.getElementById("chestClip").play();
-		else if (from == "key") 	document.getElementById("keyClip").play();
+		else if (from == "key") 	{document.getElementById("keyClip").play(); var media = new Media("audio/key.mp3",null,null);}
 		else if (from == "water") 	document.getElementById("waterClip").play();
 		else if (from == "unlock") 	document.getElementById("unlockClip").play();
 		else if (from == "albert") 	document.getElementById("albertClip").play();
