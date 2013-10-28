@@ -42,7 +42,10 @@
 	
 	$(window).load(function() {
     	fitScreen();
-    	var media = new Media("http://www.theblockz.com/audio/key.mp3"); media.play();
+    	alert('gonna play music');
+    	var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
+    	myMedia.play();
+    	alert('should have played music');
 	});
 
 	$(window).bind("resize", function(){ 
