@@ -18,8 +18,8 @@
 	<script type="text/javascript" src="Jquery/jquery.scrollto.js"> </script>     
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>  
 	
-	<!--<script type="text/javascript" src="Jquery/jquery.mobile.custom.min.js"> </script> 
-	<!--<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script> -->
+	<!--<script type="text/javascript" src="Jquery/jquery.mobile.custom.min.js"> </script> -->
+	<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
 </head>
 
 <body >
@@ -688,7 +688,7 @@ function createArray(n, nv){
 		//Basic movement - all sources on which you are allowed to move
 		else if(($(thattel).attr( "src" )== images[2]||block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])&&energy>0) {
 		
-			if(holeGone==1) {
+			if(playerIsNear(x,y)&&holeGone==1) {
 				holeGone=0;
 				$('#Map tr:eq('+many+') td:eq('+manx+')').children().attr("src",samples[14]);
 			}
