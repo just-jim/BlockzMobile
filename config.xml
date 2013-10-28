@@ -85,8 +85,6 @@
   <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
 </feature>
 <!-- Deprecated plugins element. Remove in 3.0 -->
-<gap:plugin name="Media" value="org.apache.cordova.core.AudioHandler" />
-
 <plugins>
 <plugin name="WebIntent" value="com.borismus.webintent.WebIntent" />
 </plugins>
