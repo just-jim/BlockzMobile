@@ -19,6 +19,13 @@
 
 .popup img {
 		border:none;
+		
+}
+
+.popup p {
+	
+	width:80%;
+	
 }
 
 .popup_element {
@@ -33,7 +40,7 @@
 
 .first_element {
 
-padding-top:100px;
+padding-top:50px;
 
 }
 
