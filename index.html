@@ -64,7 +64,12 @@
 	}
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
-		window.location.href='levels.html';
+		//window.location.href='levels.html';
+		
+    	alert('gonna play music');
+    	var myMedia2 = new Media("/android_asset/www/audio/key.mp3"); 
+    	myMedia2.play();
+    	alert('should have played music');
 	});
 	
 </script>
