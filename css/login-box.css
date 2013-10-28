@@ -51,6 +51,7 @@ padding-top:50px;
 	right: 0;
 	top: 0;
 	width: 60px;
+	z-index:2000;
 	margin-right: 40px;
 	margin-top: 30px;
 }
