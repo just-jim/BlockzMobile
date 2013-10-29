@@ -1186,6 +1186,7 @@ function music(from)
 	if (!mute)
 	{
 		pauseAll();
+		music_src=null;
 		if      (from == "explore") document.getElementById("popClip").play(); 
 		else if (from == "axe")  	{document.getElementById("pickaxeClip").play(); music_src="/android_asset/www/audio/pickaxe.mp3"; }
 		else if (from == "levelup") document.getElementById("levelupClip").play();
@@ -1198,9 +1199,12 @@ function music(from)
 		else if (from == "punch") 	{document.getElementById("punchClip").play(); music_src="/android_asset/www/audio/punch.mp3"; }
 		else if (from == "ambulance") 	{document.getElementById("ambulanceClip").play(); music_src="/android_asset/www/audio/ambulance.mp3"; }
 		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
+		
+		if(music_src!=null) {
 		var myMedia = new Media(music_src,onSuccess, onError);
     	console.log("This is myMedia " +myMedia2) 
     	myMedia.play();
+    }
 	}
 }
 
