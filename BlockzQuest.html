@@ -1186,23 +1186,21 @@ function music(from)
 	if (!mute)
 	{
 		pauseAll();
-		if      (from == "explore") document.getElementById("popClip").play();
-		else if (from == "axe")  	document.getElementById("pickaxeClip").play();
+		if      (from == "explore") document.getElementById("popClip").play(); 
+		else if (from == "axe")  	{document.getElementById("pickaxeClip").play(); music_src="/android_asset/www/audio/pickaxe.mp3"; }
 		else if (from == "levelup") document.getElementById("levelupClip").play();
-		else if (from == "chest") 	document.getElementById("chestClip").play();
-		else if (from == "key") 	{document.getElementById("keyClip").play(); 
-		/*alert('gonna play music');
-    	var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
-    	myMedia.play();
-    	alert('should have played music');
-    	*/}
+		else if (from == "chest") 	document.getElementById("chestClip").play(); 
+		else if (from == "key") 	{document.getElementById("keyClip").play(); music_src="/android_asset/www/audio/key.mp3";	}
 		else if (from == "water") 	document.getElementById("waterClip").play();
 		else if (from == "unlock") 	document.getElementById("unlockClip").play();
-		else if (from == "albert") 	document.getElementById("albertClip").play();
-		else if (from == "mirror") 	document.getElementById("mirrorClip").play();
-		else if (from == "punch") 	document.getElementById("punchClip").play();
-		else if (from == "ambulance") 	document.getElementById("ambulanceClip").play();
-		else if (from == "antilava") 	document.getElementById("antilavaClip").play();
+		else if (from == "albert") {	document.getElementById("albertClip").play(); music_src="/android_asset/www/audio/albert.mp3"; }
+		else if (from == "mirror") 	{document.getElementById("mirrorClip").play(); music_src="/android_asset/www/audio/mirror.mp3"; }
+		else if (from == "punch") 	{document.getElementById("punchClip").play(); music_src="/android_asset/www/audio/punch.mp3"; }
+		else if (from == "ambulance") 	{document.getElementById("ambulanceClip").play(); music_src="/android_asset/www/audio/ambulance.mp3"; }
+		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
+		var myMedia = new Media(music_src,onSuccess, onError);
+    	console.log("This is myMedia " +myMedia2) 
+    	myMedia.play();
 	}
 }
 
@@ -1211,6 +1209,7 @@ function pauseAll()
 	$.each(sounds, function(index, value) 
 	{ 
 		value.pause();
+		myMedia.release();
 		if (!firefox && !ie) value.currentTime = 0;
 	});
 }
@@ -1340,6 +1339,22 @@ function gameInfoPopup()
 document.getElementById('Repeat').addEventListener("touchstart", function(){window.location.href = "";}, true);
 document.getElementById('Levels').addEventListener("touchstart", function(){window.location.href = "levels.html";}, true);
 document.getElementById('Worlds').addEventListener("touchstart", function(){window.location.href = "index.html";}, true);
+
+
+//MEDIA SUCCESS OR FAIL HANDLES
+
+function onSuccess() {
+     
+     alert("music was played");       console.log("playAudio():Audio Success");
+            
+    }
+
+function onError(error) {
+                alert('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n');
+                console.log('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n');
+ }
 
 </script>
 </body>
