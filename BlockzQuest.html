@@ -213,6 +213,7 @@
 
 <script type="text/javascript">
 
+
 var chrome = 0; var firefox = 1;
 
 // Pinakes eikonwn
@@ -243,6 +244,11 @@ tools=["image/treasure/tools/pick.png","image/treasure/tools/boat.png","image/tr
 		
 // pinakas hxwn
 sounds=[$("#antilavaClip")[0],$("#ambulanceClip")[0],$("#mirrorClip")[0],$("#albertClip")[0],$("#punchClip")[0],$("#pickaxeClip")[0],$("#levelupClip")[0],$("#popClip")[0],$("#chestClip")[0],$("#keyClip")[0],$("#waterClip")[0],$("#unlockClip")[0]];
+
+
+//Media
+
+myMedia=null;
 
 // Bottom Offset (appearance of grid)
 bottomOffset = 50;
@@ -1201,7 +1207,7 @@ function music(from)
 		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
 		
 		if(music_src!=null) {
-		var myMedia = new Media(music_src,onSuccess, onError);
+		myMedia = new Media(music_src,onSuccess, onError);
     	console.log("This is myMedia " +myMedia2) 
     	myMedia.play();
     }
@@ -1213,6 +1219,7 @@ function pauseAll()
 	$.each(sounds, function(index, value) 
 	{ 
 		value.pause();
+		if(myMedia!=null)
 		myMedia.release();
 		if (!firefox && !ie) value.currentTime = 0;
 	});
