@@ -373,8 +373,21 @@ $(window).load(function() {
 	}
 	
 	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
+	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic.play();
+	song_time=backgroundMusic.getDuration();
+	song_time=1000*song_time;
+	setTimeout(musicLoop(song_time),song_time);
 });
 
+function musicLoop(song_time){
+	
+	backgroundMusic.release();
+	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic.play();
+	setTimeout(musicLoop(song_time),song_time);
+
+}
 
 // Function to prepare map for the user 
 function prepareMap(personal,background)
@@ -1196,7 +1209,7 @@ function music(from)
 		pauseAll();
 		music_src=null;
 		if      (from == "explore") document.getElementById("popClip").play(); 
-		else if (from == "axe")  	{document.getElementById("pickaxeClip").play(); music_src="/android_asset/www/audio/pickaxe.mp3"; }
+		else if (from == "axe")  	{document.getElementById("pickaxeClip").play(); music_src="/android_asset/www/audio/axe.mp3"; }
 		else if (from == "levelup") document.getElementById("levelupClip").play();
 		else if (from == "chest") 	document.getElementById("chestClip").play(); 
 		else if (from == "key") 	{document.getElementById("keyClip").play(); music_src="/android_asset/www/audio/key.mp3";	}
