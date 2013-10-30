@@ -379,7 +379,8 @@ $(window).load(function() {
 	song_time=backgroundMusic.getDuration();
 	song_time=335;
 	song_time=1000*song_time;
-	setTimeout(musicLoop(song_time),song_time);
+	alert(song_time);
+	setTimeout( function() {musicLoop(song_time)},song_time);
 	alert('there');
 });
 
@@ -388,7 +389,7 @@ function musicLoop(song_time){
 	backgroundMusic.release();
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
 	backgroundMusic.play();
-	setTimeout(musicLoop(song_time),song_time);
+	setTimeout( function() {musicLoop(song_time)},song_time);
 
 }
 
