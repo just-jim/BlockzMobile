@@ -373,15 +373,17 @@ $(window).load(function() {
 	}
 	
 	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
+	alert('here');
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
 	backgroundMusic.play();
 	song_time=backgroundMusic.getDuration();
 	song_time=1000*song_time;
 	setTimeout(musicLoop(song_time),song_time);
+	alert('there');
 });
 
 function musicLoop(song_time){
-	
+	alert('in music loop');
 	backgroundMusic.release();
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
 	backgroundMusic.play();
