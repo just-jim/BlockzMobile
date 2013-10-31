@@ -28,7 +28,7 @@
 	
 	<p class="becenter" style="font-size:25px; top: 30%;  ">World 1</p>
 	
-	<img id="world1" class="hand world" src="image/Worlds/World_1.png" style="position: fixed; top :40%"/>
+	<img id="world1" class="hand world" src="image/Worlds/World_1.png" style="position: fixed; top :40%; opacity:0;"/>
 
 	<p class="becenter" style="font-size:25px; bottom:20%;">Ruins</p>	
 </div>
@@ -62,6 +62,7 @@
 		winWh = $(window).width()/2;
 		vale = winWh-(w/2);
 		$("#world1").css("left",vale);
+		$("#world1").animate({opacity:1},1200);
 	}
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
