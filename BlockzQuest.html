@@ -12,11 +12,15 @@
 	<link rel="stylesheet" type="text/css" href="css/login-box.css" />
 	<link rel="stylesheet" type="text/css" href="css/backpack.css" />
 	<link rel="stylesheet" type="text/css" href="css/dropMenu.css" />
-	<script type="text/javascript" src="Jquery/jquery.js"></script> 
+	<!--<script type="text/javascript" src="Jquery/jquery.js"></script> 
 	
 	
 	<script type="text/javascript" src="Jquery/jquery.scrollto.js"> </script>     
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>  
+	-->
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
 	<script src="phonegap.js"></script>
 	
 	<!--<script type="text/javascript" src="Jquery/jquery.mobile.custom.min.js"> </script> -->
@@ -603,6 +607,9 @@ function createArray(n, nv){
 			manx = wanax; 
 			many = wanay;
 		}
+		if( block == images[2]) {
+			music("step");
+		}
 		// collectibles block
 		if (block == samples[4]||block == samples[13]||block ==samples[16]||block==samples[30])	
 		{
@@ -653,6 +660,7 @@ function createArray(n, nv){
 					if(playerGone)thatel.fadeOut("slow",function(){
 						thatel.attr("src",images[2]);  
 						thatel.fadeIn("fast");
+						music("revelation");
 					});
 				},20000);
 	    	}
@@ -815,6 +823,7 @@ function createArray(n, nv){
 		    		if(goodsmiley) thatel.fadeOut("slow",function(){
 		    		   	$('#Map tr:eq(1) td:eq(18)').children().attr("src",images[2]);
 		    		   	$('#Map tr:eq(1) td:eq(18)').children().fadeIn("fast");
+		    		   	music("revelation");
 		    		});
 		    	}
 			}
@@ -1213,16 +1222,18 @@ function music(from)
 		pauseAll();
 		music_src=null;
 		if      (from == "explore") document.getElementById("popClip").play(); 
+		else if (from == "step")  	{ music_src="/android_asset/www/audio/step.mp3"; }
 		else if (from == "axe")  	{document.getElementById("pickaxeClip").play(); music_src="/android_asset/www/audio/axe.mp3"; }
 		else if (from == "levelup") document.getElementById("levelupClip").play();
 		else if (from == "chest") 	document.getElementById("chestClip").play(); 
 		else if (from == "key") 	{document.getElementById("keyClip").play(); music_src="/android_asset/www/audio/key.mp3";	}
-		else if (from == "water") 	document.getElementById("waterClip").play();
+		else if (from == "water") 	{document.getElementById("waterClip").play(); music_src="/android_asset/www/audio/water.mp3";	}
 		else if (from == "unlock") 	document.getElementById("unlockClip").play();
 		else if (from == "albert") {	document.getElementById("albertClip").play(); music_src="/android_asset/www/audio/albert.mp3"; }
 		else if (from == "mirror") 	{document.getElementById("mirrorClip").play(); music_src="/android_asset/www/audio/mirror.mp3"; }
 		else if (from == "punch") 	{document.getElementById("punchClip").play(); music_src="/android_asset/www/audio/punch.mp3"; }
 		else if (from == "ambulance") 	{document.getElementById("ambulanceClip").play(); music_src="/android_asset/www/audio/ambulance.mp3"; }
+		else if (from == "ambulance") 	{document.getElementById("ambulanceClip").play(); music_src="/android_asset/www/audio/revelation.mp3"; }
 		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
 		
 		if(music_src!=null) {
