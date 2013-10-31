@@ -380,6 +380,7 @@ $(window).load(function() {
 	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
 	alert('here');
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic.setVolume('0.3');
 	backgroundMusic.play();
 	song_time=backgroundMusic.getDuration();
 	song_time=335;
@@ -393,6 +394,7 @@ function musicLoop(song_time){
 	alert('in music loop');
 	backgroundMusic.release();
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic.setVolume('0.3');
 	backgroundMusic.play();
 	setTimeout( function() {musicLoop(song_time)},song_time);
 
