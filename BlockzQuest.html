@@ -351,11 +351,25 @@ function getURLParameter(name){
 $(document).ready(function() {
 	
 	//init();
+	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
+	alert('here');
+	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic.play();
+	backgroundMusic.setVolume('0.3');
+	song_time=backgroundMusic.getDuration();
+	song_time=1000*song_time;
+	setTimeout( function() {musicLoop(song_time)},song_time);
 	
 });
 
 	
 $(window).load(function() {	
+	
+	if(level==1&&localStorage.getItem('level')==1) {
+		$('#wordsGameInfo').html('Welcome to Blockz Quest. Touch the map at the bottom to reveal the whole level. Use the navpad at the bottom right to move, or click at an adjacent block. The backback at the bottom left shows your items. Do not waste any energy! Every step counts! Use your imagination and you shall make it wormy the worm!');
+		$('#gameInfoImage').attr('src',"image/BQ/Treasure map.png");
+		gameInfoPopup();
+	}
 	
 	if(level==7) {
 		$('#wordsGameInfo').html('"Oh no! A weird golden block is blocking my way"... Do not panic! Golden blocks disappear when certain conditions are met!');
@@ -377,21 +391,12 @@ $(window).load(function() {
    		});
 	}
 	
-	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
-	alert('here');
-	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
-	backgroundMusic.play();
-	backgroundMusic.setVolume('0.3');
-	song_time=backgroundMusic.getDuration();
-	song_time=335;
-	song_time=1000*song_time;
-	alert(song_time);
-	setTimeout( function() {musicLoop(song_time)},song_time);
-	alert('there');
+	
+	
 });
 
 function musicLoop(song_time){
-	alert('in music loop');
+	
 	backgroundMusic.release();
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
 	backgroundMusic.play();

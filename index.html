@@ -43,12 +43,28 @@
 	
 	$(window).load(function() {
     	fitScreen();
+    	backgroundMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
+		backgroundMusic.play();
+		backgroundMusic.setVolume('1');
+		song_time=backgroundMusic.getDuration();
+		song_time=1000*song_time;
+		setTimeout( function() {musicLoop(song_time)},song_time);
     	/*alert('gonna play music');
     	var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
     	myMedia.play();
     	alert('should have played music');*/
 	});
+	
+	function musicLoop(song_time){
+	
+	backgroundMusic.release();
+	backgroundMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
+	backgroundMusic.play();
+	backgroundMusic.setVolume('1');
+	setTimeout( function() {musicLoop(song_time)},song_time);
 
+	}
+	
 	$(window).bind("resize", function(){ 
 		fitScreen();
 	});
