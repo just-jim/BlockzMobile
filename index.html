@@ -44,13 +44,13 @@
 	$(window).load(function() {
     	fitScreen();
     	alert('here');
-    	backgroundMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
+    	introMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
     	alert('created succesfully');
-		backgroundMusic.play();
+		introMusic.play();
 		alert('played succesfully');
-		backgroundMusic.setVolume('1');
+		introMusic.setVolume('1');
 		alert('set Volume succesfully');
-		song_time=backgroundMusic.getDuration();
+		song_time=introMusic.getDuration();
 		alert(song_time);
 		song_time=1000*song_time;
 		setTimeout( function() {musicLoop(song_time)},song_time);
@@ -61,10 +61,10 @@
     	alert('should have played music');*/
     	function musicLoop(song_time){
 		alert('In Music Loop');
-	backgroundMusic.release();
-	backgroundMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
-	backgroundMusic.play();
-	backgroundMusic.setVolume('1');
+	introMusic.release();
+	introMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
+	introMusic.play();
+	introMusic.setVolume('1');
 	setTimeout( function() {musicLoop(song_time)},song_time);
 
 	}
@@ -89,6 +89,7 @@
 	}
 	
 	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
+		introMusic.release();
 		window.location.href='levels.html';
 		
 		/*console.log("Logging indeed!")
