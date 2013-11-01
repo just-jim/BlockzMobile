@@ -351,15 +351,7 @@ function getURLParameter(name){
 $(document).ready(function() {
 	
 	//init();
-	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
-	alert('here');
-	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
-	backgroundMusic.play();
-	backgroundMusic.setVolume('0.3');
-	song_time=backgroundMusic.getDuration();
-	alert(song_time);
-	song_time=1000*song_time;
-	setTimeout( function() {musicLoop(song_time)},song_time);
+	
 	
 });
 
@@ -392,7 +384,15 @@ $(window).load(function() {
    		});
 	}
 	
-	
+	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
+	alert('here');
+	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic.play();
+	backgroundMusic.setVolume('0.3');
+	song_time=backgroundMusic.getDuration();
+	alert(song_time);
+	song_time=1000*song_time;
+	setTimeout( function() {musicLoop(song_time)},song_time);
 	
 });
 
