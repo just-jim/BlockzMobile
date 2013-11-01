@@ -45,9 +45,13 @@
     	fitScreen();
     	alert('here');
     	backgroundMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
+    	alert('created succesfully');
 		backgroundMusic.play();
+		alert('played succesfully');
 		backgroundMusic.setVolume('1');
+		alert('set Volume succesfully');
 		song_time=backgroundMusic.getDuration();
+		alert(song_time);
 		song_time=1000*song_time;
 		setTimeout( function() {musicLoop(song_time)},song_time);
 		alert('there');
