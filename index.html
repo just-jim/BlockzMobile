@@ -53,9 +53,7 @@
     	var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
     	myMedia.play();
     	alert('should have played music');*/
-	});
-	
-	function musicLoop(song_time){
+    	function musicLoop(song_time){
 	
 	backgroundMusic.release();
 	backgroundMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
@@ -64,6 +62,9 @@
 	setTimeout( function() {musicLoop(song_time)},song_time);
 
 	}
+	});
+	
+	
 	
 	$(window).bind("resize", function(){ 
 		fitScreen();
