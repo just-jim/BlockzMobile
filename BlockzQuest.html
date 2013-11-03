@@ -389,6 +389,7 @@ $(window).load(function() {
    		});
 	}
 	
+	alert('before myMedia');
 	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
 	alert('here');
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
@@ -714,6 +715,7 @@ function createArray(n, nv){
 		y=thattel.parentNode.parentNode.rowIndex;
 		block=$(thattel).attr( "src" );
 		//Kinisi Avatar me Click
+		alert("inside clicker");
 		
 		//Is the player on the map?
 		if(!playerGone) {
@@ -1251,9 +1253,9 @@ function music(from)
 		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
 		
 		if(music_src!=null) {
-		myMedia = new Media(music_src,onSuccess, onError);
+		/*myMedia = new Media(music_src,onSuccess, onError);
     	console.log("This is myMedia " +myMedia) 
-    	myMedia.play();
+    	myMedia.play(); */
     }
 	}
 }
@@ -1261,8 +1263,9 @@ function music(from)
 function pauseAll()
 {
 	
-	if(myMedia!=null)
+	/*if(myMedia!=null)
 		myMedia.release();
+	*/	
 	/*$.each(sounds, function(index, value) 
 	{ 
 		value.pause();

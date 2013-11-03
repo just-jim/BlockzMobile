@@ -67,6 +67,8 @@ var extraHeight = topOffeset + (0.04*winH) + bottomOffset;
 var WinHh = ( (winH - extraHeight ) / 2);
 
 level=localStorage.getItem('level');
+//REMOVE SOON
+level=15;
 if(level==null) {level = 1; localStorage.setItem('level','1');}
 level=parseInt(level);
 //level=15;
