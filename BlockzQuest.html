@@ -17,10 +17,11 @@
 	
 	<script type="text/javascript" src="Jquery/jquery.scrollto.js"> </script>     
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>  
+	<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
 	<!--
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
+	
 	-->
 	<script src="phonegap.js"></script>
 	
@@ -218,7 +219,7 @@
 
 <script type="text/javascript">
 
-
+alert('Inside Javascript');
 var chrome = 0; var firefox = 1;
 
 // Pinakes eikonwn
@@ -309,6 +310,7 @@ level =getURLParameter("lvl");
 file = "BQLevels/"+level+".txt";
 $.get(file, function(data)
 {
+	alert('inside $.get');
 	parts = data.split("#");
 	energy = parts[3];
 	title = parts[2];
@@ -351,6 +353,7 @@ function getURLParameter(name){
 $(document).ready(function() {
 	
 	//init();
+	alert('inside document).ready');
 	
 	
 });
@@ -358,7 +361,9 @@ $(document).ready(function() {
 	
 $(window).load(function() {	
 	
-	if(level==1&&localStorage.getItem('level')==1) {
+	alert('inside window.load');
+	
+	if(level==1/*&&localStorage.getItem('level')==1*/) {
 		$('#wordsGameInfo').html('Welcome to Blockz Quest. Touch the map at the bottom to reveal the whole level. Use the navpad at the bottom right to move, or click at an adjacent block. The backback at the bottom left shows your items. Do not waste any energy! Every step counts! Use your imagination and you shall make it wormy the worm!');
 		$('#gameInfoImage').attr('src',"image/BQ/Treasure map.png");
 		gameInfoPopup();
@@ -392,6 +397,7 @@ $(window).load(function() {
 	song_time=335;
 	song_time=1000*song_time;
 	setTimeout( function() {musicLoop(song_time)},song_time);
+	alert('getting out of window.load');
 	
 });
 
