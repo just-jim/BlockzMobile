@@ -17,7 +17,7 @@
 	
 	<script type="text/javascript" src="Jquery/jquery.scrollto.js"> </script>     
 	<script type="text/javascript" src="Jquery/jqueryUI.js"> </script>  
-	<!--<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
+	<script type="text/javascript" src="Jquery/jquery.ui.touch-punch.js"</script>
 	<!--
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
@@ -390,9 +390,9 @@ $(window).load(function() {
 	}
 	
 	alert('before myMedia');
-	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",onSuccess, onError);
+	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",successFunction, errorFunction);
 	alert('here');
-	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
 	backgroundMusic.setVolume('0.3');
 	song_time=335;
@@ -405,7 +405,7 @@ $(window).load(function() {
 function musicLoop(song_time){
 	
 	backgroundMusic.release();
-	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",onSuccess, onError);
+	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
 	backgroundMusic.setVolume('0.3');
 	setTimeout( function() {musicLoop(song_time)},song_time);
@@ -1253,7 +1253,7 @@ function music(from)
 		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
 		
 		if(music_src!=null) {
-		/*myMedia = new Media(music_src,onSuccess, onError);
+		/*myMedia = new Media(music_src,successFunction, errorFunction);
     	console.log("This is myMedia " +myMedia) 
     	myMedia.play(); */
     }
@@ -1403,18 +1403,19 @@ document.getElementById('Worlds').addEventListener("touchstart", function(){wind
 
 //MEDIA SUCCESS OR FAIL HANDLES
 
-function onSuccess() {
+function successFunction() {
      
-     //alert("music was played");       
+     alert("music was played");       
      console.log("playAudio():Audio Success");
             
     }
 
-function onError(error) {
-                alert('code: '    + error.code    + '\n' +
-                'message: ' + error.message + '\n');
-                console.log('code: '    + error.code    + '\n' +
-                'message: ' + error.message + '\n');
+function errorFunction(error) {
+              //  alert('code: '    + error.code    + '\n' +
+            //    'message: ' + error.message + '\n');
+            alert("MUSIC ERROR");
+            //    console.log('code: '    + error.code    + '\n' +
+              //  'message: ' + error.message + '\n');
  }
 
 </script>
