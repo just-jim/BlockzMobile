@@ -86,7 +86,7 @@
 </div>
 -->
 
-<div id="levelUpPopup" class="popup" style="">
+<div id="levelUpPopup" class="popup webkit" style="">
 	<h1 class="popup_element first_element">Level Up</h1>
 	<img class="popup_element" src="image/treasure/forms/levelupArrow.png" alt="" style="height:80px;">
 	<img class="popup_element" id="levelUp" src="image/treasure/forms/levelup-btn.png" alt="" style="">
@@ -94,7 +94,7 @@
 </div>
 
 
-<div id="gameInfoPopup" class="popup">
+<div id="gameInfoPopup" class="popup webkit">
 	<img id="gameInfoPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p class="popup_element first_element"  style="font-size:40px; font-family: Feast;">Info</p>
 	<img id="gameInfoImage" class="popup_element" src="image/treasure/tools/pick.png" style="height:80px;" alt="" >
@@ -104,7 +104,7 @@
 </div>
 
 
-<div id="kingPopup" class="popup">
+<div id="kingPopup" class="popup webkit">
 	<img id="kingPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p id="words" class="popup_element first_element" style="font-size:20px; width:70%;">
 	You who witnessed my fallen kingdom... You shall see it rize again... 
@@ -114,14 +114,14 @@
 	</p>
 </div>
 
-<div id="orderPopup" class="popup">
+<div id="orderPopup" class="popup webkit">
 	<img id="orderPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p id="wordsOrd" class="popup_element first_element" style="font-size:20px;">Shout what you want</p>
 	<input type="text" name="commandy" class="popup_element" id="order"></input>
 	<input type="button" name="button" class="popup_element" value="Shout!" onClick="doOrder()"> </input>
 </div>
 
-<div id="albPopup" class="popup">
+<div id="albPopup" class="popup webkit">
 	<img id="albPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p id="wordsAlb" class="popup_element first_element" style="font-size:20px; width:70%; top: 20%;">
 		Who? Who are you? You look like that insensitive bastard Robert! 
@@ -129,7 +129,7 @@
 	</p>
 </div>
 
-<div id="broPopup" class="becenter popup webkit">
+<div id="broPopup" class="popup webkit">
 	<img id="broPopupExit" class="exitbtn" src="image/general/exit.png" alt="">
 	<p id="wordsBro" class="popup_element first_element" style="font-size:20px;">
 		O-O-omg!??! Are you my brother? 
@@ -219,7 +219,7 @@
 
 <script type="text/javascript">
 
-alert('Inside Javascript');
+//alert('Inside Javascript');
 var chrome = 0; var firefox = 1;
 
 // Pinakes eikonwn
@@ -294,6 +294,8 @@ pos["ambulance"] = [18,5,samples[28]];
 albcount=0;
 brocount=0;
 
+firstLevelPopupCount=0;
+
 //Allow player to move flag
 moveAlow = 1;
 
@@ -310,7 +312,7 @@ level =getURLParameter("lvl");
 file = "BQLevels/"+level+".txt";
 $.get(file, function(data)
 {
-	alert('inside $.get');
+	//alert('inside $.get');
 	parts = data.split("#");
 	energy = parts[3];
 	title = parts[2];
@@ -353,7 +355,7 @@ function getURLParameter(name){
 $(document).ready(function() {
 	
 	//init();
-	alert('inside document).ready');
+	//alert('inside document).ready');
 	
 	
 });
@@ -361,10 +363,10 @@ $(document).ready(function() {
 	
 $(window).load(function() {	
 	
-	alert('inside window.load');
+	//alert('inside window.load');
 	
 	if(level==1/*&&localStorage.getItem('level')==1*/) {
-		$('#wordsGameInfo').html('Welcome to Blockz Quest. Touch the map at the bottom to reveal the whole level. Use the navpad at the bottom right to move, or click at an adjacent block. The backback at the bottom left shows your items. Do not waste any energy! Every step counts! Use your imagination and you shall make it wormy the worm!');
+		$('#wordsGameInfo').html('Welcome to Blockz Quest. Touch the map at the bottom to reveal the whole level. Use the navpad at the bottom right to move, or click at an adjacent block.');
 		$('#gameInfoImage').attr('src',"image/BQ/Treasure map.png");
 		gameInfoPopup();
 	}
@@ -389,16 +391,16 @@ $(window).load(function() {
    		});
 	}
 	
-	alert('before myMedia');
+	//alert('before myMedia');
 	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",successFunction, errorFunction);
-	alert('here');
+	//alert('here');
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
 	backgroundMusic.setVolume('0.3');
 	song_time=335;
 	song_time=1000*song_time;
 	setTimeout( function() {musicLoop(song_time)},song_time);
-	alert('getting out of window.load');
+	//alert('getting out of window.load');
 	
 });
 
@@ -1055,6 +1057,11 @@ function createArray(n, nv){
 	}
 	
 	document.getElementById('gameInfoPopupExit').addEventListener('touchstart', function(e){
+		if(level==1&&firstLevelPopupCount==0) {
+			$('#wordsGameInfo').html('The backback at the bottom left shows your items. Do not waste any energy! Every step counts! Use your imagination and you shall make it wormy the worm!');
+			$('#gameInfoImage').attr('src',"image/treasure/tools/backpack.png");
+			firstLevelPopupCount=1;	 
+		}
 		moveAlow = 1;
 		document.getElementById("gameInfoPopup").style.display = 'none';
 	});
@@ -1340,7 +1347,7 @@ function walk(who,wherex,wherey) {
 function doOrder() {
 	
 	if(level==12) {
-		if($('#order').val()=='HELP') {
+		if($('#order').val()=='HELP'||$('#order').val()=='help'||$('#order').val()=='Help'||$('#order').val()=='Help!'||$('#order').val()=='help!') {
 			moveAlow=1;
 			document.getElementById('orderPopup').style.display = 'none';
 			moveAlow=0;
@@ -1363,7 +1370,7 @@ function doOrder() {
 	}
 	
 	if(level==15) {
-		if($('#order').val()=='ZODIAC') {
+		if($('#order').val()=='ZODIAC'||$('#order').val()=='zodiac'||$('#order').val()=='Zodiac') {
 			moveAlow=1;
 			document.getElementById('orderPopup').style.display = 'none';
 			$('#Map tr:eq(1) td:eq(2) img').attr("src",samples[5]);
