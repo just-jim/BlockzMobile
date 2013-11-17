@@ -59,10 +59,11 @@
 
 <script>
 
+/*
 $(window).load(function() 
 {
 		alert('here');
-		levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+    	levelsMusic= new Media("/android_asset/www/audio/intro.mp3",onSuccess, onError);
 		alert('there');
 		levelsMusic.play();
 		levelsMusic.setVolume('1');
@@ -81,6 +82,7 @@ $(window).load(function()
 		
 		
 });
+*/
 
 bottomOffset = 50;
 topOffeset = $('#menu img').height()+20;
@@ -149,7 +151,7 @@ function gotoLevel(tile){
 	lvli=tile.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex+1;
 	lvlj=tile.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex;
 	lvl = lvlj*blocksPerLine +lvli;		
-	levelsMusic.release();
+	//levelsMusic.release();
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
 }
 
