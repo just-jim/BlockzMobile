@@ -73,6 +73,35 @@ if(level==null) {level = 1; localStorage.setItem('level','1');}
 level=parseInt(level);
 //level=15;
 lines = 3;
+
+
+//alert('here');
+levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+    	//alert('created succesfully');
+levelsMusic.play();
+		//alert('played succesfully');
+levelsMusic.setVolume('1');
+		//alert('set Volume succesfully');
+song_time=37;
+song_time=1000*song_time;
+setTimeout( function() {musicLoop(song_time);},song_time);
+//alert('there');
+/*alert('gonna play music');
+var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
+myMedia.play();
+alert('should have played music');*/
+function musicLoop(song_time){
+//alert('In Music Loop');
+	levelsMusic.release();
+	levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+	levelsMusic.play();
+	levelsMusic.setVolume('1');
+	setTimeout( function() {musicLoop(song_time)},song_time);
+
+}
+
+
+
 for (line=1; line<=lines; line++)
 {
 	$('#GridMenu table').append('<tr>');
@@ -130,33 +159,10 @@ function gotoLevel(tile){
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
 }
 
-	$(window).load(function() {
+	
     	
-    	//alert('here');
-    	levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
-    	//alert('created succesfully');
-		levelsMusic.play();
-		//alert('played succesfully');
-		levelsMusic.setVolume('1');
-		//alert('set Volume succesfully');
-		song_time=37;
-		song_time=1000*song_time;
-		setTimeout( function() {musicLoop(song_time);},song_time);
-		//alert('there');
-    	/*alert('gonna play music');
-    	var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
-    	myMedia.play();
-    	alert('should have played music');*/
-    	function musicLoop(song_time){
-		//alert('In Music Loop');
-	levelsMusic.release();
-	levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
-	levelsMusic.play();
-	levelsMusic.setVolume('1');
-	setTimeout( function() {musicLoop(song_time)},song_time);
-
-	}
-	});
+    	
+	
 
 	function onSuccess() {
     // alert("music was played");       

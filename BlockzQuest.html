@@ -1238,7 +1238,7 @@ function music(from)
 		if      (from == "explore") document.getElementById("popClip").play(); 
 		else if (from == "step")  	{ music_src="/android_asset/www/audio/step.mp3"; }
 		else if (from == "axe")  	{document.getElementById("pickaxeClip").play(); music_src="/android_asset/www/audio/axe.mp3"; }
-		else if (from == "levelup") document.getElementById("levelupClip").play();
+		else if (from == "levelup") { document.getElementById("levelupClip").play(); music_src="/android_asset/www/audio/levelup.mp3"; }
 		else if (from == "chest") 	document.getElementById("chestClip").play(); 
 		else if (from == "key") 	{document.getElementById("keyClip").play(); music_src="/android_asset/www/audio/key.mp3";	}
 		else if (from == "water") 	{document.getElementById("waterClip").play(); music_src="/android_asset/www/audio/water.mp3";	}
