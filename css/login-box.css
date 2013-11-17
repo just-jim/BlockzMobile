@@ -38,6 +38,16 @@
 	
 }
 
+input.popup_element {
+	
+	position:relative; 
+	z-index:200; 
+	padding-top:30px; 
+	margin:0;
+	display:block;
+	
+}
+
 .first_element {
 
 padding-top:50px;
