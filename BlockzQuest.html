@@ -35,7 +35,7 @@
 	<img src="image/general/menubar.png" alt="">
 </div> 
 
-<div id="Grid" class="becenter">
+<div id="Grid" class="becenter" style="opacity:0;">
 	<table id="OuterMap">
 	</table>
 	
@@ -327,6 +327,7 @@ function getURLParameter(name){
 	
 $(window).load(function() {	
 	
+	$('#Grid').animate({opacity:1},1200);
 	
 	if(level==1 && localStorage.getItem('level')==1 ) {
 		$('#wordsGameInfo').html('Welcome to Blockz Quest. Touch the map at the bottom to reveal the whole level. Use the navpad at the bottom right to move, or click at an adjacent block.');
@@ -440,7 +441,7 @@ function createArray(n, nv){
 	var winW = $(window).width();
 	var winH = $(window).height();
 	
-	height = Math.floor(winH / nv);
+	height = Math.ceil(winW / nv);
 	width = height;
 	
 	
@@ -1230,6 +1231,13 @@ function music(from)
 function pauseAll()
 {
 	if(myMedia!=null)	myMedia.release();
+	
+	$.each(sounds, function(index, value) 
+        { 
+                value.pause();
+                
+                if (!firefox && !ie) value.currentTime = 0;
+        });
 }
 
 function playMovie() {
@@ -1364,6 +1372,15 @@ function successFunction()
 {
      console.log("playAudio():Audio Success");
 }
+
+function errorFunction(error) {
+              //  alert('code: '    + error.code    + '\n' +
+            //    'message: ' + error.message + '\n');
+            alert("MUSIC ERROR");
+            //    console.log('code: '    + error.code    + '\n' +
+              //  'message: ' + error.message + '\n');
+ }
+
 
 </script>
 </body>
