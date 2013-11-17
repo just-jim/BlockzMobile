@@ -971,8 +971,15 @@ function createArray(n, nv){
 	
 	function levelup()
 	{
-		if(level==15) document.location.href= 'youAreTheChampion.php';
+		if(level==15) { 
+			music('levelup');
+		setTimeout( function () {
+			document.location.href= 'ending.html';
+		},2500);
+		}
 		else{
+		music('levelup');
+		setTimeout( function () {
 		document.getElementById('levelUp').style.display = "none";
 		//music("levelup");
 		level++;
@@ -981,7 +988,9 @@ function createArray(n, nv){
 		localStorage.setItem('level',level);
 		window.location.href = "BlockzQuest.html?lvl="+level;
 		}
+		
 		else window.location.href = "levels.html";
+		},2500);
 
 		}
 	}

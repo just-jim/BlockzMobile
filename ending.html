@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Blockz.me is a game site that has blocks!" />
+	<meta name="author" content="© Blockz "/>
+	<title> BlockZ </title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/backpack.css" />
+	<script type="text/javascript" src="Jquery/jquery.js"> </script>  
+</head>
+
+<body>
+
+<div id="header" class="becenter">
+	<h1 class="becenter">BlockZ Quest</h1>
+	<p id="minititle" class="webkit becenter" style="font-size:20px; top: 60px;" >CONGRATULATIONS</p>
+</div>
+
+<div id="menu">
+	<img src="image/general/menubar.png" style="height:80px;" alt="">
+</div> 
+
+<div id="worldImage" class="becenter webkit" style="top:33%; position:absolute;" >
+	
+	<p class="becenter" style="font-size:25px; top: 30%;  ">You beat world 1 of the Blockz Quest!</p>
+	
+	<img id="world1" class="hand world" src="image/trophy.jpg" style="position: fixed; top :40%; opacity:0;"/>
+
+	<p class="becenter" style="font-size:25px; bottom:20%;">Please visit www.theblockz.com/quest to rate your experience! Next -> World 2 : the volcano!</p>	
+</div>
+
+<div id="names" class="webkit" style="position: fixed; bottom:5px; left:8px;">
+	<span>BlockZ © </span>
+	<span>- Archer </span>
+	<span>- just_jim </span>
+</div>
+
+<script type="text/javascript">
+	
+	$(window).load(function() {
+    	fitScreen();
+    	//alert('here');
+    	
+	});
+	
+	
+	
+	$(window).bind("resize", function(){ 
+		fitScreen();
+	});
+	
+	function fitScreen()
+	{
+		winH =  $(window).height();
+		$("#world1").css("height",winH/3);
+		w = $("#world1").css("width");
+		w = parseInt(w);
+		winWh = $(window).width()/2;
+		vale = winWh-(w/2);
+		$("#world1").css("left",vale);
+		$("#world1").animate({opacity:1},1200);
+	}
+	
+	document.getElementById('worldImage').addEventListener('touchstart', function(e) {
+		introMusic.release();
+		window.location.href='levels.html';
+		
+		/*console.log("Logging indeed!")
+    	alert('gonna play music');
+    	var myMedia2 = new Media("/android_asset/www/audio/key.mp3",onSuccess, onError);
+    	console.log("This is myMedia " +myMedia2) 
+    	myMedia2.play();
+    	alert('should have played music');*/
+    	
+	});
+	
+	function onSuccess() {
+    // alert("music was played");       
+    console.log("playAudio():Audio Success");
+            
+    }
+
+
+         function onError(error) {
+              /*  alert('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n'); */
+                console.log('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n');
+         }
+	
+</script>
+</body>
+</html>

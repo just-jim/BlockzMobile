@@ -133,15 +133,15 @@ function gotoLevel(tile){
 	$(window).load(function() {
     	
     	//alert('here');
-    	introMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+    	levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
     	//alert('created succesfully');
-		introMusic.play();
+		levelsMusic.play();
 		//alert('played succesfully');
-		introMusic.setVolume('1');
+		levelsMusic.setVolume('1');
 		//alert('set Volume succesfully');
 		song_time=37;
 		song_time=1000*song_time;
-		setTimeout( function() {musicLoop(song_time)},song_time);
+		setTimeout( function() {musicLoop(song_time);},song_time);
 		//alert('there');
     	/*alert('gonna play music');
     	var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
@@ -149,10 +149,10 @@ function gotoLevel(tile){
     	alert('should have played music');*/
     	function musicLoop(song_time){
 		//alert('In Music Loop');
-	introMusic.release();
-	introMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
-	introMusic.play();
-	introMusic.setVolume('1');
+	levelsMusic.release();
+	levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+	levelsMusic.play();
+	levelsMusic.setVolume('1');
 	setTimeout( function() {musicLoop(song_time)},song_time);
 
 	}
