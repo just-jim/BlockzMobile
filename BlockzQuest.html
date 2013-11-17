@@ -59,18 +59,18 @@
 	<table>
 		<tr>
 			<td class="highlightit" colspan="3"> 
-				<img id="UpKey" src="image/navigation/up.png" style="width: 35px;">
+				<img id="UpKey" src="image/navigation/up.png" style="width: 45px;">
 			</td>
 		</tr>
 		<tr>
 			<td class="highlightit">
-				<img id="LeftKey" src="image/navigation/left.png" style="width: 35px;">
+				<img id="LeftKey" src="image/navigation/left.png" style="width: 45px;">
 			</td>
 			<td class="highlightit">
-				<img id="DownKey" src="image/navigation/down.png" style="width: 35px;">
+				<img id="DownKey" src="image/navigation/down.png" style="width: 45px;">
 			</td>
 			<td class="highlightit">
-				<img id="RightKey" src="image/navigation/right.png" style="width: 35px;">
+				<img id="RightKey" src="image/navigation/right.png" style="width: 45px;">
 			</td>
 		</tr>
 	</table>
@@ -279,7 +279,7 @@ flower=0;
 titlecount=0;
 titlesbrowsed=0;
 badWormEnergy=3;
-minimapVisible = false;
+minimapVisible = true;
 
 
 
@@ -312,60 +312,23 @@ level =getURLParameter("lvl");
 file = "BQLevels/"+level+".txt";
 $.get(file, function(data)
 {
-	//alert('inside $.get');
 	parts = data.split("#");
 	energy = parts[3];
 	title = parts[2];
 	prepareMap(parts[0],parts[1]);
 });
-	
 
-/*
-function touchHandler(event) {
-    var touch = event.changedTouches[0];
-
-    var simulatedEvent = document.createEvent("MouseEvent");
-        simulatedEvent.initMouseEvent({
-        touchstart: "mousedown",
-        touchmove: "mousemove",
-        touchend: "mouseup"
-    }[event.type], true, true, window, 1,
-        touch.screenX, touch.screenY,
-        touch.clientX, touch.clientY, false,
-        false, false, false, 0, null);
-
-    touch.target.dispatchEvent(simulatedEvent);
-    event.preventDefault();
-}
-*/
-
-/*function init() {
-    document.addEventListener("touchstart", touchHandler, true);
-    document.addEventListener("touchmove", touchHandler, true);
-    document.addEventListener("touchend", touchHandler, true);
-    document.addEventListener("touchcancel", touchHandler, true);
-}*/
-	
 function getURLParameter(name){
     return decodeURI(
         (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
 }
 
-$(document).ready(function() {
-	
-	//init();
-	//alert('inside document).ready');
-	
-	
-});
-
 	
 $(window).load(function() {	
 	
-	//alert('inside window.load');
 	
-	if(level==1/*&&localStorage.getItem('level')==1*/) {
+	if(level==1 && localStorage.getItem('level')==1 ) {
 		$('#wordsGameInfo').html('Welcome to Blockz Quest. Touch the map at the bottom to reveal the whole level. Use the navpad at the bottom right to move, or click at an adjacent block.');
 		$('#gameInfoImage').attr('src',"image/BQ/Treasure map.png");
 		gameInfoPopup();
@@ -391,17 +354,14 @@ $(window).load(function() {
    		});
 	}
 	
-	//alert('before myMedia');
-	myMedia= new Media("/android_asset/www/audio/pickaxe.mp3",successFunction, errorFunction);
-	//alert('here');
+	myMedia= new Media("/android_asset/www/audio/axe.mp3",successFunction, errorFunction);
+
 	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
 	backgroundMusic.setVolume('0.3');
 	song_time=335;
 	song_time=1000*song_time;
 	setTimeout( function() {musicLoop(song_time)},song_time);
-	//alert('getting out of window.load');
-	
 });
 
 function musicLoop(song_time){
@@ -477,8 +437,8 @@ function manageTools(src,value,name)
 // Dimiourgia  pinaka
 function createArray(n, nv){
 	
-	var winW = $(window).width()*3;
-	var winH = $(window).height()*3;
+	var winW = $(window).width();
+	var winH = $(window).height();
 	
 	height = Math.floor(winH / nv);
 	width = height;
@@ -1259,26 +1219,17 @@ function music(from)
 		else if (from == "revelation") 	{ music_src="/android_asset/www/audio/revelation.mp3"; }
 		else if (from == "antilava") {	document.getElementById("antilavaClip").play(); music_src="/android_asset/www/audio/antilava.mp3"; }
 		
-		if(music_src!=null) {
-		/*myMedia = new Media(music_src,successFunction, errorFunction);
-    	console.log("This is myMedia " +myMedia) 
-    	myMedia.play(); */
-    }
+		if(music_src!=null) 
+		{
+			myMedia = new Media(music_src,successFunction, errorFunction);
+    		myMedia.play();
+    	}
 	}
 }
 
 function pauseAll()
 {
-	
-	/*if(myMedia!=null)
-		myMedia.release();
-	*/	
-	/*$.each(sounds, function(index, value) 
-	{ 
-		value.pause();
-		
-		if (!firefox && !ie) value.currentTime = 0;
-	}); */
+	if(myMedia!=null)	myMedia.release();
 }
 
 function playMovie() {
@@ -1293,7 +1244,6 @@ function playMovie() {
 	setTimeout(function() { 
 	    		music("punch");
 	    			$('#Map tr:eq('+ pos["robert"][1]+') td:eq('+ pos["robert"][0] +')').children().attr("src",samples[25]);
-
 	},2200);
 	
 	setTimeout(function() { 
@@ -1410,20 +1360,10 @@ document.getElementById('Worlds').addEventListener("touchstart", function(){wind
 
 //MEDIA SUCCESS OR FAIL HANDLES
 
-function successFunction() {
-     
-     //alert("music was played");       
+function successFunction() 
+{
      console.log("playAudio():Audio Success");
-            
-    }
-
-function errorFunction(error) {
-              //  alert('code: '    + error.code    + '\n' +
-            //    'message: ' + error.message + '\n');
-            alert("MUSIC ERROR");
-            //    console.log('code: '    + error.code    + '\n' +
-              //  'message: ' + error.message + '\n');
- }
+}
 
 </script>
 </body>
