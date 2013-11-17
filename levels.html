@@ -149,7 +149,7 @@ function gotoLevel(tile){
 	lvli=tile.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex+1;
 	lvlj=tile.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex;
 	lvl = lvlj*blocksPerLine +lvli;		
-	
+	levelsMusic.release();
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
 }
 
@@ -162,7 +162,8 @@ function onSuccess()
 
 function onError(error) 
 {
-	console.log('code: ');
+	console.log('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n');
 }
 
 document.getElementById('Worlds').addEventListener("touchstart", function(){window.location.href = "index.html";}, true);
