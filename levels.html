@@ -158,6 +158,20 @@ function gotoLevel(tile){
 	}
 	});
 
+	function onSuccess() {
+    // alert("music was played");       
+    console.log("playAudio():Audio Success");
+            
+    }
+
+
+         function onError(error) {
+              /*  alert('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n'); */
+                console.log('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n');
+         }
+
 document.getElementById('Worlds').addEventListener("touchstart", function(){window.location.href = "index.html";}, true);
 
 </script>

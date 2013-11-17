@@ -359,7 +359,7 @@ $(window).load(function() {
 	if(level!=15) {
 	backgroundMusic= new Media("/android_asset/www/audio/MainTheme.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
-	backgroundMusic.setVolume('0.3');
+	backgroundMusic.setVolume('0.2');
 	song_time=141;
 	song_time=1000*song_time;
 	setTimeout( function() {musicLoop(song_time);},song_time);
@@ -382,7 +382,7 @@ function musicLoop(song_time){
 	backgroundMusic.release();
 	backgroundMusic= new Media("/android_asset/www/audio/MainTheme.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
-	backgroundMusic.setVolume('0.3');
+	backgroundMusic.setVolume('0.2');
 	setTimeout( function() {musicLoop(song_time);},song_time);
 	}
 	else {
@@ -400,7 +400,7 @@ function musicLoop(song_time){
 function prepareMap(personal,background)
 {
 	user=1;		
-	$('#level').html(' - Lvl: '+ level);
+	//$('#level').html(' - Lvl: '+ level);
 	
 	$('#minititle').html(''+ title);
 	
