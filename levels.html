@@ -58,7 +58,29 @@
 
 
 <script>
-	
+
+$(window).load(function() 
+{
+		
+		levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+		levelsMusic.play();
+		levelsMusic.setVolume('1');
+		song_time=37;
+		song_time=1000*song_time;
+		alert('Loading');
+		setTimeout( function() {musicLoop(song_time);},song_time);
+		function musicLoop(song_time)
+		{
+			levelsMusic.release();
+			levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
+			levelsMusic.play();
+			levelsMusic.setVolume('1');
+			setTimeout( function() {musicLoop(song_time);},song_time);
+		}
+		
+		
+});
+
 bottomOffset = 50;
 topOffeset = $('#menu img').height()+20;
 var winW = $(window).width();
@@ -73,35 +95,6 @@ if(level==null) {level = 1; localStorage.setItem('level','1');}
 level=parseInt(level);
 //level=15;
 lines = 3;
-
-
-//alert('here');
-levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
-    	//alert('created succesfully');
-levelsMusic.play();
-		//alert('played succesfully');
-levelsMusic.setVolume('1');
-		//alert('set Volume succesfully');
-song_time=37;
-song_time=1000*song_time;
-setTimeout( function() {musicLoop(song_time);},song_time);
-//alert('there');
-/*alert('gonna play music');
-var myMedia = new Media("/android_asset/www/audio/key.mp3"); 
-myMedia.play();
-alert('should have played music');*/
-function musicLoop(song_time){
-//alert('In Music Loop');
-	levelsMusic.release();
-	levelsMusic= new Media("/android_asset/www/audio/Menu.mp3",onSuccess, onError);
-	levelsMusic.play();
-	levelsMusic.setVolume('1');
-	setTimeout( function() {musicLoop(song_time)},song_time);
-
-}
-
-
-
 for (line=1; line<=lines; line++)
 {
 	$('#GridMenu table').append('<tr>');
@@ -159,24 +152,17 @@ function gotoLevel(tile){
 	window.location.href = "BlockzQuest.html?lvl="+lvl;
 }
 
-	
-    	
-    	
-	
 
-	function onSuccess() {
-    // alert("music was played");       
-    console.log("playAudio():Audio Success");
-            
-    }
+function onSuccess() 
+{
+	console.log("playAudio():Audio Success");
+}
 
 
-         function onError(error) {
-              /*  alert('code: '    + error.code    + '\n' +
-                'message: ' + error.message + '\n'); */
-                console.log('code: '    + error.code    + '\n' +
-                'message: ' + error.message + '\n');
-         }
+function onError(error) 
+{
+	console.log('code: ');
+}
 
 document.getElementById('Worlds').addEventListener("touchstart", function(){window.location.href = "index.html";}, true);
 
