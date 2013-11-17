@@ -356,23 +356,44 @@ $(window).load(function() {
 	}
 	
 	myMedia= new Media("/android_asset/www/audio/axe.mp3",successFunction, errorFunction);
-
-	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",successFunction, errorFunction);
+	if(level!=15) {
+	backgroundMusic= new Media("/android_asset/www/audio/MainTheme.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
 	backgroundMusic.setVolume('0.3');
-	song_time=335;
+	song_time=141;
 	song_time=1000*song_time;
-	setTimeout( function() {musicLoop(song_time)},song_time);
+	setTimeout( function() {musicLoop(song_time);},song_time);
+	}
+	else {
+	
+	backgroundMusic= new Media("/android_asset/www/audio/FinalLevel.mp3",successFunction, errorFunction);
+	backgroundMusic.play();
+	backgroundMusic.setVolume('0.3');
+	song_time=90;
+	song_time=1000*song_time;
+	setTimeout( function() {musicLoop(song_time);},song_time);
+		
+		
+	}
 });
 
 function musicLoop(song_time){
-	
+	if(level!=15) {
 	backgroundMusic.release();
-	backgroundMusic= new Media("/android_asset/www/audio/background.mp3",successFunction, errorFunction);
+	backgroundMusic= new Media("/android_asset/www/audio/MainTheme.mp3",successFunction, errorFunction);
 	backgroundMusic.play();
 	backgroundMusic.setVolume('0.3');
-	setTimeout( function() {musicLoop(song_time)},song_time);
-
+	setTimeout( function() {musicLoop(song_time);},song_time);
+	}
+	else {
+	
+	backgroundMusic= new Media("/android_asset/www/audio/FinalLevel.mp3",successFunction, errorFunction);
+	backgroundMusic.play();
+	backgroundMusic.setVolume('0.3');
+	setTimeout( function() {musicLoop(song_time);},song_time);
+		
+		
+	}
 }
 
 // Function to prepare map for the user 
@@ -410,8 +431,8 @@ function prepareMap(personal,background)
 				many = tmpy;
 				lastMoveX=tmpx;
 				lastMoveY=tmpy;
-				$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left});
-				$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top});
+				/*$('html, body').animate({scrollLeft: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().left});
+				$('html, body').animate({scrollTop: $("#Map tr:eq("+many+") td:eq("+manx+")").offset().top});*/
 	  		}
 	  	}
 	});
